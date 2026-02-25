@@ -16,13 +16,13 @@ comingSoon = "ഉടൻ വരുന്നു"
 confirmClose = "അടയ്ക്കൽ സ്ഥിരീകരിക്കുക"
 confirmCloseCancel = "റദ്ദാക്കുക"
 confirmCloseConfirm = "ഫയൽ അടയ്ക്കുക"
-confirmCloseMessage = "ഈ ഫയൽ അടയ്ക്കണമെന്ന് നിങ്ങൾക്ക് തീർച്ചയാണോ?"
 confirmCloseDiscard = "മാറ്റങ്ങൾ ഉപേക്ഷിച്ച് അടയ്ക്കുക"
+confirmCloseMessage = "ഈ ഫയൽ അടയ്ക്കണമെന്ന് നിങ്ങൾക്ക് തീർച്ചയാണോ?"
 confirmCloseSave = "സംരക്ഷിച്ച് അടയ്ക്കുക"
+confirmCloseSaveFailed = "പിശകുകളോടെ സംരക്ഷിച്ചു. {{count}} ഫയൽ{{plural}} സംരക്ഷിക്കാൻ കഴിഞ്ഞില്ല."
+confirmCloseSaveFailedTitle = "സംരക്ഷിക്കൽ പരാജയപ്പെട്ടു"
 confirmCloseUnsaved = "ഈ ഫയലിൽ സംരക്ഷിക്കാത്ത മാറ്റങ്ങൾ ഉണ്ട്."
 confirmCloseUnsavedList = "നിങ്ങൾക്ക് സംരക്ഷിക്കാത്ത മാറ്റങ്ങൾ ഉള്ള {{count}} ഫയൽ{{plural}} ഉണ്ട്.\n\n{{fileList}}"
-confirmCloseSaveFailedTitle = "സംരക്ഷിക്കൽ പരാജയപ്പെട്ടു"
-confirmCloseSaveFailed = "പിശകുകളോടെ സംരക്ഷിച്ചു. {{count}} ഫയൽ{{plural}} സംരക്ഷിക്കാൻ കഴിഞ്ഞില്ല."
 confirmPasswordErrorMessage = "പുതിയ പാസ്‌വേഡും പുതിയ പാസ്‌വേഡ് സ്ഥിരീകരണവും പൊരുത്തപ്പെടണം."
 custom = "ഇഷ്ടാനുസൃതം..."
 customPosition = "ഇഷ്ടാനുസൃത സ്ഥാനം"
@@ -45,8 +45,8 @@ edit = "തിരുത്തുക"
 editYourNewFiles = "നിങ്ങളുടെ പുതിയ ഫയൽ(കൾ) തിരുത്തുക"
 exportAndContinue = "എക്സ്പോർട്ട് ചെയ്ത് തുടരുക"
 false = "തെറ്റ്"
-fileSavedToDisk = "ഫയൽ ഡിസ്കിലേക്ക് സംരക്ഷിച്ചു"
 fileNotSavedToDisk = "ഡിസ്കിലേക്ക് സംരക്ഷിച്ചില്ല"
+fileSavedToDisk = "ഫയൽ ഡിസ്കിലേക്ക് സംരക്ഷിച്ചു"
 fileSelected = "തിരഞ്ഞെടുത്തത്: {{filename}}"
 filesSelected = "ഫയലുകൾ തിരഞ്ഞെടുത്തു"
 font = "അക്ഷരം"
@@ -841,6 +841,14 @@ title = "API എൻഡ്‌പോയിന്റുകൾ"
 userDefaults = "ഉപയോക്തൃ മുൻഗണനകളുടെ സ്വതേയുള്ള ക്രമീകരണങ്ങൾ"
 userDefaultsDescription = "ഉപയോക്തൃ മുൻഗണനകൾക്ക് സ്വതേയുള്ള മൂല്യങ്ങൾ സജ്ജമാക്കുക. ഉപയോക്താക്കൾക്ക് ഇവ അവരുടെ വ്യക്തിഗത ക്രമീകരണങ്ങളിൽ മാറ്റിച്ചമയ്ക്കാം."
 
+[admin.settings.endpoints.defaultHideUnavailableConversions]
+description = "ഗ്രേയായി കാണിക്കുന്നതിന് പകരം പ്രവർത്തനരഹിതമായ പരിവർത്തന ഓപ്ഷനുകൾ നീക്കം ചെയ്യുക"
+label = "ലഭ്യമല്ലാത്ത പരിവർത്തനങ്ങൾ സ്വതേയമായി മറയ്ക്കുക"
+
+[admin.settings.endpoints.defaultHideUnavailableTools]
+description = "ഗ്രേയായി കാണിക്കുന്നതിന് പകരം പ്രവർത്തനരഹിതമായ ഉപകരണങ്ങൾ നീക്കം ചെയ്യുക"
+label = "ലഭ്യമല്ലാത്ത ഉപകരണങ്ങൾ സ്വതേയായി മറയ്ക്കുക"
+
 [admin.settings.endpoints.groupsToRemove]
 description = "അപ്രാപ്തമാക്കേണ്ട എൻഡ്‌പോയിന്റ് ഗ്രൂപ്പുകൾ തിരഞ്ഞെടുക്കുക"
 label = "അപ്രാപ്തമാക്കിയ എൻഡ്‌പോയിന്റ് ഗ്രൂപ്പുകൾ"
@@ -848,14 +856,6 @@ label = "അപ്രാപ്തമാക്കിയ എൻഡ്‌പോയ�
 [admin.settings.endpoints.toRemove]
 description = "അപ്രാപ്തമാക്കേണ്ട എൻഡ്‌പോയിന്റുകൾ തിരഞ്ഞെടുക്കുക"
 label = "അപ്രാപ്തമാക്കിയ എൻഡ്‌പോയിന്റുകൾ"
-
-[admin.settings.endpoints.defaultHideUnavailableTools]
-description = "ഗ്രേയായി കാണിക്കുന്നതിന് പകരം പ്രവർത്തനരഹിതമായ ഉപകരണങ്ങൾ നീക്കം ചെയ്യുക"
-label = "ലഭ്യമല്ലാത്ത ഉപകരണങ്ങൾ സ്വതേയായി മറയ്ക്കുക"
-
-[admin.settings.endpoints.defaultHideUnavailableConversions]
-description = "ഗ്രേയായി കാണിക്കുന്നതിന് പകരം പ്രവർത്തനരഹിതമായ പരിവർത്തന ഓപ്ഷനുകൾ നീക്കം ചെയ്യുക"
-label = "ലഭ്യമല്ലാത്ത പരിവർത്തനങ്ങൾ സ്വതേയമായി മറയ്ക്കുക"
 
 [admin.settings.enterpriseRequired]
 message = "{{featureName}} ഉപയോഗിക്കാൻ ഒരു എന്റർപ്രൈസ് ലൈസൻസ് ആവശ്യമാണ്. നിങ്ങൾ റഫറൻസിന് ഡെമോ ഡാറ്റയാണ് കാണുന്നത്."
@@ -1228,6 +1228,14 @@ label = "ആദ്യ യൂസർനെയിം"
 [admin.settings.security.jwt]
 label = "JWT കോൺഫിഗറേഷൻ"
 
+[admin.settings.security.jwt.allowedClockSkewSeconds]
+description = "ടോക്കൺ സാധൂകരണ സമയത്തെ ക്ലയന്റ്/സർവർ സമയ വ്യതിയാനത്തിനുള്ള അനുവദനീയ പരിധി (സ്വതേ: 60 സെക്കൻഡ്)"
+label = "ക്ലോക്ക് സ്ക്യൂ സഹിഷ്ണുത (സെക്കൻഡ്)"
+
+[admin.settings.security.jwt.desktopTokenExpiryMinutes]
+description = "ഡെസ്ക്ടോപ്പ് ക്ലയന്റുകൾക്കുള്ള ആക്സസ് ടോക്കന്റെ കാലാവധി (മിനിറ്റ്). User-Agent വഴി ഡെസ്ക്ടോപ്പ് ആപ്പുകൾ സ്വയം കണ്ടെത്തപ്പെടുകയും മികച്ച UX നായി നീണ്ട സെഷനുകൾ ലഭിക്കുകയും ചെയ്യും (സ്വതേ: 43200 = 30 ദിവസം)"
+label = "ഡെസ്ക്ടോപ്പ് ടോക്കൻ കാലാവധി (മിനിറ്റ്)"
+
 [admin.settings.security.jwt.enableKeyCleanup]
 description = "കാലഹരണപ്പെട്ട JWT കീസുകൾ സ്വയം നീക്കംചെയ്യുക"
 label = "കീ ക്ലീൻഅപ്പ് പ്രാപ്തമാക്കുക"
@@ -1236,29 +1244,21 @@ label = "കീ ക്ലീൻഅപ്പ് പ്രാപ്തമാക്
 description = "JWT സൈൻ ചെയ്യുന്ന കീസുകൾ നിശ്ചിത ഇടവേളകളിൽ സ്വയമായി മാറ്റുക"
 label = "കീ റൊട്ടേഷൻ പ്രാപ്തമാക്കുക"
 
-[admin.settings.security.jwt.tokenExpiryMinutes]
-description = "വെബ് ക്ലയന്റുകൾക്കുള്ള ആക്സസ് ടോക്കന്റെ കാലാവധി മിനിറ്റുകളിൽ (സ്വതേ: 1440 = 24 മണിക്കൂർ)"
-label = "വെബ് ടോക്കൻ കാലാവധി (മിനിറ്റ്)"
-
-[admin.settings.security.jwt.desktopTokenExpiryMinutes]
-description = "ഡെസ്ക്ടോപ്പ് ക്ലയന്റുകൾക്കുള്ള ആക്സസ് ടോക്കന്റെ കാലാവധി (മിനിറ്റ്). User-Agent വഴി ഡെസ്ക്ടോപ്പ് ആപ്പുകൾ സ്വയം കണ്ടെത്തപ്പെടുകയും മികച്ച UX നായി നീണ്ട സെഷനുകൾ ലഭിക്കുകയും ചെയ്യും (സ്വതേ: 43200 = 30 ദിവസം)"
-label = "ഡെസ്ക്ടോപ്പ് ടോക്കൻ കാലാവധി (മിനിറ്റ്)"
-
-[admin.settings.security.jwt.allowedClockSkewSeconds]
-description = "ടോക്കൺ സാധൂകരണ സമയത്തെ ക്ലയന്റ്/സർവർ സമയ വ്യതിയാനത്തിനുള്ള അനുവദനീയ പരിധി (സ്വതേ: 60 സെക്കൻഡ്)"
-label = "ക്ലോക്ക് സ്ക്യൂ സഹിഷ്ണുത (സെക്കൻഡ്)"
+[admin.settings.security.jwt.persistence]
+description = "സെർവർ റീസ്റ്റാർട്ടുകൾക്കു ശേഷവും നിലനിൽക്ക도록 JWT കീസുകൾ സ്ഥിരമായി സൂക്ഷിക്കുക"
+label = "കീ പേഴ്സിസ്റ്റൻസ് പ്രാപ്തമാക്കുക"
 
 [admin.settings.security.jwt.refreshGraceMinutes]
 description = "കാലാവധി കഴിഞ്ഞതിന് ശേഷം ഇത്ര മിനിറ്റിനുള്ളിൽ ടോക്കൺ റിഫ്രെഷ് അനുവദിക്കുക (സ്വതേ: 15 മിനിറ്റ്, പരമാവധി 3 ശ്രമങ്ങൾ)"
 label = "റിഫ്രെഷ് ഗ്രേസ് പീരിയഡ് (മിനിറ്റ്)"
 
-[admin.settings.security.jwt.persistence]
-description = "സെർവർ റീസ്റ്റാർട്ടുകൾക്കു ശേഷവും നിലനിൽക്ക도록 JWT കീസുകൾ സ്ഥിരമായി സൂക്ഷിക്കുക"
-label = "കീ പേഴ്സിസ്റ്റൻസ് പ്രാപ്തമാക്കുക"
-
 [admin.settings.security.jwt.secureCookie]
 description = "JWT കുക്കികൾക്ക് HTTPS നിർബന്ധമാക്കുക (പ്രൊഡക്ഷനിൽ ശുപാർശ ചെയ്യുന്നു)"
 label = "സുരക്ഷിത കുക്കി"
+
+[admin.settings.security.jwt.tokenExpiryMinutes]
+description = "വെബ് ക്ലയന്റുകൾക്കുള്ള ആക്സസ് ടോക്കന്റെ കാലാവധി മിനിറ്റുകളിൽ (സ്വതേ: 1440 = 24 മണിക്കൂർ)"
+label = "വെബ് ടോക്കൻ കാലാവധി (മിനിറ്റ്)"
 
 [admin.settings.security.loginAttemptCount]
 description = "അക്കൗണ്ട് ലോക്കാകുന്നതിനു മുമ്പുള്ള പരാജയപ്പെട്ട ലോഗിൻ ശ്രമങ്ങളുടെ പരമാവധി എണ്ണം"
@@ -2238,6 +2238,9 @@ title = "അനുമതികൾ മാറ്റുക"
 [changePermissions.tooltip.warning]
 text = "ഈ അനുമതികൾ മാറ്റാൻ പറ്റാത്തതാക്കാൻ, Add Password ടൂൾ ഉപയോഗിച്ച് ഒരു ഉടമയുടെ പാസ്‌വേഡ് സജ്ജീകരിക്കുക."
 
+[cloudBadge]
+tooltip = "This operation will use your cloud credits"
+
 [colorPicker]
 title = "നിറം തിരഞ്ഞെടുക്കുക"
 
@@ -2254,9 +2257,11 @@ copy = "പകർത്തുക"
 done = "പൂർത്തിയായി"
 error = "പിശക്"
 expand = "വിപുലീകരിക്കുക"
+learnMore = "Learn more"
 lines = "വരികൾ"
 loading = "ലോഡുചെയ്യുന്നു..."
 next = "അടുത്തത്"
+operation = "this operation"
 preview = "മുന്‍കാഴ്ച"
 previous = "മുൻപ്"
 refresh = "പുതുക്കുക"
@@ -2670,6 +2675,77 @@ description = "വെബ്സൈറ്റ് ശരിയായി പ്രവ
 posthog = "PostHog Analytics"
 scarf = "Scarf Pixel"
 
+[credits]
+enableOverageBilling = "Enable Overage Billing"
+maybeLater = "Maybe later"
+upgrade = "Upgrade"
+
+[credits.insufficient]
+brief = "Insufficient credits. You need {{required}} credits but have {{current}}."
+freeTier = "Upgrade to Team for 10x more credits and unlimited overage billing."
+managedMember = "Please contact your team leader for assistance."
+message = "You do not have enough credits to run {{tool}}. You currently have {{current}} credits."
+messageWithAmount = "You need {{required}} credits to run {{tool}}, but you only have {{current}}."
+teamMember = "Enable overage billing to never run out of credits."
+title = "Insufficient Credits"
+
+[credits.modal]
+advancedMonitoring = "Advanced monitoring"
+allInOneWorkspace = "All-in-one PDF workspace (viewer, tools & agent)"
+apiSandbox = "API sandbox"
+contactSales = "Contact Sales"
+creditsRemaining = "{{current}} of {{total}} remaining"
+creditsThisMonth = "Monthly credits"
+current = "Current Plan"
+customPricing = "Custom"
+customSmartFolders = "Custom Smart Folders"
+dedicatedSupportSlas = "Dedicated support & SLAs"
+enterpriseSubscription = "Enterprise"
+everythingInCredits = "Everything in Credits, plus:"
+everythingInFree = "Everything in Free, plus:"
+fasterThroughput = "10x faster throughput"
+forRegularWork = "For regular PDF work:"
+freeTier = "Free Tier"
+fullyPrivateFiles = "Fully private files"
+largeFileProcessing = "Large file processing"
+managedMemberMessage = "You have unlimited access to credits through your team. If you need assistance, please contact your team leader."
+managedMemberTitle = "Unlimited Credits"
+meteringBillingNote = "Overage credits are billed monthly alongside your Team subscription. Track your usage anytime in your account settings."
+meteringExplanation = "Your Team plan includes {{credits}} credits per month. When you run out, overage billing automatically provides additional credits so you never have to stop working."
+meteringIncluded = "{{credits}} credits/month included with Team"
+meteringNeverRunOut = "Never run out of credits"
+meteringNoCommitment = "No commitment, cancel anytime"
+meteringPayAsYouGo = "Only pay for what you use"
+meteringPrice = "Additional credits at {{price}}/credit"
+meteringTitle = "Pay-What-You-Use Overage Billing"
+monthlyCredits = "monthly credits"
+orgWideAccess = "Org-wide access controls"
+overage = "overage"
+perMonth = "/month"
+popular = "Popular"
+premiumAiModels = "Premium AI models"
+prioritySupport = "Priority support"
+privateDocCloud = "Private Document Cloud"
+ragFineTuning = "RAG + fine-tuning"
+secureApiAccess = "Secure API access"
+selfHostLink = "Review the docs and plans"
+selfHostPrompt = "Want to self host?"
+standardThroughput = "Standard throughput"
+subtitle = "Upgrade to Team for 10x the credits and faster processing."
+subtitlePro = "Enable automatic overage billing to never run out of credits."
+teamLeaderOnly = "Only team leaders can enable overage billing"
+teamSubscription = "Team"
+titleExhausted = "You've used your free credits"
+titleExhaustedPro = "You have run out of credits"
+unlimitedApiAccess = "Unlimited API access"
+unlimitedMonthlyCredits = "Site License"
+unlimitedSeats = "Unlimited seats"
+
+[credits.modal.features]
+everythingInCredits = "Everything in Credits, plus:"
+everythingInFree = "Everything in Free, plus:"
+forRegularWork = "For regular PDF work:"
+
 [crop]
 autoCrop = "ശൂന്യസ്ഥലം സ്വയം ക്രോപ്പ് ചെയ്യുക"
 header = "PDF ക്രോപ്പ് ചെയ്യുക"
@@ -2920,6 +2996,7 @@ copyStack = "സ്റ്റാക്ക് ട്രേസ് പകർത്�
 discordSubmit = "Discord - പിന്തുണാ പോസ്റ്റ് സമർപ്പിക്കുക"
 dismissAllErrors = "എല്ലാ പിശകുകളും ഒഴിവാക്കുക"
 encryptedPdfMustRemovePassword = "ഈ PDF എൻക്രിപ്റ്റ് ചെയ്യപ്പെട്ടതോ പാസ്‌വേഡ് സംരക്ഷിതമോ ആണ്. PDF/Aയിലേക്കു മാറ്റുന്നതിന് മുമ്പ് ദയവായി അൺലോക്ക് ചെയ്യുക."
+generic = "An error occurred"
 github = "GitHub-ൽ ഒരു ടിക്കറ്റ് സമർപ്പിക്കുക"
 githubSubmit = "GitHub - ഒരു ടിക്കറ്റ് സമർപ്പിക്കുക"
 incorrectPasswordProvided = "PDF പാസ്‌വേഡ് തെറ്റാണ് അല്ലെങ്കിൽ നൽകിയിട്ടില്ല."
@@ -3346,10 +3423,6 @@ desc = "PDF പ്രവർത്തനങ്ങൾ ബന്ധിപ്പി�
 tags = "വർക്‌ഫ്ലോ,ക്രമം,ഓട്ടോമേഷൻ"
 title = "ഓട്ടോമേറ്റ്"
 
-[home.formFill]
-desc = "ദൃശ്യ എഡിറ്റർ ഉപയോഗിച്ച് PDF ഫോം ഫീൽഡുകൾ ഇന്ററാക്ടീവ് ആയി പൂരിപ്പിക്കുക"
-title = "ഫോം പൂരിപ്പിക്കുക"
-
 [home.autoRename]
 desc = "കണ്ടെത്തിയ ഹെഡറിനെ അടിസ്ഥാനമാക്കി PDF ഫയലിന് ഓട്ടോമാറ്റിക്കായി പേര് നൽകുന്നു"
 tags = "ഓട്ടോ-ഡിറ്റക്ട്,ഹെഡർ-അടിസ്ഥാനത്തിൽ,സംഘടിപ്പിക്കുക,പുനർലേബൽ"
@@ -3444,6 +3517,10 @@ title = "പേജുകൾ വേർതിരിക്കുക"
 desc = "ഒരു PDF-ൽ നിന്ന് എല്ലാ ഇന്ററാക്ടീവ് ഘടകങ്ങളും ഫോമുകളും നീക്കം ചെയ്യുക"
 tags = "ലളിതമാക്കുക,നീക്കം ചെയ്യുക,ഇന്ററാക്ടീവ്"
 title = "പരത്തുക"
+
+[home.formFill]
+desc = "ദൃശ്യ എഡിറ്റർ ഉപയോഗിച്ച് PDF ഫോം ഫീൽഡുകൾ ഇന്ററാക്ടീവ് ആയി പൂരിപ്പിക്കുക"
+title = "ഫോം പൂരിപ്പിക്കുക"
 
 [home.getPdfInfo]
 desc = "PDF-കളെക്കുറിച്ചുള്ള സാധ്യമായ എല്ലാ വിവരങ്ങളും നേടുന്നു"
@@ -4247,75 +4324,6 @@ title = "പേജ് എഡിറ്റർ"
 zoomIn = "സൂം ഇൻ"
 zoomOut = "സൂം ഔട്ട്"
 
-[viewer]
-cannotPreviewFile = "ഫയൽ പ്രിവ്യൂ ചെയ്യാൻ കഴിയില്ല"
-dualPageView = "രണ്ടുപേജ് ദൃശ്യം"
-firstPage = "ആദ്യ പേജ്"
-lastPage = "അവസാന പേജ്"
-nextPage = "അടുത്ത പേജ്"
-onlyPdfSupported = "വ്യൂവറിന് PDF ഫയലുകൾ മാത്രം പിന്തുണയ്ക്കാം. ഈ ഫയൽ വേറെ ഒരു ഫോർമാറ്റാണെന്ന് തോന്നുന്നു."
-previousPage = "മുൻപത്തെ പേജ്"
-singlePageView = "ഒറ്റ പേജ് ദൃശ്യം"
-unknownFile = "അപരിചിതമായ ഫയൽ"
-zoomIn = "സൂം ഇൻ"
-zoomOut = "സൂം ഔട്ട്"
-
-[viewer.attachments]
-title = "അറ്റാച്ച്മെന്റുകൾ"
-searchPlaceholder = "അറ്റാച്ച്മെന്റുകൾ തിരയുക"
-noSupport = "ഈ വ്യൂവറിൽ അറ്റാച്ച്മെന്റ് പിന്തുണ ലഭ്യമല്ല."
-noDocument = "അറ്റാച്ച്മെന്റുകൾ കാണാൻ ഒരു PDF തുറക്കുക."
-loading = "അറ്റാച്ച്മെന്റുകൾ ലോഡ് ചെയ്യുന്നു..."
-empty = "ഈ ഡോക്യുമെന്റിൽ അറ്റാച്ച്മെന്റുകളില്ല"
-noMatch = "നിങ്ങളുടെ തിരച്ചിലിനൊത്ത അറ്റാച്ച്മെന്റുകളില്ല"
-
-[viewer.formBar]
-title = "ഫോം ഫീൽഡുകൾ"
-unsavedBadge = "സംരക്ഷിച്ചിട്ടില്ല"
-unsavedDesc = "നിങ്ങൾക്ക് സംരക്ഷിക്കാത്ത മാറ്റങ്ങൾ ഉണ്ട്"
-hasFieldsDesc = "ഈ PDF-ിൽ പൂരിപ്പിക്കാവുന്ന ഫീൽഡുകൾ ഉണ്ട്"
-dismiss = "അവഗണിക്കുക"
-apply = "മാറ്റങ്ങൾ പ്രയോഗിക്കുക"
-download = "PDF ഡൗൺലോഡ് ചെയ്യുക"
-
-[rightRail]
-closeSelected = "തിരഞ്ഞെടുത്ത ഫയലുകൾ അടയ്‌ക്കുക"
-selectAll = "എല്ലാം തിരഞ്ഞെടുക്കുക"
-deselectAll = "എല്ലാം ഒഴിവാക്കുക"
-selectByNumber = "പേജ് നമ്പറുകൾ ഉപയോഗിച്ച് തിരഞ്ഞെടുക്കുക"
-deleteSelected = "തിരഞ്ഞെടുത്ത പേജുകൾ ഇല്ലാതാക്കുക"
-closePdf = "PDF അടയ്ക്കുക"
-exportAll = "PDF എക്സ്പോർട്ട് ചെയ്യുക"
-downloadSelected = "തിരഞ്ഞെടുത്ത ഫയലുകൾ ഡൗൺലോഡ് ചെയ്യുക"
-annotations = "അനോട്ടേഷനുകൾ"
-exportSelected = "തിരഞ്ഞെടുത്ത പേജുകൾ എക്സ്പോർട്ട് ചെയ്യുക"
-formFill = "ഫോം പൂരിപ്പിക്കുക"
-saveChanges = "മാറ്റങ്ങൾ സംരക്ഷിക്കുക"
-toggleAttachments = "അറ്റാച്ച്മെന്റുകൾ കാണിക്കുക/മറയ്ക്കുക"
-toggleTheme = "തീം മാറ്റുക"
-language = "ഭാഷ"
-toggleAnnotations = "അനോട്ടേഷൻ ദൃശ്യമാനം മാറ്റുക"
-search = "PDF തിരയുക"
-panMode = "പാൻ മോഡ്"
-applyRedactionsFirst = "ആദ്യം റെഡാക്ഷനുകൾ പ്രയോഗിക്കുക"
-rotateLeft = "ഇടത്തേക്ക് തിരിക്കുക"
-rotateRight = "വലത്തേക്ക് തിരിക്കുക"
-toggleSidebar = "സൈഡ്ബാർ മാറ്റുക"
-toggleBookmarks = "ബുക്ക്‌മാർക്കുകൾ ടോഗിൾ ചെയ്യുക"
-print = "PDF അച്ചടിക്കുക"
-ruler = "റൂളർ / അളക്കൽ"
-draw = "വരയ്ക്കുക"
-redact = "റെഡാക്റ്റ് ചെയ്യുക"
-exitRedaction = "റെഡാക്ഷൻ മോഡിൽ നിന്ന് പുറത്ത് പോകുക"
-save = "സംരക്ഷിക്കുക"
-downloadAll = "എല്ലാം ഡൗൺലോഡ് ചെയ്യുക"
-saveAll = "എല്ലാം സേവ് ചെയ്യുക"
-
-[textAlign]
-left = "ഇടത്"
-center = "മധ്യം"
-right = "വലത്"
-
 [pageExtracter]
 header = "പേജുകൾ വേർതിരിച്ചെടുക്കുക"
 placeholder = "(ഉദാ. 1,2,8 അല്ലെങ്കിൽ 4,7,12-16 അല്ലെങ്കിൽ 2n-1)"
@@ -4424,6 +4432,9 @@ title = "ടിപ്പുകൾ"
 autoClose = "ഈ വിൻഡോ സ്വമേധയായി അടയ്ക്കും..."
 billingPeriod = "ബില്ലിംഗ് കാലയളവ്"
 canCloseWindow = "ഇപ്പോൾ ഈ വിൻഡോ അടയ്ക്കാം."
+checkoutInstructions = "Complete your purchase in the browser window that just opened. After payment is complete, return here and click the button below to refresh your billing information."
+checkoutOpened = "Checkout Opened in Browser"
+closeLater = "I'll Do This Later"
 emailInvalid = "ദയവായി സാധുവായ ഒരു ഇമെയിൽ വിലാസം നൽകുക"
 enterpriseNote = "ചെക്കൗട്ടിൽ സീറ്റുകൾ ക്രമീകരിക്കാം (1-1000)."
 error = "പേയ്മെന്റ് പിഴവ്"
@@ -4445,6 +4456,7 @@ perMonth = "/മാസം"
 perYear = "/വർഷം"
 preparing = "നിങ്ങളുടെ ചെക്ക്ഔട്ട് തയ്യാറാക്കുന്നു..."
 redirecting = "സുരക്ഷിത checkout ലേക്ക് റീഡിറക്ട് ചെയ്യുന്നു..."
+refreshBilling = "I've Completed Payment - Refresh Billing"
 stripeNotConfigured = "Stripe കോൺഫിഗർ ചെയ്തിട്ടില്ല"
 stripeNotConfiguredMessage = "Stripe പേയ്മെന്റ് ഇന്റഗ്രേഷൻ കോൺഫിഗർ ചെയ്തിട്ടില്ല. ദയവായി നിങ്ങളുടെ അഡ്മിനിസ്ട്രേറ്ററെ ബന്ധപ്പെടുക."
 success = "പേയ്മെന്റ് വിജയകരം!"
@@ -4777,6 +4789,13 @@ title = "PDF വേഡിലേക്ക്"
 [PDFToWord.selectText]
 1 = "ഔട്ട്‌പുട്ട് ഫയൽ ഫോർമാറ്റ്"
 
+[PDFToXLSX]
+header = "PDF to Excel"
+prompt = "Choose pages to extract tables"
+submit = "Convert"
+tags = "spreadsheet,excel,xlsx,table,extract,convert"
+title = "PDF to Excel (XLSX)"
+
 [PDFToXML]
 credit = "ഈ സേവനം ഫയൽ പരിവർത്തനത്തിനായി LibreOffice ഉപയോഗിക്കുന്നു."
 header = "PDF XML-ലേക്ക്"
@@ -4835,6 +4854,7 @@ customPricing = "ഇഷ്ടാനുസൃതം"
 featureComparison = "ഫീച്ചർ താരതമ്യം"
 from = "മുതൽ"
 hideComparison = "ഫീച്ചർ താരതമ്യം മറയ്ക്കുക"
+included = "Included"
 includedInCurrent = "നിങ്ങളുടെ പ്ലാനിൽ ഉൾപ്പെട്ടിരിക്കുന്നു"
 licensedSeats = "ലൈസൻസുചെയ്തത്: {{count}} സീറ്റുകൾ"
 manage = "മാനേജ്"
@@ -4851,6 +4871,7 @@ subtitle = "നിങ്ങളുടെ നിലവിലെ സബ്‌സ്
 title = "സജീവ പ്ലാൻ"
 
 [plan.availablePlans]
+loadError = "Unable to load plan pricing. Using default values."
 subtitle = "നിങ്ങളുടെ ആവശ്യങ്ങൾക്ക് അനുയോജ്യമായ പ്ലാൻ തിരഞ്ഞെടുക്കുക"
 title = "ലഭ്യമായ പ്ലാനുകൾ"
 
@@ -4861,6 +4882,7 @@ highlight3 = "പുതിയ സവിശേഷതകൾ"
 name = "എൻറർപ്രൈസ്"
 requiresServer = "Server ആവശ്യമാണ്"
 requiresServerMessage = "Enterprise-ലേക്ക് അപ്‌ഗ്രേഡ് ചെയ്യുന്നതിനുമുമ്പ് ദയവായി ആദ്യം Server പ്ലാനിലേക്ക് അപ്‌ഗ്രേഡ് ചെയ്യുക."
+siteLicense = "Site License"
 
 [plan.feature]
 api = "API ആക്സസ്"
@@ -4928,6 +4950,10 @@ keyDescription = "ഇമെയിലിൽ നിന്ന് ലൈസൻസ്
 success = "ലൈസൻസ് സജീവമായി!"
 successMessage = "നിങ്ങളുടെ ലൈസൻസ് വിജയകരമായി സജീവപ്പെടുത്തി. നിങ്ങൾക്ക് ഇപ്പോൾ ഈ ജാലകം അടയ്ക്കാം."
 
+[plan.team]
+name = "Team"
+siteLicense = "Site License"
+
 [printFile]
 header = "പ്രിന്ററിലേക്ക് ഫയൽ അച്ചടിക്കുക"
 submit = "അച്ചടിക്കുക"
@@ -4992,15 +5018,15 @@ title = "റിഡാക്റ്റ് ചെയ്യേണ്ട വാക്
 failed = "PDF റിഡാക്റ്റ് ചെയ്യുന്നതിനിടെ പിശക് സംഭവിച്ചു."
 
 [redact.manual]
+activate = "റെഡാക്ഷൻ ഉപകരണം സജീവമാക്കുക"
+active = "റെഡാക്ഷൻ മോഡ് സജീവമാണ്"
 apply = "പ്രയോഗിക്കുക"
 applyChanges = "മാറ്റങ്ങൾ പ്രയോഗിക്കുക"
 applyRedactions = "Apply Redactions"
 applyWarning = "⚠️ സ്ഥിരമായി പ്രയോഗിക്കുന്നു; പിന്‍വലിക്കാൻ കഴിയില്ല, അടിഞ്ഞിരിക്കുന്ന ഡാറ്റ ഇല്ലാതാകും"
 boxRedaction = "ബോക്സ് വരച്ച് റിഡാക്റ്റ് ചെയ്യുക"
-colourPicker = "നിറം തിരഞ്ഞെടുക്കൽ"
 colorLabel = "റെഡാക്ഷൻ നിറം"
-active = "റെഡാക്ഷൻ മോഡ് സജീവമാണ്"
-activate = "റെഡാക്ഷൻ ഉപകരണം സജീവമാക്കുക"
+colourPicker = "നിറം തിരഞ്ഞെടുക്കൽ"
 controlsTitle = "മാനുവൽ റെഡാക്ഷൻ നിയന്ത്രണങ്ങൾ"
 convertPDFToImageLabel = "PDF-നെ PDF-Image ആയി മാറ്റുക (ബോക്സിന് പിന്നിലെ ടെക്സ്റ്റ് നീക്കാൻ ഉപയോഗിക്കുന്നു)"
 export = "എക്സ്പോർട്ട്"
@@ -5396,6 +5422,39 @@ title = "ഉയർന്ന കോൺട്രാസ്റ്റ്"
 text = "PDFയിലെ എല്ലാ നിറങ്ങളും പൂർണ്ണമായി ഇൻവേർട്ട് ചെയ്യുക, നെഗറ്റീവ് പോലുള്ള ഒരു ഇഫക്റ്റ് സൃഷ്ടിക്കുന്നു. ഡോക്യുമെന്റുകളുടെ ഡാർക്ക് മോഡ് പതിപ്പുകൾ സൃഷ്ടിക്കാനോ കുറഞ്ഞ വെളിച്ചത്തിൽ കണ്ണിന്റെ ക്ഷീണം കുറയ്ക്കാനോ ഇത് ഉപകാരപ്പെടും."
 title = "എല്ലാ നിറങ്ങളും ഇൻവേർട്ട് ചെയ്യുക"
 
+[rightRail]
+annotations = "അനോട്ടേഷനുകൾ"
+applyRedactionsFirst = "ആദ്യം റെഡാക്ഷനുകൾ പ്രയോഗിക്കുക"
+closePdf = "PDF അടയ്ക്കുക"
+closeSelected = "തിരഞ്ഞെടുത്ത ഫയലുകൾ അടയ്‌ക്കുക"
+deleteSelected = "തിരഞ്ഞെടുത്ത പേജുകൾ ഇല്ലാതാക്കുക"
+deselectAll = "എല്ലാം ഒഴിവാക്കുക"
+downloadAll = "എല്ലാം ഡൗൺലോഡ് ചെയ്യുക"
+downloadSelected = "തിരഞ്ഞെടുത്ത ഫയലുകൾ ഡൗൺലോഡ് ചെയ്യുക"
+draw = "വരയ്ക്കുക"
+exitRedaction = "റെഡാക്ഷൻ മോഡിൽ നിന്ന് പുറത്ത് പോകുക"
+exportAll = "PDF എക്സ്പോർട്ട് ചെയ്യുക"
+exportSelected = "തിരഞ്ഞെടുത്ത പേജുകൾ എക്സ്പോർട്ട് ചെയ്യുക"
+formFill = "ഫോം പൂരിപ്പിക്കുക"
+language = "ഭാഷ"
+panMode = "പാൻ മോഡ്"
+print = "PDF അച്ചടിക്കുക"
+redact = "റെഡാക്റ്റ് ചെയ്യുക"
+rotateLeft = "ഇടത്തേക്ക് തിരിക്കുക"
+rotateRight = "വലത്തേക്ക് തിരിക്കുക"
+ruler = "റൂളർ / അളക്കൽ"
+save = "സംരക്ഷിക്കുക"
+saveAll = "എല്ലാം സേവ് ചെയ്യുക"
+saveChanges = "മാറ്റങ്ങൾ സംരക്ഷിക്കുക"
+search = "PDF തിരയുക"
+selectAll = "എല്ലാം തിരഞ്ഞെടുക്കുക"
+selectByNumber = "പേജ് നമ്പറുകൾ ഉപയോഗിച്ച് തിരഞ്ഞെടുക്കുക"
+toggleAnnotations = "അനോട്ടേഷൻ ദൃശ്യമാനം മാറ്റുക"
+toggleAttachments = "അറ്റാച്ച്മെന്റുകൾ കാണിക്കുക/മറയ്ക്കുക"
+toggleBookmarks = "ബുക്ക്‌മാർക്കുകൾ ടോഗിൾ ചെയ്യുക"
+toggleSidebar = "സൈഡ്ബാർ മാറ്റുക"
+toggleTheme = "തീം മാറ്റുക"
+
 [rotate]
 rotateLeft = "ആന്റി-ക്ലോക്ക്വൈസ് തിരിക്കുക"
 rotateRight = "ക്ലോക്ക്വൈസ് തിരിക്കുക"
@@ -5647,6 +5706,70 @@ plan = "പ്ലാൻ"
 title = "ലൈസൻസിംഗും അനലിറ്റിക്സും"
 usageAnalytics = "ഉപയോഗ അനലിറ്റിക്സ്"
 
+[settings.planBilling]
+currentPlan = "Current Plan"
+loading = "Loading billing information..."
+notAvailable = "Plan & Billing is only available when connected to Stirling Cloud (SaaS mode)."
+title = "Plan & Billing"
+
+[settings.planBilling.billing]
+manageBilling = "Manage Billing"
+nextBillingDate = "Next billing date"
+overageCost = "Current overage cost: {{amount}} ({{credits}} credits)"
+
+[settings.planBilling.credits]
+estimatedCost = "Estimated cost: {{amount}}"
+freeTierInfo = "Free plan includes {{freeCredits}} credits per month. Upgrade to Team for {{teamCredits}} credits/month and pay-as-you-go overage billing."
+included = "{{count}} credits/month (included)"
+noOverage = "No overage charges this month. You're using your included {{count}} credits."
+overage = "+ {{count}} overage"
+overageInfo = "Overage credits are billed at {{price}} per credit. You'll only pay for what you use beyond your monthly allowance."
+title = "Credit Usage"
+
+[settings.planBilling.errors]
+fetchFailed = "Unable to fetch billing data"
+retry = "Retry"
+
+[settings.planBilling.status]
+active = "Active"
+canceled = "Canceled"
+pastDue = "Past Due"
+trial = "Trial"
+
+[settings.planBilling.team]
+managedByTeam = "Managed by team"
+memberCount = "{{count}} team members"
+
+[settings.planBilling.tier]
+enterprise = "Enterprise"
+enterpriseDescription = "Custom enterprise features and support"
+free = "Free"
+freeDescription = "50 credits per month"
+team = "Team"
+teamBadge = "Team"
+teamDescription = "500 credits/month included, automatic overage billing for uninterrupted service"
+teamTooltipCredits = "Team plan includes {{credits}} credits/month."
+teamTooltipFineprint = "Only pay for what you use beyond included credits."
+teamTooltipOverage = "Automatic overage billing at {{price}}/credit ensures uninterrupted service."
+
+[settings.planBilling.trial]
+daysRemaining = "{{days}} days remaining"
+daysRemainingFull = "Your trial ends in {{days}} days"
+endDate = "Expires: {{date}}"
+endsOn = "Trial ends"
+title = "Free Trial Active"
+
+[settings.planBilling.upgrade]
+cta = "Upgrade to Team"
+featureApi = "API access for automation"
+featureCredits = "{{teamCredits}} credits per month (vs {{freeCredits}} on Free)"
+featureMembers = "Unlimited team members"
+featureSupport = "Priority support"
+featureThroughput = "Faster processing throughput"
+opensInBrowser = "Opens in browser to complete upgrade"
+subtitle = "Upgrade to Team for:"
+title = "Upgrade Your Plan"
+
 [settings.policiesPrivacy]
 legal = "ലീഗൽ"
 privacy = "സ്വകാര്യത"
@@ -5679,6 +5802,9 @@ connections = "കണക്ഷനുകൾ"
 security = "സുരക്ഷ"
 telegram = "Telegram"
 title = "സുരക്ഷയും ഓതന്റിക്കേഷനും"
+
+[settings.team]
+title = "Team"
 
 [settings.tooltips]
 enableLoginFirst = "ആദ്യം ലോഗിൻ മോഡ് സജീവമാക്കുക"
@@ -6016,6 +6142,11 @@ desc = "പ്രത്യേക പേജുകൾ എടുക്കുക (1,
 name = "പേജ് നമ്പറുകൾ"
 tooltip = "പേജ് നമ്പറുകൾ കോമകളാൽ വേർതിരിച്ച് നൽകുക, റേഞ്ചുകൾ ഹൈഫണുകൾ കൊണ്ട് നൽകുക"
 
+[split.methods.byPoster]
+desc = "Split large pages into printable sizes"
+name = "Printable Chunks"
+tooltip = "Divide oversized pages into smaller chunks suitable for printing on standard paper (A4, Letter, etc.)"
+
 [split.methods.bySections]
 desc = "പേജുകൾ ഗ്രിഡ് വിഭാഗങ്ങളായി വിഭജിക്കുക"
 name = "വിഭാഗങ്ങൾ"
@@ -6029,6 +6160,7 @@ tooltip = "പരമാവധി ഫയൽ വലുപ്പം വ്യക്
 [split.methods.prefix]
 splitAt = "വിഭജിക്കുക"
 splitBy = "പ്രകാരമായി വിഭജിക്കുക"
+splitInto = "Split into"
 
 [split.methodSelection.tooltip]
 bullet1 = "തിരഞ്ഞെടുക്കാൻ ഒരു രീതിയുടെ കാർഡിൽ ക്ലിക്ക് ചെയ്യുക"
@@ -6040,6 +6172,21 @@ title = "നിങ്ങളുടെ സ്പ്ലിറ്റ് രീതി
 [split.methodSelection.tooltip.header]
 text = "നിങ്ങളുടെ PDF ഡോക്യുമെന്റ് എങ്ങനെ വിഭജിക്കണമെന്ന് തിരഞ്ഞെടുക്കുക. ഓരോ രീതിയും വ്യത്യസ്ത ഉപയോഗകേസുകൾക്കും ഡോക്യുമെന്റ് തരങ്ങൾക്കും അനുയോജ്യമായി ഒപ്റ്റിമൈസ് ചെയ്തിരിക്കുന്നു."
 title = "സ്പ്ലിറ്റ് രീതി തിരഞ്ഞെടുപ്പ്"
+
+[split.poster]
+rightToLeft = "Split right-to-left"
+
+[split.poster.pageSize]
+description = "Size of output pages for printing"
+label = "Target Page Size"
+
+[split.poster.xFactor]
+description = "Number of columns to split each page into"
+label = "Horizontal Divisions"
+
+[split.poster.yFactor]
+description = "Number of rows to split each page into"
+label = "Vertical Divisions"
 
 [split.settings]
 selectMethodFirst = "ദയവായി ആദ്യം ഒരു സ്പ്ലിറ്റ് രീതി തിരഞ്ഞെടുക്കുക"
@@ -6091,6 +6238,14 @@ bullet2 = "റേഞ്ച് സ്പ്ലിറ്റ് പോയിന്�
 bullet3 = "മിശ്രം: 2,5-10,15 (പേജ് 2-ന്റെ ശേഷം, 5-ന്റെ മുമ്പ്, 10-ന്റെ ശേഷം, 15-ന്റെ ശേഷം വിഭജിക്കുന്നു)"
 text = "നിങ്ങളുടെ PDF പ്രത്യേക പേജ് നമ്പറുകളിൽ വിഭജിക്കുക. 'n' ഉപയോഗിക്കുന്നത് പേജ് n-ന്റെ ശേഷം വിഭജിക്കുന്നു. 'n-m' ഉപയോഗിക്കുന്നത് പേജ് n-ന്റെ മുമ്പും m-ന്റെ ശേഷവും വിഭജിക്കുന്നു."
 title = "പേജ് നമ്പറുകളിൽ വിഭജിക്കുക"
+
+[split.tooltip.byPoster]
+bullet1 = "Target Page Size: Choose output paper size (A4, Letter, etc.)"
+bullet2 = "Horizontal/Vertical Divisions: Grid size for splitting"
+bullet3 = "Right-to-Left: Reverse column order for RTL layouts"
+bullet4 = "Print and assemble the pieces to create your poster"
+text = "Split large PDF pages into smaller printable chunks suitable for standard paper sizes. Perfect for creating poster prints from oversized pages."
+title = "Split for Poster Print"
 
 [split.tooltip.bySections]
 bullet1 = "തിരശ്ചീനം: സൃഷ്ടിക്കേണ്ട നിരകളുടെ എണ്ണം"
@@ -6232,6 +6387,82 @@ title = "API ഡോക്യുമെന്റേഷൻ"
 
 [tableExtraxt]
 tags = "CSV,പട്ടിക വേർതിരിച്ചെടുക്കൽ,വേർതിരിച്ചെടുക്കുക,പരിവർത്തനം ചെയ്യുക"
+
+[team]
+cancelInviteError = "Failed to cancel invitation"
+confirmCancelInvite = "Are you sure you want to cancel this invitation?"
+confirmLeave = "Are you sure you want to leave this team?"
+confirmLeaveLeader = "As a team leader, leaving will remove you from the team. Are you sure?"
+confirmRemove = "Are you sure you want to remove this member?"
+editName = "Edit team name"
+inviteCancelled = "Invitation cancelled"
+inviteError = "Failed to send invitation"
+inviteSent = "Invitation sent successfully"
+leader = "Leader"
+leaveButton = "Leave Team"
+leaveError = "Failed to leave team"
+leaveSuccess = "Successfully left team"
+loading = "Loading team information..."
+memberCount = "{{count}} members"
+memberRemoved = "Member removed successfully"
+namePlaceholder = "Enter team name"
+personal = "Personal"
+removeError = "Failed to remove member"
+renameError = "Failed to rename team"
+renameSuccess = "Team renamed successfully"
+
+[team.features]
+badge = "Team Features"
+subtitle = "Collaborate with your team"
+title = "Team Collaboration"
+viewPlans = "View Plans"
+
+[team.features.billing]
+description = "Manage billing and subscriptions"
+title = "Billing Management"
+
+[team.features.credits]
+description = "Shared credit pool for all members"
+title = "Shared Credits"
+
+[team.features.dashboard]
+description = "View team activity and usage"
+title = "Team Dashboard"
+
+[team.features.invite]
+description = "Add members to your team"
+title = "Invite Members"
+
+[team.invitationBanner]
+acceptButton = "Accept"
+message = "has invited you to join"
+rejectButton = "Decline"
+
+[team.invite]
+cancelLabel = "Cancel"
+invalidEmail = "Invalid email address"
+placeholder = "Enter email address"
+sendButton = "Send Invitation"
+title = "Invite Team Member"
+
+[team.members]
+emailColumn = "Email"
+empty = "No team members yet"
+nameColumn = "Name"
+pending = "Pending"
+remove = "Remove"
+roleColumn = "Role"
+title = "Team Members"
+
+[team.upgrade]
+button = "Upgrade to Team"
+description = "Unlock team collaboration features"
+title = "Upgrade to Team Plan"
+
+[textAlign]
+center = "മധ്യം"
+left = "ഇടത്"
+right = "വലത്"
 
 [theme]
 toggle = "തീം മാറ്റുക"
@@ -6507,6 +6738,37 @@ invalid = "സർട്ടിഫിക്കറ്റ് ട്രസ്റ്�
 fileManager = "ഫയൽ മാനേജർ"
 pageEditor = "പേജ് എഡിറ്റർ"
 viewer = "വ്യൂവർ"
+
+[viewer]
+cannotPreviewFile = "ഫയൽ പ്രിവ്യൂ ചെയ്യാൻ കഴിയില്ല"
+dualPageView = "രണ്ടുപേജ് ദൃശ്യം"
+firstPage = "ആദ്യ പേജ്"
+lastPage = "അവസാന പേജ്"
+nextPage = "അടുത്ത പേജ്"
+onlyPdfSupported = "വ്യൂവറിന് PDF ഫയലുകൾ മാത്രം പിന്തുണയ്ക്കാം. ഈ ഫയൽ വേറെ ഒരു ഫോർമാറ്റാണെന്ന് തോന്നുന്നു."
+previousPage = "മുൻപത്തെ പേജ്"
+singlePageView = "ഒറ്റ പേജ് ദൃശ്യം"
+unknownFile = "അപരിചിതമായ ഫയൽ"
+zoomIn = "സൂം ഇൻ"
+zoomOut = "സൂം ഔട്ട്"
+
+[viewer.attachments]
+empty = "ഈ ഡോക്യുമെന്റിൽ അറ്റാച്ച്മെന്റുകളില്ല"
+loading = "അറ്റാച്ച്മെന്റുകൾ ലോഡ് ചെയ്യുന്നു..."
+noDocument = "അറ്റാച്ച്മെന്റുകൾ കാണാൻ ഒരു PDF തുറക്കുക."
+noMatch = "നിങ്ങളുടെ തിരച്ചിലിനൊത്ത അറ്റാച്ച്മെന്റുകളില്ല"
+noSupport = "ഈ വ്യൂവറിൽ അറ്റാച്ച്മെന്റ് പിന്തുണ ലഭ്യമല്ല."
+searchPlaceholder = "അറ്റാച്ച്മെന്റുകൾ തിരയുക"
+title = "അറ്റാച്ച്മെന്റുകൾ"
+
+[viewer.formBar]
+apply = "മാറ്റങ്ങൾ പ്രയോഗിക്കുക"
+dismiss = "അവഗണിക്കുക"
+download = "PDF ഡൗൺലോഡ് ചെയ്യുക"
+hasFieldsDesc = "ഈ PDF-ിൽ പൂരിപ്പിക്കാവുന്ന ഫീൽഡുകൾ ഉണ്ട്"
+title = "ഫോം ഫീൽഡുകൾ"
+unsavedBadge = "സംരക്ഷിച്ചിട്ടില്ല"
+unsavedDesc = "നിങ്ങൾക്ക് സംരക്ഷിക്കാത്ത മാറ്റങ്ങൾ ഉണ്ട്"
 
 [viewPdf]
 header = "PDF കാണുക"

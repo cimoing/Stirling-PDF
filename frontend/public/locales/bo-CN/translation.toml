@@ -16,13 +16,13 @@ comingSoon = "འབྱོར་ལ་ཉེ"
 confirmClose = "སྒོ་བརྒྱབ་པ་ངེས་གཏན་བཟོ་བ།"
 confirmCloseCancel = "འདོར་བ"
 confirmCloseConfirm = "སྒོ་རྒྱག་པ།"
-confirmCloseMessage = "ཁྱེད་རང་གིས་ཡིག་ཆ་འདི་ཁ་རྒྱག་འདོད་ཡོད་དམ།"
 confirmCloseDiscard = "བཟོ་བཅོས་བཏོན་བཀོག་ནས་ཁ་བསྡམས"
+confirmCloseMessage = "ཁྱེད་རང་གིས་ཡིག་ཆ་འདི་ཁ་རྒྱག་འདོད་ཡོད་དམ།"
 confirmCloseSave = "སྲུངས་ནས་ཁ་བསྡམས"
+confirmCloseSaveFailed = "ནོར་འཁྲུལ་ཡོད་པར་ཉར་ཟིན། {{count}} file{{plural}} སྲུངས་མ་ཐུབ།"
+confirmCloseSaveFailedTitle = "སྲུང་བ་ཕམ།"
 confirmCloseUnsaved = "ཡིག་ཆ་འདིར་མ་ཉར་པའི་བཟོ་བཅོས་ཡོད།"
 confirmCloseUnsavedList = "ཁྱེད་ལ་མ་ཉར་པའི་བཟོ་བཅོས་ཡོད་པའི file{{plural}} {{count}} ཡོད།\n\n{{fileList}}"
-confirmCloseSaveFailedTitle = "སྲུང་བ་ཕམ།"
-confirmCloseSaveFailed = "ནོར་འཁྲུལ་ཡོད་པར་ཉར་ཟིན། {{count}} file{{plural}} སྲུངས་མ་ཐུབ།"
 confirmPasswordErrorMessage = "གསང་གྲངས་གསར་པ་དང་གཏན་འཁེལ་གྱི་གསང་གྲངས་དེ་མཐུན་དགོས།"
 custom = "རང་བཟོ..."
 customPosition = "ལུགས་མཐུན་གྱི་གནས་བབ།"
@@ -45,8 +45,8 @@ edit = "རྩོམ་སྒྲིག"
 editYourNewFiles = "ཁྱེད་རང་གི་ཡིག་ཆ་གསར་པ་རྩོམ་སྒྲིག་བྱེད་དགོས།"
 exportAndContinue = "ཕྱིར་གཏོང་དང་མུ་མཐུད་པ།"
 false = "ནོར་འཁྲུལ"
-fileSavedToDisk = "ཡིག་ཆ་དེ་སྣོད་སྡེར་ནང་ཉར་ཟིན།"
 fileNotSavedToDisk = "སྣོད་སྡེར་ནང་ཉར་མ་བྱས།"
+fileSavedToDisk = "ཡིག་ཆ་དེ་སྣོད་སྡེར་ནང་ཉར་ཟིན།"
 fileSelected = "བདམས་པ།: {{filename}}"
 filesSelected = "{{count}} ཡིག་ཆ་བདམས་པ།"
 font = "ཡིག་གཟུགས་པ།"
@@ -841,6 +841,14 @@ title = "API མཇུག་སྒྲིལ།"
 userDefaults = "སྤྱོད་མཁན་གདམ་གའི་སྔོན་སྒྲིག"
 userDefaultsDescription = "སྤྱོད་མཁན་གདམ་གའི་སྔོན་སྒྲིག་གནས་ཐང་སྒྲིག་འགོད་བྱེད། སྤྱོད་མཁན་རེ་རེས་རང་དོན་གཞི་སྒྲིག་ནས་འདི་ཚོ་བཅོས་ཆོག"
 
+[admin.settings.endpoints.defaultHideUnavailableConversions]
+description = "སྤྱོད་མི་ཆོག་པའི་བརྗེ་བསྒྱུར་གདམ་ག་དེ་ཚོ་སྐྱོན་ཟོལ་སྟོན་མ་བྱས་པར་སྦ་བཞག"
+label = "སྔོན་སྒྲིག་ལ་སྤྱོད་མི་ཆོག་པའི་བརྗེ་བསྒྱུར་སྦ་བཞག"
+
+[admin.settings.endpoints.defaultHideUnavailableTools]
+description = "སྤྱོད་མི་ཆོག་པའི་ལག་ཆ་དེ་ཚོ་སྐྱོན་ཟོལ་སྟོན་མ་བྱས་པར་སྦ་བཞག"
+label = "སྔོན་སྒྲིག་ལ་སྤྱོད་མི་ཆོག་པའི་ལག་ཆ་སྦ་བཞག"
+
 [admin.settings.endpoints.groupsToRemove]
 description = "མཇུག་འབྲས་སྡེ་ཚན་དེ་མེད་པར་བཟོ་བའི་སྡེ་ཚན་འདེམས།"
 label = "དབང་པོ་སྐྱོན་ཅན་གྱི་མཇུག་བསྡུའི་སྡེ་ཚན།"
@@ -848,14 +856,6 @@ label = "དབང་པོ་སྐྱོན་ཅན་གྱི་མཇུ�
 [admin.settings.endpoints.toRemove]
 description = "མཐའ་མ་རེ་རེ་ལ་དབང་པོ་སྐྱོན་ཅན་འདེམས།"
 label = "དབང་པོ་སྐྱོན་ཅན་གྱི་མཇུག་སྡོམ།"
-
-[admin.settings.endpoints.defaultHideUnavailableTools]
-description = "སྤྱོད་མི་ཆོག་པའི་ལག་ཆ་དེ་ཚོ་སྐྱོན་ཟོལ་སྟོན་མ་བྱས་པར་སྦ་བཞག"
-label = "སྔོན་སྒྲིག་ལ་སྤྱོད་མི་ཆོག་པའི་ལག་ཆ་སྦ་བཞག"
-
-[admin.settings.endpoints.defaultHideUnavailableConversions]
-description = "སྤྱོད་མི་ཆོག་པའི་བརྗེ་བསྒྱུར་གདམ་ག་དེ་ཚོ་སྐྱོན་ཟོལ་སྟོན་མ་བྱས་པར་སྦ་བཞག"
-label = "སྔོན་སྒྲིག་ལ་སྤྱོད་མི་ཆོག་པའི་བརྗེ་བསྒྱུར་སྦ་བཞག"
 
 [admin.settings.enterpriseRequired]
 message = "{{featureName}} ལ་ལྟ་སྤྱོད་བྱེད་པར་ཚོང་འབྲེལ་ཆོག་ཐམ་དགོས། ཁྱེད་རང་ད་ལྟ་སྟོན་མའི་གཞི་གྲངས་ལ་ལྟ་བཞིན་ཡོད།"
@@ -1228,6 +1228,14 @@ label = "ཐོག་མའི་སྤྱོད་མཁན་གྱི་མ�
 [admin.settings.security.jwt]
 label = "JWT བཀོད་སྒྲིག།"
 
+[admin.settings.security.jwt.allowedClockSkewSeconds]
+description = "Token བདེན་སྦྱོར་སྐབས་མཁོ་མཁྲེགས/སར་བར་དུས་ཚོད་འགྱིང་འཕྱོར་ལ་ཆོག་ཐམ (སྔོན་སྒྲིག: 60 སྐར་ཆ)"
+label = "དུས་ཆེན་འགྱིང་འཕྱོར་ཆོག་ཐམ (སྐར་ཆ)"
+
+[admin.settings.security.jwt.desktopTokenExpiryMinutes]
+description = "Desktop མཁོ་མཁྲེགས་ལ་སྤྱོད་པའི Access Token གི་དུས་ཚོད (སྐར་མ)། Desktop གློག་རིག་བྱ་རིམ་དེ་ཚོ་ནི User-Agent བརྒྱུད་ནས་རང་འགུལ་ངོས་འཛིན་བྱས་ཏེ UX ལེགས་པར་བྱ་བའི་དུས་ཡུན་རིང་བ་ཐོབ། (སྔོན་སྒྲིག: 43200 = 30 ཉིམ)"
+label = "Desktop Token དུས་ཡོལ (སྐར་མ)"
+
 [admin.settings.security.jwt.enableKeyCleanup]
 description = "རང་འགུལ་གྱིས་དུས་ཚོད་རྫོགས་པའི་JWTལྡེ་མིག་རྩ་མེད་བཟོ་བ།"
 label = "ལྡེ་མིག་གཙང་མ་བཟོ་དགོས།"
@@ -1236,29 +1244,21 @@ label = "ལྡེ་མིག་གཙང་མ་བཟོ་དགོས།"
 description = "རང་འགུལ་གྱིས་JWTརྟགས་བཀོད་པའི་ལྡེ་མིག་དུས་མཚམས་སུ་འཁོར་བ།"
 label = "གལ་ཆེའི་འཁོར་སྐྱོད་ཤུགས་སྣོན་བྱེད་པ།"
 
-[admin.settings.security.jwt.tokenExpiryMinutes]
-description = "ཝེབ་མཁོ་མཁྲེགས་ལ་སྤྱོད་པའི Access Token གི་དུས་ཚོད (སྐར་མ) (སྔོན་སྒྲིག: 1440 = 24 ཆུ་ཚོད)"
-label = "ཝེབ Token དུས་ཡོལ (སྐར་མ)"
-
-[admin.settings.security.jwt.desktopTokenExpiryMinutes]
-description = "Desktop མཁོ་མཁྲེགས་ལ་སྤྱོད་པའི Access Token གི་དུས་ཚོད (སྐར་མ)། Desktop གློག་རིག་བྱ་རིམ་དེ་ཚོ་ནི User-Agent བརྒྱུད་ནས་རང་འགུལ་ངོས་འཛིན་བྱས་ཏེ UX ལེགས་པར་བྱ་བའི་དུས་ཡུན་རིང་བ་ཐོབ། (སྔོན་སྒྲིག: 43200 = 30 ཉིམ)"
-label = "Desktop Token དུས་ཡོལ (སྐར་མ)"
-
-[admin.settings.security.jwt.allowedClockSkewSeconds]
-description = "Token བདེན་སྦྱོར་སྐབས་མཁོ་མཁྲེགས/སར་བར་དུས་ཚོད་འགྱིང་འཕྱོར་ལ་ཆོག་ཐམ (སྔོན་སྒྲིག: 60 སྐར་ཆ)"
-label = "དུས་ཆེན་འགྱིང་འཕྱོར་ཆོག་ཐམ (སྐར་ཆ)"
+[admin.settings.security.jwt.persistence]
+description = "JWTལྡེ་མིག་ཉར་ཚགས་བྱས་ནས་སར་བར་གྱི་བསྐྱར་འཛུགས་ལ་མུ་མཐུད་གནས་ཐུབ།"
+label = "སྲོག་ཤིང་གི་གནད་འགག་ཅན་དུ་འགྱུར་བ།"
 
 [admin.settings.security.jwt.refreshGraceMinutes]
 description = "Token དུས་ཡོལ་བྱས་པའི་རྗེས་སྐར་མ་དེ་ཚོར་ནང་བསྐྱར་གསོ་ཆོག (སྔོན་སྒྲིག: 15 སྐར་མ, མང་མཐའ 3 པ་ཚོད་ལྟ)"
 label = "བསྐྱར་གསོ་གནང་དུས (སྐར་མ)"
 
-[admin.settings.security.jwt.persistence]
-description = "JWTལྡེ་མིག་ཉར་ཚགས་བྱས་ནས་སར་བར་གྱི་བསྐྱར་འཛུགས་ལ་མུ་མཐུད་གནས་ཐུབ།"
-label = "སྲོག་ཤིང་གི་གནད་འགག་ཅན་དུ་འགྱུར་བ།"
-
 [admin.settings.security.jwt.secureCookie]
 description = "JWT ཀུ་ཀིའི་ཆེད་དུ་HTTPS དགོས།"
 label = "བདེ་འཇགས་ཀུ་ཀི།"
+
+[admin.settings.security.jwt.tokenExpiryMinutes]
+description = "ཝེབ་མཁོ་མཁྲེགས་ལ་སྤྱོད་པའི Access Token གི་དུས་ཚོད (སྐར་མ) (སྔོན་སྒྲིག: 1440 = 24 ཆུ་ཚོད)"
+label = "ཝེབ Token དུས་ཡོལ (སྐར་མ)"
 
 [admin.settings.security.loginAttemptCount]
 description = "རྩིས་ཁྲའི་བཀག་སྡོམ་མ་བྱས་པའི་སྔོན་ལ་ནང་འཇུག་ཚོད་ལྟ་བྱེད་མ་ཐུབ་པའི་ཆེས་མང་བའི་གྲངས་འབོར།"
@@ -2238,6 +2238,9 @@ title = "འཕོ་འགྱུར།"
 [changePermissions.tooltip.warning]
 text = "ཆོག་མཆན་འདི་དག་འགྱུར་བ་མེད་པར་བཟོ་བར། བདག་པོའི་གསང་ཚིག་སྒྲིག་པའི་ཆེད་དུ་གསང་གྲངས་ཁ་སྣོན་བྱེད་པའི་ལག་ཆ་སྤྱོད་དགོས།"
 
+[cloudBadge]
+tooltip = "This operation will use your cloud credits"
+
 [colorPicker]
 title = "ཁ་དོག་འདེམས།"
 
@@ -2254,9 +2257,11 @@ copy = "འདྲ་བཤུས།"
 done = "བགྱིས་པ"
 error = "ནོར་འཁྲུལ"
 expand = "རྒྱ་སྐྱེད་གཏོང"
+learnMore = "Learn more"
 lines = "ཚེག་ཚན།"
 loading = "ཁུར་པོ།"
 next = "རྗེས་མ"
+operation = "this operation"
 preview = "སྔོན་ལྟ།"
 previous = "སྔོན་ཆད་ཀྱི"
 refresh = "གསར་སྐྲུན་བྱེད་པ།"
@@ -2670,6 +2675,77 @@ description = "ཀུ་ཀི་འདི་དག་དྲ་ཚིགས་�
 posthog = "རྗེས་ཀྱི་ཧོག་དབྱེ་ཞིབ།"
 scarf = "སི་ཀར་ཕི་པིག་སེལ།"
 
+[credits]
+enableOverageBilling = "Enable Overage Billing"
+maybeLater = "Maybe later"
+upgrade = "Upgrade"
+
+[credits.insufficient]
+brief = "Insufficient credits. You need {{required}} credits but have {{current}}."
+freeTier = "Upgrade to Team for 10x more credits and unlimited overage billing."
+managedMember = "Please contact your team leader for assistance."
+message = "You do not have enough credits to run {{tool}}. You currently have {{current}} credits."
+messageWithAmount = "You need {{required}} credits to run {{tool}}, but you only have {{current}}."
+teamMember = "Enable overage billing to never run out of credits."
+title = "Insufficient Credits"
+
+[credits.modal]
+advancedMonitoring = "Advanced monitoring"
+allInOneWorkspace = "All-in-one PDF workspace (viewer, tools & agent)"
+apiSandbox = "API sandbox"
+contactSales = "Contact Sales"
+creditsRemaining = "{{current}} of {{total}} remaining"
+creditsThisMonth = "Monthly credits"
+current = "Current Plan"
+customPricing = "Custom"
+customSmartFolders = "Custom Smart Folders"
+dedicatedSupportSlas = "Dedicated support & SLAs"
+enterpriseSubscription = "Enterprise"
+everythingInCredits = "Everything in Credits, plus:"
+everythingInFree = "Everything in Free, plus:"
+fasterThroughput = "10x faster throughput"
+forRegularWork = "For regular PDF work:"
+freeTier = "Free Tier"
+fullyPrivateFiles = "Fully private files"
+largeFileProcessing = "Large file processing"
+managedMemberMessage = "You have unlimited access to credits through your team. If you need assistance, please contact your team leader."
+managedMemberTitle = "Unlimited Credits"
+meteringBillingNote = "Overage credits are billed monthly alongside your Team subscription. Track your usage anytime in your account settings."
+meteringExplanation = "Your Team plan includes {{credits}} credits per month. When you run out, overage billing automatically provides additional credits so you never have to stop working."
+meteringIncluded = "{{credits}} credits/month included with Team"
+meteringNeverRunOut = "Never run out of credits"
+meteringNoCommitment = "No commitment, cancel anytime"
+meteringPayAsYouGo = "Only pay for what you use"
+meteringPrice = "Additional credits at {{price}}/credit"
+meteringTitle = "Pay-What-You-Use Overage Billing"
+monthlyCredits = "monthly credits"
+orgWideAccess = "Org-wide access controls"
+overage = "overage"
+perMonth = "/month"
+popular = "Popular"
+premiumAiModels = "Premium AI models"
+prioritySupport = "Priority support"
+privateDocCloud = "Private Document Cloud"
+ragFineTuning = "RAG + fine-tuning"
+secureApiAccess = "Secure API access"
+selfHostLink = "Review the docs and plans"
+selfHostPrompt = "Want to self host?"
+standardThroughput = "Standard throughput"
+subtitle = "Upgrade to Team for 10x the credits and faster processing."
+subtitlePro = "Enable automatic overage billing to never run out of credits."
+teamLeaderOnly = "Only team leaders can enable overage billing"
+teamSubscription = "Team"
+titleExhausted = "You've used your free credits"
+titleExhaustedPro = "You have run out of credits"
+unlimitedApiAccess = "Unlimited API access"
+unlimitedMonthlyCredits = "Site License"
+unlimitedSeats = "Unlimited seats"
+
+[credits.modal.features]
+everythingInCredits = "Everything in Credits, plus:"
+everythingInFree = "Everything in Free, plus:"
+forRegularWork = "For regular PDF work:"
+
 [crop]
 autoCrop = "རང་འགུལ་གྱིས་ས་ཞིང་དཀར་པོའི་བར་སྟོང་།"
 header = "སོན་བཟང་PDF"
@@ -2920,6 +2996,7 @@ copyStack = "བང་རིམ་འདྲ་བཤུས།"
 discordSubmit = "མཐུན་སྒྲིལ། - ཕུལ་བའི་རྒྱབ་སྐྱོར།"
 dismissAllErrors = "ནོར་འཁྲུལ་ཚང་མ་མེད་པར་བཟོ་བ།"
 encryptedPdfMustRemovePassword = "འདི་PDFདེ་གསང་བཟོ་ཡང་ན་གསང་ཚིག་གིས་སྲུང་སྐྱོབ་བྱས་ཡོད། PDF/A ལ་མ་བསྒྱུར་གོང་ཁ་ཕྱེ་རོགས།"
+generic = "An error occurred"
 github = "GitHub ཐོག་འཛིན་བྱང་ཕུལ་བ།"
 githubSubmit = "GitHub - འཛིན་བྱང་ཕུལ་བ།"
 incorrectPasswordProvided = "PDF གསང་གྲངས་དེ་ནོར་འཁྲུལ་ཅན་ཡིན་པའམ་ཡང་ན་སྤྲད་མེད་པ་རེད།"
@@ -3346,10 +3423,6 @@ desc = "གོམ་པ་མང་པོའི་ལས་ཀའི་འགྲ
 tags = "ལས་ཀའི་འགྲོ་ལམ། རྗེས་འདེད། རང་འགུལ་ཅན།"
 title = "རང་འགུལ་ཅན།"
 
-[home.formFill]
-desc = "མཐོང་སྣང་ཅན་གྱི་ཞུན་དག་ཆས་སྤྱོད་ནས PDF གཞུང་འགྲེམས་ས་ཁོངས་ཁ་སྐོང་བྱེད།"
-title = "གཞུང་འགྲེམས་ཁ་སྐོང"
-
 [home.autoRename]
 desc = "རང་འགུལ་གྱིས་མགོ་ཡིག་ཤེས་རྟོགས་བྱུང་བ་ལ་བརྟེན་ནས་PDFཡིག་ཆ་ཞིག་མིང་བསྒྱུར་ཡོད།"
 tags = "རང་འགུལ་ཤེས་རྟོགས། མགོ་བརྗོད་ལ་གཞི་བཅོལ་བ། གོ་སྒྲིག་བྱས་པ། རེ་ལེ་བེལ།"
@@ -3444,6 +3517,10 @@ title = "ཤོག་ངོས།"
 desc = "PDF ནས་འབྲེལ་འདྲིས་ཀྱི་ཆ་ཤས་དང་རྣམ་པ་ཚང་མ་མེད་པར་བཟོས།"
 tags = "སྟབས་བདེ་རུ་གཏོང་བ།"
 title = "ཕྲག་དོག"
+
+[home.formFill]
+desc = "མཐོང་སྣང་ཅན་གྱི་ཞུན་དག་ཆས་སྤྱོད་ནས PDF གཞུང་འགྲེམས་ས་ཁོངས་ཁ་སྐོང་བྱེད།"
+title = "གཞུང་འགྲེམས་ཁ་སྐོང"
 
 [home.getPdfInfo]
 desc = "PDFs ཐོག་གནས་ཚུལ་གང་རུང་དང་ཚང་མ་ལེན་དགོས།"
@@ -4247,75 +4324,6 @@ title = "ཤོག་ངོས་རྩོམ་སྒྲིག་པ།"
 zoomIn = "Zoom in"
 zoomOut = "ཆུང་དུ་བཟོ།"
 
-[viewer]
-cannotPreviewFile = "སྔོན་ལྟའི་ཡིག་འབྲུའི་ཡིག་ཚགས་བཟོ་མི་རུང་།"
-dualPageView = "ཤོག་ངོས་གཉིས་ལྡན་གྱི་མཐོང་སྣང་།"
-firstPage = "ཤོག་ངོས་དང་པོ།"
-lastPage = "ཤོག་ངོས་མཐའ་མ།"
-nextPage = "ཤོག་ངོས་རྗེས་མ།"
-onlyPdfSupported = "ལྟ་མཁན་གྱིས་PDFཡིག་ཆ་ལ་རྒྱབ་སྐྱོར་བྱེད་ཀྱི་ཡོད། ཡིག་ཆ་འདི་རྩ་སྒྲིག་མི་འདྲ་བ་ཞིག་ཡིན་པ་འདྲ།"
-previousPage = "ཤོག་ངོས་སྔོན་མ།"
-singlePageView = "ཤོག་ངོས་གཅིག་པའི་མཐོང་སྣང་།"
-unknownFile = "མ་ཤེས་པའི་ཡིག་ཆ།"
-zoomIn = "Zoom in"
-zoomOut = "ཆུང་དུ་བཟོ།"
-
-[viewer.attachments]
-title = "ཟུར་སྣོན"
-searchPlaceholder = "ཟུར་སྣོན་འཚོལ"
-noSupport = "སྟོན་ཆས་འདིའི་དོན་ལ་ཟུར་སྣོན་རྒྱབ་སྐྱོར་མེད།"
-noDocument = "PDF ཞིག་ཁ་ཕྱེས་ནས་ཟུར་སྣོན་ལ་ལྟ།"
-loading = "ཟུར་སྣོན་ཡར་འཇུག་བཞིན..."
-empty = "ཡིག་ཆ་འདིར་ཟུར་སྣོན་མེད།"
-noMatch = "ཁྱེད་ཀྱི་འཚོལ་བ་དང་མཐུན་པའི་ཟུར་སྣོན་མེད།"
-
-[viewer.formBar]
-title = "གཞུང་འགྲེམས་ས་ཁོངས"
-unsavedBadge = "མ་ཉར"
-unsavedDesc = "ཁྱེད་ལ་མ་ཉར་པའི་བཟོ་བཅོས་ཡོད།"
-hasFieldsDesc = "PDF འདིར་ཁ་སྐོང་བྱ་རུང་བའི་ས་ཁོངས་ཡོད།"
-dismiss = "དོར"
-apply = "བཟོ་བཅོས་སྤྱོད"
-download = "PDF ཕབ་ལེན"
-
-[rightRail]
-closeSelected = "འདེམས་སྒྲུག་བྱས་པའི་ཡིག་ཆ་ཁ་རྒྱག་པ།"
-selectAll = "ཚང་མ་འདེམས།"
-deselectAll = "ཚང་མ་འདེམས་མེད།"
-selectByNumber = "ཤོག་ངོས་ཨང་རྟགས་ཀྱིས་འདེམས།"
-deleteSelected = "འདེམས་སྒྲུག་བྱས་པའི་ཤོག་ངོས་སུབ་པ།"
-closePdf = "PDF ཐག་ཉེ་བ།"
-exportAll = "ཕྱིར་གཏོང་PDF"
-downloadSelected = "འདེམ་འདེམས་བྱས་པའི་ཡིག་ཆ་ཕབ་ལེན།"
-annotations = "མཚན་བརྗོད་པ།"
-exportSelected = "ཕྱིར་གཏོང་འདེམས་སྒྲུག་བྱས་པའི་ཤོག་ངོས།"
-formFill = "གཞུང་འགྲེམས་ཁ་སྐོང"
-saveChanges = "འགྱུར་བ་སྲུང་བ།"
-toggleAttachments = "ཟུར་སྣོན་སྟོན/སྦེལ"
-toggleTheme = "བསྒྱུར་བའི་བརྗོད་གཞི།"
-language = "སྐད་རིགས"
-toggleAnnotations = "བསྒུལ་བསྒྱུར། མིང་ཚིག་མཐོང་ཐུབ་ཚད།"
-search = "འཚོལ་ཞིབ་PDF"
-panMode = "པན་ཐབས་ཀྱི་ཐབས་ལམ།"
-applyRedactionsFirst = "དེ་སྔོན་ལ་གསང་སྦེད་འཇུག"
-rotateLeft = "གཡོན་འཁོར་བ།"
-rotateRight = "གཡས་གཡོན་འཁོར་བ།"
-toggleSidebar = "བསྒྱུར་བའི་ཕྱོགས་བསྒྱུར།"
-toggleBookmarks = "བསྒྱུར་དེབ་ཀྱི་རྟགས་མཚན།"
-print = "པར་ཤུས་PDF"
-ruler = "ཚད་ཤིང / ཚད་འཇལ"
-draw = "འབྲི"
-redact = "གསང་སྦེད"
-exitRedaction = "གསང་སྦེད་ཐབས་ལས་ཕྱིར་ཐོན"
-save = "ཉར"
-downloadAll = "ཕབ་ལེན།"
-saveAll = "ཚང་མ་ཉར་ཚགས་བྱེད་པ།"
-
-[textAlign]
-left = "གཡོན"
-center = "ལྟེ་བ"
-right = "ཐོབ་ཐང"
-
 [pageExtracter]
 header = "ཤོག་ངོས།"
 placeholder = "(དཔེར་ན། 1,2,8 ཡང་ན་ 4,7,12-16 ཡང་ན་ 2n-1)"
@@ -4424,6 +4432,9 @@ title = "ཐབས་རྩལ"
 autoClose = "སྒེའུ་ཁུང་འདི་རང་འགུལ་གྱིས་ཁ་རྒྱག་རྒྱུ་རེད།"
 billingPeriod = "དངུལ་འབབ་ཀྱི་དུས་ཡུན།"
 canCloseWindow = "ཁྱོད་ཀྱིས་ད་ལྟ་སྒེའུ་ཁུང་འདི་ཁ་རྒྱག་ཐུབ།"
+checkoutInstructions = "Complete your purchase in the browser window that just opened. After payment is complete, return here and click the button below to refresh your billing information."
+checkoutOpened = "Checkout Opened in Browser"
+closeLater = "I'll Do This Later"
 emailInvalid = "ནུས་ལྡན་གྱི་གློག་འཕྲིན་ཁ་བྱང་ཞིག་བྲིས་རོགས་གནང་།"
 enterpriseNote = "གདན་ས་དེ་དངུལ་བཏོན་ནས་བསྒྱུར་ཐུབ། (1-1000)"
 error = "དངུལ་སྤྲོད་པའི་ནོར་འཁྲུལ།"
@@ -4445,6 +4456,7 @@ perMonth = "/ཟླ་བ"
 perYear = "/ལོ"
 preparing = "ཁྱེད་རང་གི་དངུལ་བཏོན་གྲ་སྒྲིག་བྱེད་པ།"
 redirecting = "བདེ་འཇགས་ལྡན་པའི་དངུལ་བཏོན་པར་བསྐྱར་གཏོང་བྱེད་པ་..."
+refreshBilling = "I've Completed Payment - Refresh Billing"
 stripeNotConfigured = "Stripe རིམ་སྒྲིག་བྱས་མེད།"
 stripeNotConfiguredMessage = "དངུལ་གྱི་གླ་ཆ་གཅིག་སྒྲིལ་དེ་སྒྲིག་བཀོད་བྱས་མེད། བདག་འཛིན་པར་འབྲེལ་གཏུག་གནང་རོགས།"
 success = "གླ་ཆ་ལེགས་འགྲུབ་བྱུང་།"
@@ -4777,6 +4789,13 @@ title = "PDF ནས་ Word བར།"
 [PDFToWord.selectText]
 1 = "ཐོན་འབྲས་ཡིག་ཆའི་རྣམ་པ།"
 
+[PDFToXLSX]
+header = "PDF to Excel"
+prompt = "Choose pages to extract tables"
+submit = "Convert"
+tags = "spreadsheet,excel,xlsx,table,extract,convert"
+title = "PDF to Excel (XLSX)"
+
 [PDFToXML]
 credit = "ཞབས་ཞུ་འདིས་ཡིག་ཆ་སྒྱུར་ཆེད་དུ་LibreOfficeབེད་སྤྱོད་བྱེད་ཀྱི་ཡོད།"
 header = "PDF ནས་ XML བར།"
@@ -4835,6 +4854,7 @@ customPricing = "ཡུལ་སྲོལ"
 featureComparison = "ཁྱད་ཆོས་བསྡུར་བ།"
 from = "ནས"
 hideComparison = "སྦ་བའི་ཁྱད་ཆོས་བསྡུར་བ།"
+included = "Included"
 includedInCurrent = "ཁྱེད་ཀྱི་འཆར་གཞིའི་ནང་ཚུད་པ།"
 licensedSeats = "ཆོག་མཆན་ཡོད་པ: {{count}} རྐུབ་སྟེགས"
 manage = "དོ་དམ"
@@ -4851,6 +4871,7 @@ subtitle = "ཁྱེད་ཀྱི་ད་ལྟའི་མངགས་ཉ�
 title = "ཤུགས་ལྡན་འཆར་གཞི།"
 
 [plan.availablePlans]
+loadError = "Unable to load plan pricing. Using default values."
 subtitle = "ཁྱེད་རང་གི་དགོས་མཁོ་དང་འཚམ་པའི་འཆར་གཞི་འདེམས།"
 title = "འཆར་གཞི།"
 
@@ -4861,6 +4882,7 @@ highlight3 = "ཆེས་གསར་བའི་ཁྱད་ཆོས།"
 name = "ཁེ་ལས།"
 requiresServer = "ཞབས་ཞུ་དགོས་མཁོ།"
 requiresServerMessage = "ཁེ་ལས་ལ་རིམ་སྤོར་མ་བྱེད་གོང་སྔོན་ལ་སར་བར་གྱི་འཆར་གཞི་ལ་རིམ་སྤོར་གནང་རོགས།"
+siteLicense = "Site License"
 
 [plan.feature]
 api = "API འགྲོ་འོང་།"
@@ -4928,6 +4950,10 @@ keyDescription = "ཁྱེད་རང་གི་གློག་འཕྲི�
 success = "ལག་འཁྱེར་སྒུལ་ཤུགས་ལྡན་པ།"
 successMessage = "ཁྱེད་ཀྱི་ཆོག་མཆན་དེ་ལེགས་འགྲུབ་བྱུང་ཡོད། ཁྱོད་ཀྱིས་ད་ལྟ་སྒེའུ་ཁུང་འདི་ཁ་རྒྱག་ཐུབ།"
 
+[plan.team]
+name = "Team"
+siteLicense = "Site License"
+
 [printFile]
 header = "པར་གཞི་པར་བསྐྲུན་ཡིག་ཆ།"
 submit = "པར་སྐྲུན།"
@@ -4992,15 +5018,15 @@ title = "རྡོག་རྡོག་བར་གྱི་ཚིག་།"
 failed = "PDF བཅོས་སྒྲིག་བྱེད་སྐབས་ནོར་འཁྲུལ་བྱུང་ཡོད།"
 
 [redact.manual]
+activate = "གསང་སྦེན་ལག་ཆ་ལག་བསྣན"
+active = "གསང་སྦེན་ཐབས་ལམ་ལག་བསྣན་ཟིན"
 apply = "འཇུག"
 applyChanges = "འགྱུར་བ་འཇུག་པ།"
 applyRedactions = "Apply Redactions"
 applyWarning = "⚠️ རྟག་བརྟན་འཇུག ཕྱིར་འབྱོར་མི་ཐུབ དང་འོག་གི་གཞི་གྲངས་བསུབ་བྱེད།"
 boxRedaction = "སྒམ་གྱི་རི་མོ་བཤུས་པ།"
-colourPicker = "ཁ་དོག་འདེམས་མཁན།"
 colorLabel = "གསང་སྦེན་ཁ་དོག"
-active = "གསང་སྦེན་ཐབས་ལམ་ལག་བསྣན་ཟིན"
-activate = "གསང་སྦེན་ལག་ཆ་ལག་བསྣན"
+colourPicker = "ཁ་དོག་འདེམས་མཁན།"
 controlsTitle = "ལག་སྒུལ་གསང་སྦེད་ཚོད་འཛིན"
 convertPDFToImageLabel = "PDF ལ་PDF-Image ལ་སྒྱུར་དགོས།"
 export = "ཕྱི་ཚོང"
@@ -5396,6 +5422,39 @@ title = "འགྲན་སློང་མཐོ་བ།"
 text = "PDF ནང་དུ་ཚོས་གཞི་ཚང་མ་ཆ་ཚང་བསྒྱུར་ནས་དགག་ཆ་ལྟ་བུའི་ནུས་པ་བསྐྲུན་ཐུབ། ཡིག་ཆའི་ནག་པོའི་རྣམ་པ་བསྐྲུན་པའམ་ཡང་ན་འོད་ཉུང་བའི་གནས་སྟངས་ནང་མིག་གི་གནོན་ཤུགས་ཉུང་དུ་གཏོང་བར་ཕན་ཐོགས་ཡོད།"
 title = "ཁ་དོག་ཚང་མ་བསྒྱུར་བ།"
 
+[rightRail]
+annotations = "མཚན་བརྗོད་པ།"
+applyRedactionsFirst = "དེ་སྔོན་ལ་གསང་སྦེད་འཇུག"
+closePdf = "PDF ཐག་ཉེ་བ།"
+closeSelected = "འདེམས་སྒྲུག་བྱས་པའི་ཡིག་ཆ་ཁ་རྒྱག་པ།"
+deleteSelected = "འདེམས་སྒྲུག་བྱས་པའི་ཤོག་ངོས་སུབ་པ།"
+deselectAll = "ཚང་མ་འདེམས་མེད།"
+downloadAll = "ཕབ་ལེན།"
+downloadSelected = "འདེམ་འདེམས་བྱས་པའི་ཡིག་ཆ་ཕབ་ལེན།"
+draw = "འབྲི"
+exitRedaction = "གསང་སྦེད་ཐབས་ལས་ཕྱིར་ཐོན"
+exportAll = "ཕྱིར་གཏོང་PDF"
+exportSelected = "ཕྱིར་གཏོང་འདེམས་སྒྲུག་བྱས་པའི་ཤོག་ངོས།"
+formFill = "གཞུང་འགྲེམས་ཁ་སྐོང"
+language = "སྐད་རིགས"
+panMode = "པན་ཐབས་ཀྱི་ཐབས་ལམ།"
+print = "པར་ཤུས་PDF"
+redact = "གསང་སྦེད"
+rotateLeft = "གཡོན་འཁོར་བ།"
+rotateRight = "གཡས་གཡོན་འཁོར་བ།"
+ruler = "ཚད་ཤིང / ཚད་འཇལ"
+save = "ཉར"
+saveAll = "ཚང་མ་ཉར་ཚགས་བྱེད་པ།"
+saveChanges = "འགྱུར་བ་སྲུང་བ།"
+search = "འཚོལ་ཞིབ་PDF"
+selectAll = "ཚང་མ་འདེམས།"
+selectByNumber = "ཤོག་ངོས་ཨང་རྟགས་ཀྱིས་འདེམས།"
+toggleAnnotations = "བསྒུལ་བསྒྱུར། མིང་ཚིག་མཐོང་ཐུབ་ཚད།"
+toggleAttachments = "ཟུར་སྣོན་སྟོན/སྦེལ"
+toggleBookmarks = "བསྒྱུར་དེབ་ཀྱི་རྟགས་མཚན།"
+toggleSidebar = "བསྒྱུར་བའི་ཕྱོགས་བསྒྱུར།"
+toggleTheme = "བསྒྱུར་བའི་བརྗོད་གཞི།"
+
 [rotate]
 rotateLeft = "ཟུར་འཛིན།"
 rotateRight = "ཆུ་ཚོད་འཁོར་ལོའི་འཁོར་ལོ།"
@@ -5647,6 +5706,70 @@ plan = "འཆར་གཞི"
 title = "ཆོག་མཆན་དང་དབྱེ་ཞིབ།"
 usageAnalytics = "བེད་སྤྱོད་དབྱེ་ཞིབ།"
 
+[settings.planBilling]
+currentPlan = "Current Plan"
+loading = "Loading billing information..."
+notAvailable = "Plan & Billing is only available when connected to Stirling Cloud (SaaS mode)."
+title = "Plan & Billing"
+
+[settings.planBilling.billing]
+manageBilling = "Manage Billing"
+nextBillingDate = "Next billing date"
+overageCost = "Current overage cost: {{amount}} ({{credits}} credits)"
+
+[settings.planBilling.credits]
+estimatedCost = "Estimated cost: {{amount}}"
+freeTierInfo = "Free plan includes {{freeCredits}} credits per month. Upgrade to Team for {{teamCredits}} credits/month and pay-as-you-go overage billing."
+included = "{{count}} credits/month (included)"
+noOverage = "No overage charges this month. You're using your included {{count}} credits."
+overage = "+ {{count}} overage"
+overageInfo = "Overage credits are billed at {{price}} per credit. You'll only pay for what you use beyond your monthly allowance."
+title = "Credit Usage"
+
+[settings.planBilling.errors]
+fetchFailed = "Unable to fetch billing data"
+retry = "Retry"
+
+[settings.planBilling.status]
+active = "Active"
+canceled = "Canceled"
+pastDue = "Past Due"
+trial = "Trial"
+
+[settings.planBilling.team]
+managedByTeam = "Managed by team"
+memberCount = "{{count}} team members"
+
+[settings.planBilling.tier]
+enterprise = "Enterprise"
+enterpriseDescription = "Custom enterprise features and support"
+free = "Free"
+freeDescription = "50 credits per month"
+team = "Team"
+teamBadge = "Team"
+teamDescription = "500 credits/month included, automatic overage billing for uninterrupted service"
+teamTooltipCredits = "Team plan includes {{credits}} credits/month."
+teamTooltipFineprint = "Only pay for what you use beyond included credits."
+teamTooltipOverage = "Automatic overage billing at {{price}}/credit ensures uninterrupted service."
+
+[settings.planBilling.trial]
+daysRemaining = "{{days}} days remaining"
+daysRemainingFull = "Your trial ends in {{days}} days"
+endDate = "Expires: {{date}}"
+endsOn = "Trial ends"
+title = "Free Trial Active"
+
+[settings.planBilling.upgrade]
+cta = "Upgrade to Team"
+featureApi = "API access for automation"
+featureCredits = "{{teamCredits}} credits per month (vs {{freeCredits}} on Free)"
+featureMembers = "Unlimited team members"
+featureSupport = "Priority support"
+featureThroughput = "Faster processing throughput"
+opensInBrowser = "Opens in browser to complete upgrade"
+subtitle = "Upgrade to Team for:"
+title = "Upgrade Your Plan"
+
 [settings.policiesPrivacy]
 legal = "ཁྲིམས་ཀྱི"
 privacy = "གསང་བ"
@@ -5679,6 +5802,9 @@ connections = "འབྲེལ་མཐུད།"
 security = "ཉེན་སྲུང"
 telegram = "Telegram"
 title = "བདེ་འཇགས་དང་བདེན་དཔང་།"
+
+[settings.team]
+title = "Team"
 
 [settings.tooltips]
 enableLoginFirst = "ནང་འཇུག་ཐབས་ལམ་ཐོག་མར་ལྕོགས་ཅན་བཟོ་བ།"
@@ -6016,6 +6142,11 @@ desc = "ཤོག་ངོས་བྱེ་བྲག་པ་(1,3,5-10)བཏ�
 name = "ཤོག་ངོས་ཨང་གྲངས།"
 tooltip = "ཤོག་གྲངས་ཀྱི་ཨང་གྲངས་ནང་ཐིག་དང་ མཐུད་མཚམས་ཀྱིས་དབྱེ་བའི་ཤོག་གྲངས་བླུགས།"
 
+[split.methods.byPoster]
+desc = "Split large pages into printable sizes"
+name = "Printable Chunks"
+tooltip = "Divide oversized pages into smaller chunks suitable for printing on standard paper (A4, Letter, etc.)"
+
 [split.methods.bySections]
 desc = "ཤོག་བུ་དེ་དྲ་མིག་སྡེ་ཚན་དུ་བགོས་དགོས།"
 name = "ཚན་པ།"
@@ -6029,6 +6160,7 @@ tooltip = "ཆེས་མཐོ་བའི་ཡིག་ཆའི་ཆེ་
 [split.methods.prefix]
 splitAt = "བགོས་པ།"
 splitBy = "བགོས་པ།"
+splitInto = "Split into"
 
 [split.methodSelection.tooltip]
 bullet1 = "ཐབས་ལམ་ཤོག་བྱང་ལ་སྣུན་ནས་དེ་འདེམས་དགོས།"
@@ -6040,6 +6172,21 @@ title = "ཁྱེད་རང་གི་བགོད་སྒྲིག་ཐ�
 [split.methodSelection.tooltip.header]
 text = "ཁྱེད་རང་གི་PDFཡིག་ཆ་དེ་གང་འདྲ་བྱས་ནས་བགོས་དགོས་མིན་འདེམས། ཐབས་ལམ་རེ་རེ་བཞིན་བེད་སྤྱོད་ཀྱི་གནད་དོན་དང་ཡིག་ཆའི་རིགས་མི་འདྲ་བ་ལ་ལེགས་བཅོས་བྱས།"
 title = "ཁ་ཕྲལ་གྱི་ཐབས་ལམ་འདེམས་སྒྲུག།"
+
+[split.poster]
+rightToLeft = "Split right-to-left"
+
+[split.poster.pageSize]
+description = "Size of output pages for printing"
+label = "Target Page Size"
+
+[split.poster.xFactor]
+description = "Number of columns to split each page into"
+label = "Horizontal Divisions"
+
+[split.poster.yFactor]
+description = "Number of rows to split each page into"
+label = "Vertical Divisions"
 
 [split.settings]
 selectMethodFirst = "ཐོག་མར་བགོད་ཐབས་ཤིག་འདེམས།"
@@ -6091,6 +6238,14 @@ bullet2 = "ཁྱབ་ཁོངས་ཁ་ཕྲལ་གྱི་ས་ཚི
 bullet3 = "སྲེ་སྦྱོར་བྱས། 2,5-10,15 (ཤོག་ངོས་ ༢ རྗེས་དང་། ཤོག་ངོས་ ༥ སྔོན་ལ། ཤོག་ངོས་ ༡༠ རྗེས་དང་། ཤོག་ངོས་ ༡༥ རྗེས་སུ་ཁ་ཕྲལ་ཡོད།)"
 text = "ཁྱེད་རང་གི་PDF ཤོག་ངོས་ཨང་གྲངས་ངེས་ཅན་ཞིག་གི་སྟེང་དུ་བགོས། ཤོག་ངོས་ n' རྗེས་སུ་ 'n' བགོས། ཤོག་ངོས་ n སྔོན་དང་ཤོག་ངོས་ m རྗེས་སུ་ 'n-m' བགོས།"
 title = "ཤོག་ངོས་ཨང་རྟགས་སུ་ཁ་ཕྲལ་བ།"
+
+[split.tooltip.byPoster]
+bullet1 = "Target Page Size: Choose output paper size (A4, Letter, etc.)"
+bullet2 = "Horizontal/Vertical Divisions: Grid size for splitting"
+bullet3 = "Right-to-Left: Reverse column order for RTL layouts"
+bullet4 = "Print and assemble the pieces to create your poster"
+text = "Split large PDF pages into smaller printable chunks suitable for standard paper sizes. Perfect for creating poster prints from oversized pages."
+title = "Split for Poster Print"
 
 [split.tooltip.bySections]
 bullet1 = "འཕྲད། གསར་སྐྲུན་བྱེད་པའི་གྲལ་ཐིག་གི་གྲངས་འབོར།"
@@ -6232,6 +6387,82 @@ title = "APIཡིག་ཆ།"
 
 [tableExtraxt]
 tags = "CSV,Table Exteraction, Extract, བསྒྱུར་བ།"
+
+[team]
+cancelInviteError = "Failed to cancel invitation"
+confirmCancelInvite = "Are you sure you want to cancel this invitation?"
+confirmLeave = "Are you sure you want to leave this team?"
+confirmLeaveLeader = "As a team leader, leaving will remove you from the team. Are you sure?"
+confirmRemove = "Are you sure you want to remove this member?"
+editName = "Edit team name"
+inviteCancelled = "Invitation cancelled"
+inviteError = "Failed to send invitation"
+inviteSent = "Invitation sent successfully"
+leader = "Leader"
+leaveButton = "Leave Team"
+leaveError = "Failed to leave team"
+leaveSuccess = "Successfully left team"
+loading = "Loading team information..."
+memberCount = "{{count}} members"
+memberRemoved = "Member removed successfully"
+namePlaceholder = "Enter team name"
+personal = "Personal"
+removeError = "Failed to remove member"
+renameError = "Failed to rename team"
+renameSuccess = "Team renamed successfully"
+
+[team.features]
+badge = "Team Features"
+subtitle = "Collaborate with your team"
+title = "Team Collaboration"
+viewPlans = "View Plans"
+
+[team.features.billing]
+description = "Manage billing and subscriptions"
+title = "Billing Management"
+
+[team.features.credits]
+description = "Shared credit pool for all members"
+title = "Shared Credits"
+
+[team.features.dashboard]
+description = "View team activity and usage"
+title = "Team Dashboard"
+
+[team.features.invite]
+description = "Add members to your team"
+title = "Invite Members"
+
+[team.invitationBanner]
+acceptButton = "Accept"
+message = "has invited you to join"
+rejectButton = "Decline"
+
+[team.invite]
+cancelLabel = "Cancel"
+invalidEmail = "Invalid email address"
+placeholder = "Enter email address"
+sendButton = "Send Invitation"
+title = "Invite Team Member"
+
+[team.members]
+emailColumn = "Email"
+empty = "No team members yet"
+nameColumn = "Name"
+pending = "Pending"
+remove = "Remove"
+roleColumn = "Role"
+title = "Team Members"
+
+[team.upgrade]
+button = "Upgrade to Team"
+description = "Unlock team collaboration features"
+title = "Upgrade to Team Plan"
+
+[textAlign]
+center = "ལྟེ་བ"
+left = "གཡོན"
+right = "ཐོབ་ཐང"
 
 [theme]
 toggle = "བསྒྱུར་བའི་བརྗོད་གཞི།"
@@ -6507,6 +6738,37 @@ invalid = "ཡིད་ཆེས་ཚོང་ཁང་ནང་མེད་པ
 fileManager = "ཡིག་ཆའི་འགན་འཛིན།"
 pageEditor = "ཤོག་ངོས་རྩོམ་སྒྲིག་པ།"
 viewer = "ལྟ་མཁན།"
+
+[viewer]
+cannotPreviewFile = "སྔོན་ལྟའི་ཡིག་འབྲུའི་ཡིག་ཚགས་བཟོ་མི་རུང་།"
+dualPageView = "ཤོག་ངོས་གཉིས་ལྡན་གྱི་མཐོང་སྣང་།"
+firstPage = "ཤོག་ངོས་དང་པོ།"
+lastPage = "ཤོག་ངོས་མཐའ་མ།"
+nextPage = "ཤོག་ངོས་རྗེས་མ།"
+onlyPdfSupported = "ལྟ་མཁན་གྱིས་PDFཡིག་ཆ་ལ་རྒྱབ་སྐྱོར་བྱེད་ཀྱི་ཡོད། ཡིག་ཆ་འདི་རྩ་སྒྲིག་མི་འདྲ་བ་ཞིག་ཡིན་པ་འདྲ།"
+previousPage = "ཤོག་ངོས་སྔོན་མ།"
+singlePageView = "ཤོག་ངོས་གཅིག་པའི་མཐོང་སྣང་།"
+unknownFile = "མ་ཤེས་པའི་ཡིག་ཆ།"
+zoomIn = "Zoom in"
+zoomOut = "ཆུང་དུ་བཟོ།"
+
+[viewer.attachments]
+empty = "ཡིག་ཆ་འདིར་ཟུར་སྣོན་མེད།"
+loading = "ཟུར་སྣོན་ཡར་འཇུག་བཞིན..."
+noDocument = "PDF ཞིག་ཁ་ཕྱེས་ནས་ཟུར་སྣོན་ལ་ལྟ།"
+noMatch = "ཁྱེད་ཀྱི་འཚོལ་བ་དང་མཐུན་པའི་ཟུར་སྣོན་མེད།"
+noSupport = "སྟོན་ཆས་འདིའི་དོན་ལ་ཟུར་སྣོན་རྒྱབ་སྐྱོར་མེད།"
+searchPlaceholder = "ཟུར་སྣོན་འཚོལ"
+title = "ཟུར་སྣོན"
+
+[viewer.formBar]
+apply = "བཟོ་བཅོས་སྤྱོད"
+dismiss = "དོར"
+download = "PDF ཕབ་ལེན"
+hasFieldsDesc = "PDF འདིར་ཁ་སྐོང་བྱ་རུང་བའི་ས་ཁོངས་ཡོད།"
+title = "གཞུང་འགྲེམས་ས་ཁོངས"
+unsavedBadge = "མ་ཉར"
+unsavedDesc = "ཁྱེད་ལ་མ་ཉར་པའི་བཟོ་བཅོས་ཡོད།"
 
 [viewPdf]
 header = "PDF ལ་གཟིགས།"

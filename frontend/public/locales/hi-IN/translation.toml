@@ -16,13 +16,13 @@ comingSoon = "जल्द आ रहा है"
 confirmClose = "बंद करने की पुष्टि करें"
 confirmCloseCancel = "रद्द करें"
 confirmCloseConfirm = "फ़ाइल बंद करें"
-confirmCloseMessage = "क्या आप वाकई इस फ़ाइल को बंद करना चाहते हैं?"
 confirmCloseDiscard = "परिवर्तन त्यागें और बंद करें"
+confirmCloseMessage = "क्या आप वाकई इस फ़ाइल को बंद करना चाहते हैं?"
 confirmCloseSave = "सहेजें और बंद करें"
+confirmCloseSaveFailed = "त्रुटियों के साथ सहेजा गया। {{count}} फ़ाइल{{plural}} सहेजी नहीं जा सकीं।"
+confirmCloseSaveFailedTitle = "सहेजना विफल"
 confirmCloseUnsaved = "इस फ़ाइल में असहेजे परिवर्तन हैं।"
 confirmCloseUnsavedList = "आपके पास असहेजे परिवर्तनों वाली {{count}} फ़ाइल{{plural}} हैं。\n\n{{fileList}}"
-confirmCloseSaveFailedTitle = "सहेजना विफल"
-confirmCloseSaveFailed = "त्रुटियों के साथ सहेजा गया। {{count}} फ़ाइल{{plural}} सहेजी नहीं जा सकीं।"
 confirmPasswordErrorMessage = "नया पासवर्ड और पुष्टि नया पासवर्ड मेल खाने चाहिए।"
 custom = "कस्टम..."
 customPosition = "कस्टम स्थिति"
@@ -45,8 +45,8 @@ edit = "संपादित करें"
 editYourNewFiles = "अपनी नई फ़ाइल(फ़ाइलों) को संपादित करें"
 exportAndContinue = "निर्यात करें और जारी रखें"
 false = "नहीं"
-fileSavedToDisk = "फ़ाइल डिस्क पर सहेजी गई"
 fileNotSavedToDisk = "डिस्क पर सहेजा नहीं गया"
+fileSavedToDisk = "फ़ाइल डिस्क पर सहेजी गई"
 fileSelected = "चयनित: {{filename}}"
 filesSelected = "फ़ाइलें चयनित"
 font = "फ़ॉन्ट"
@@ -841,6 +841,14 @@ title = "API एंडपॉइंट्स"
 userDefaults = "उपयोगकर्ता प्राथमिकताओं के डिफ़ॉल्ट"
 userDefaultsDescription = "उपयोगकर्ता प्राथमिकताओं के लिए डिफ़ॉल्ट मान सेट करें। उपयोगकर्ता इन्हें अपनी व्यक्तिगत सेटिंग में बदल सकते हैं।"
 
+[admin.settings.endpoints.defaultHideUnavailableConversions]
+description = "धूसर रूप में दिखाने के बजाय अक्षम रूपांतरण विकल्पों को हटाएँ"
+label = "डिफ़ॉल्ट रूप से अनुपलब्ध रूपांतरण छिपाएँ"
+
+[admin.settings.endpoints.defaultHideUnavailableTools]
+description = "अक्षम उपकरणों को धूसर रूप में दिखाने के बजाय हटाएँ"
+label = "डिफ़ॉल्ट रूप से अनुपलब्ध उपकरण छिपाएँ"
+
 [admin.settings.endpoints.groupsToRemove]
 description = "अक्षम करने हेतु एंडपॉइंट समूह चुनें"
 label = "अक्षम एंडपॉइंट समूह"
@@ -848,14 +856,6 @@ label = "अक्षम एंडपॉइंट समूह"
 [admin.settings.endpoints.toRemove]
 description = "अक्षम करने के लिए व्यक्तिगत एंडपॉइंट्स चुनें"
 label = "अक्षम एंडपॉइंट्स"
-
-[admin.settings.endpoints.defaultHideUnavailableTools]
-description = "अक्षम उपकरणों को धूसर रूप में दिखाने के बजाय हटाएँ"
-label = "डिफ़ॉल्ट रूप से अनुपलब्ध उपकरण छिपाएँ"
-
-[admin.settings.endpoints.defaultHideUnavailableConversions]
-description = "धूसर रूप में दिखाने के बजाय अक्षम रूपांतरण विकल्पों को हटाएँ"
-label = "डिफ़ॉल्ट रूप से अनुपलब्ध रूपांतरण छिपाएँ"
 
 [admin.settings.enterpriseRequired]
 message = "{{featureName}} तक पहुँच के लिए एंटरप्राइज़ लाइसेंस आवश्यक है। आप संदर्भ के लिए डेमो डेटा देख रहे हैं।"
@@ -1228,6 +1228,14 @@ label = "प्रारंभिक उपयोगकर्ता नाम"
 [admin.settings.security.jwt]
 label = "JWT कॉन्फ़िगरेशन"
 
+[admin.settings.security.jwt.allowedClockSkewSeconds]
+description = "टोकन सत्यापन के दौरान क्लाइंट/सर्वर समय अंतर के लिए सहनशीलता (डिफ़ॉल्ट: 60 सेकंड)"
+label = "क्लॉक स्क्यू सहनशीलता (सेकंड)"
+
+[admin.settings.security.jwt.desktopTokenExpiryMinutes]
+description = "डेस्कटॉप क्लाइंट के लिए एक्सेस टोकन का जीवनकाल (मिनटों में)। डेस्कटॉप ऐप्स User-Agent के माध्यम से स्वतः पहचाने जाते हैं और बेहतर UX के लिए लंबी सत्र अवधि प्राप्त करते हैं (डिफ़ॉल्ट: 43200 = 30 दिन)"
+label = "डेस्कटॉप टोकन की समाप्ति (मिनट)"
+
 [admin.settings.security.jwt.enableKeyCleanup]
 description = "समाप्त हो चुकी JWT कुंजियाँ स्वचालित रूप से हटाएँ"
 label = "कुंजी क्लीनअप सक्रिय करें"
@@ -1236,29 +1244,21 @@ label = "कुंजी क्लीनअप सक्रिय करें"
 description = "JWT साइनिंग कुंजियों को समय-समय पर स्वचालित रूप से रोटेट करें"
 label = "कुंजी रोटेशन सक्रिय करें"
 
-[admin.settings.security.jwt.tokenExpiryMinutes]
-description = "वेब क्लाइंट के लिए एक्सेस टोकन का जीवनकाल (मिनटों में) (डिफ़ॉल्ट: 1440 = 24 घंटे)"
-label = "वेब टोकन की समाप्ति (मिनट)"
-
-[admin.settings.security.jwt.desktopTokenExpiryMinutes]
-description = "डेस्कटॉप क्लाइंट के लिए एक्सेस टोकन का जीवनकाल (मिनटों में)। डेस्कटॉप ऐप्स User-Agent के माध्यम से स्वतः पहचाने जाते हैं और बेहतर UX के लिए लंबी सत्र अवधि प्राप्त करते हैं (डिफ़ॉल्ट: 43200 = 30 दिन)"
-label = "डेस्कटॉप टोकन की समाप्ति (मिनट)"
-
-[admin.settings.security.jwt.allowedClockSkewSeconds]
-description = "टोकन सत्यापन के दौरान क्लाइंट/सर्वर समय अंतर के लिए सहनशीलता (डिफ़ॉल्ट: 60 सेकंड)"
-label = "क्लॉक स्क्यू सहनशीलता (सेकंड)"
+[admin.settings.security.jwt.persistence]
+description = "सर्वर रीस्टार्ट के बाद भी बने रहने के लिए JWT कुंजियाँ स्थायी रूप से संग्रहित करें"
+label = "कुंजी परसिस्टेंस सक्रिय करें"
 
 [admin.settings.security.jwt.refreshGraceMinutes]
 description = "समाप्ति के बाद इतने मिनटों के भीतर टोकन रिफ्रेश की अनुमति दें (डिफ़ॉल्ट: 15 मिनट, अधिकतम 3 प्रयास)"
 label = "रिफ्रेश ग्रेस अवधि (मिनट)"
 
-[admin.settings.security.jwt.persistence]
-description = "सर्वर रीस्टार्ट के बाद भी बने रहने के लिए JWT कुंजियाँ स्थायी रूप से संग्रहित करें"
-label = "कुंजी परसिस्टेंस सक्रिय करें"
-
 [admin.settings.security.jwt.secureCookie]
 description = "JWT कुकीज़ के लिए HTTPS आवश्यक करें (प्रोडक्शन के लिए अनुशंसित)"
 label = "सिक्योर कुकी"
+
+[admin.settings.security.jwt.tokenExpiryMinutes]
+description = "वेब क्लाइंट के लिए एक्सेस टोकन का जीवनकाल (मिनटों में) (डिफ़ॉल्ट: 1440 = 24 घंटे)"
+label = "वेब टोकन की समाप्ति (मिनट)"
 
 [admin.settings.security.loginAttemptCount]
 description = "खाते को लॉक करने से पहले असफल लॉगिन प्रयासों की अधिकतम संख्या"
@@ -2238,6 +2238,9 @@ title = "अनुमतियां बदलें"
 [changePermissions.tooltip.warning]
 text = "इन अनुमतियों को अपरिवर्तनीय बनाने के लिए, मालिक पासवर्ड सेट करने हेतु Add Password टूल का उपयोग करें।"
 
+[cloudBadge]
+tooltip = "This operation will use your cloud credits"
+
 [colorPicker]
 title = "रंग चुनें"
 
@@ -2254,9 +2257,11 @@ copy = "कॉपी करें"
 done = "पूर्ण"
 error = "त्रुटि"
 expand = "विस्तारित करें"
+learnMore = "Learn more"
 lines = "पंक्तियाँ"
 loading = "लोड हो रहा है..."
 next = "अगला"
+operation = "this operation"
 preview = "पूर्वावलोकन"
 previous = "पिछला"
 refresh = "रीफ़्रेश करें"
@@ -2670,6 +2675,77 @@ description = "These cookies are essential for the website to function properly.
 posthog = "PostHog एनालिटिक्स"
 scarf = "Scarf पिक्सेल"
 
+[credits]
+enableOverageBilling = "Enable Overage Billing"
+maybeLater = "Maybe later"
+upgrade = "Upgrade"
+
+[credits.insufficient]
+brief = "Insufficient credits. You need {{required}} credits but have {{current}}."
+freeTier = "Upgrade to Team for 10x more credits and unlimited overage billing."
+managedMember = "Please contact your team leader for assistance."
+message = "You do not have enough credits to run {{tool}}. You currently have {{current}} credits."
+messageWithAmount = "You need {{required}} credits to run {{tool}}, but you only have {{current}}."
+teamMember = "Enable overage billing to never run out of credits."
+title = "Insufficient Credits"
+
+[credits.modal]
+advancedMonitoring = "Advanced monitoring"
+allInOneWorkspace = "All-in-one PDF workspace (viewer, tools & agent)"
+apiSandbox = "API sandbox"
+contactSales = "Contact Sales"
+creditsRemaining = "{{current}} of {{total}} remaining"
+creditsThisMonth = "Monthly credits"
+current = "Current Plan"
+customPricing = "Custom"
+customSmartFolders = "Custom Smart Folders"
+dedicatedSupportSlas = "Dedicated support & SLAs"
+enterpriseSubscription = "Enterprise"
+everythingInCredits = "Everything in Credits, plus:"
+everythingInFree = "Everything in Free, plus:"
+fasterThroughput = "10x faster throughput"
+forRegularWork = "For regular PDF work:"
+freeTier = "Free Tier"
+fullyPrivateFiles = "Fully private files"
+largeFileProcessing = "Large file processing"
+managedMemberMessage = "You have unlimited access to credits through your team. If you need assistance, please contact your team leader."
+managedMemberTitle = "Unlimited Credits"
+meteringBillingNote = "Overage credits are billed monthly alongside your Team subscription. Track your usage anytime in your account settings."
+meteringExplanation = "Your Team plan includes {{credits}} credits per month. When you run out, overage billing automatically provides additional credits so you never have to stop working."
+meteringIncluded = "{{credits}} credits/month included with Team"
+meteringNeverRunOut = "Never run out of credits"
+meteringNoCommitment = "No commitment, cancel anytime"
+meteringPayAsYouGo = "Only pay for what you use"
+meteringPrice = "Additional credits at {{price}}/credit"
+meteringTitle = "Pay-What-You-Use Overage Billing"
+monthlyCredits = "monthly credits"
+orgWideAccess = "Org-wide access controls"
+overage = "overage"
+perMonth = "/month"
+popular = "Popular"
+premiumAiModels = "Premium AI models"
+prioritySupport = "Priority support"
+privateDocCloud = "Private Document Cloud"
+ragFineTuning = "RAG + fine-tuning"
+secureApiAccess = "Secure API access"
+selfHostLink = "Review the docs and plans"
+selfHostPrompt = "Want to self host?"
+standardThroughput = "Standard throughput"
+subtitle = "Upgrade to Team for 10x the credits and faster processing."
+subtitlePro = "Enable automatic overage billing to never run out of credits."
+teamLeaderOnly = "Only team leaders can enable overage billing"
+teamSubscription = "Team"
+titleExhausted = "You've used your free credits"
+titleExhaustedPro = "You have run out of credits"
+unlimitedApiAccess = "Unlimited API access"
+unlimitedMonthlyCredits = "Site License"
+unlimitedSeats = "Unlimited seats"
+
+[credits.modal.features]
+everythingInCredits = "Everything in Credits, plus:"
+everythingInFree = "Everything in Free, plus:"
+forRegularWork = "For regular PDF work:"
+
 [crop]
 autoCrop = "खाली स्थान स्वतः क्रॉप करें"
 header = "PDF क्रॉप करें"
@@ -2920,6 +2996,7 @@ copyStack = "स्टैक ट्रेस कॉपी करें"
 discordSubmit = "Discord - सहायता अनुरोध जमा करें"
 dismissAllErrors = "सभी त्रुटियाँ खारिज करें"
 encryptedPdfMustRemovePassword = "यह PDF एन्क्रिप्टेड या पासवर्ड-संरक्षित है। PDF/A में बदलने से पहले कृपया इसे अनलॉक करें।"
+generic = "An error occurred"
 github = "GitHub पर टिकट जमा करें"
 githubSubmit = "GitHub - समस्या टिकट जमा करें"
 incorrectPasswordProvided = "PDF पासवर्ड गलत है या प्रदान नहीं किया गया है।"
@@ -3346,10 +3423,6 @@ desc = "PDF क्रियाओं को जोड़कर बहु-चर�
 tags = "वर्कफ़्लो,सीक्वेंस,स्वचालन"
 title = "स्वचालित करें"
 
-[home.formFill]
-desc = "दृश्य संपादक के साथ इंटरैक्टिव रूप से PDF फ़ॉर्म फ़ील्ड भरें"
-title = "फ़ॉर्म भरें"
-
 [home.autoRename]
 desc = "पता चले हेडर के आधार पर PDF फ़ाइल का नाम स्वतः बदलता है"
 tags = "ऑटो-डिटेक्ट,हेडर-आधारित,संगठित करें,पुन:लेबल करें"
@@ -3444,6 +3517,10 @@ title = "पृष्ठ निकालें"
 desc = "PDF से सभी इंटरैक्टिव तत्वों और फॉर्म को हटाएं"
 tags = "सरल बनाएं,हटाएँ,इंटरैक्टिव"
 title = "समतल करें"
+
+[home.formFill]
+desc = "दृश्य संपादक के साथ इंटरैक्टिव रूप से PDF फ़ॉर्म फ़ील्ड भरें"
+title = "फ़ॉर्म भरें"
 
 [home.getPdfInfo]
 desc = "PDF से संभव सभी जानकारी प्राप्त करें"
@@ -4247,75 +4324,6 @@ title = "पृष्ठ संपादक"
 zoomIn = "ज़ूम इन"
 zoomOut = "ज़ूम आउट"
 
-[viewer]
-cannotPreviewFile = "फ़ाइल का पूर्वावलोकन नहीं किया जा सकता"
-dualPageView = "दोहरा पृष्ठ दृश्य"
-firstPage = "पहला पृष्ठ"
-lastPage = "अंतिम पृष्ठ"
-nextPage = "अगला पृष्ठ"
-onlyPdfSupported = "व्यूअर केवल PDF फ़ाइलों का समर्थन करता है। यह फ़ाइल किसी भिन्न फ़ॉर्मेट में प्रतीत होती है।"
-previousPage = "पिछला पृष्ठ"
-singlePageView = "एकल पृष्ठ दृश्य"
-unknownFile = "अज्ञात फ़ाइल"
-zoomIn = "ज़ूम इन"
-zoomOut = "ज़ूम आउट"
-
-[viewer.attachments]
-title = "संलग्नक"
-searchPlaceholder = "संलग्नक खोजें"
-noSupport = "इस व्यूअर में संलग्नक समर्थन उपलब्ध नहीं है।"
-noDocument = "संलग्नक देखने के लिए कोई PDF खोलें।"
-loading = "संलग्नक लोड हो रहे हैं..."
-empty = "इस दस्तावेज़ में कोई संलग्नक नहीं हैं"
-noMatch = "आपकी खोज से कोई संलग्नक मेल नहीं खाते"
-
-[viewer.formBar]
-title = "फ़ॉर्म फ़ील्ड"
-unsavedBadge = "असहेजा"
-unsavedDesc = "आपके पास असहेजे परिवर्तन हैं"
-hasFieldsDesc = "इस PDF में भरने योग्य फ़ील्ड हैं"
-dismiss = "खारिज करें"
-apply = "परिवर्तन लागू करें"
-download = "PDF डाउनलोड करें"
-
-[rightRail]
-closeSelected = "चयनित फ़ाइलें बंद करें"
-selectAll = "सभी चुनें"
-deselectAll = "सभी अचयनित करें"
-selectByNumber = "पृष्ठ संख्याओं से चयन करें"
-deleteSelected = "चयनित पृष्ठ हटाएँ"
-closePdf = "PDF बंद करें"
-exportAll = "PDF निर्यात करें"
-downloadSelected = "चयनित फ़ाइलें डाउनलोड करें"
-annotations = "एनोटेशन"
-exportSelected = "चयनित पृष्ठ निर्यात करें"
-formFill = "फ़ॉर्म भरें"
-saveChanges = "परिवर्तनों को सहेजें"
-toggleAttachments = "संलग्नक दिखाएं/छिपाएं"
-toggleTheme = "थीम टॉगल करें"
-language = "भाषा"
-toggleAnnotations = "एनोटेशन दृश्यता टॉगल करें"
-search = "PDF खोजें"
-panMode = "पैन मोड"
-applyRedactionsFirst = "पहले रिडैक्शन लागू करें"
-rotateLeft = "बाएँ घुमाएँ"
-rotateRight = "दाएँ घुमाएँ"
-toggleSidebar = "साइडबार टॉगल करें"
-toggleBookmarks = "बुकमार्क्स टॉगल करें"
-print = "PDF प्रिंट करें"
-ruler = "रूलर / माप"
-draw = "ड्रॉ"
-redact = "रिडैक्ट करें"
-exitRedaction = "रिडैक्शन मोड से बाहर निकलें"
-save = "सहेजें"
-downloadAll = "सभी डाउनलोड करें"
-saveAll = "सभी सहेजें"
-
-[textAlign]
-left = "बाएँ"
-center = "मध्य"
-right = "दाएँ"
-
 [pageExtracter]
 header = "पृष्ठ निकालें"
 placeholder = "(उदाहरण 1,2,8 या 4,7,12-16 या 2n-1)"
@@ -4424,6 +4432,9 @@ title = "टिप्स"
 autoClose = "यह विंडो स्वतः बंद हो जाएगी..."
 billingPeriod = "बिलिंग अवधि"
 canCloseWindow = "अब आप यह विंडो बंद कर सकते हैं।"
+checkoutInstructions = "Complete your purchase in the browser window that just opened. After payment is complete, return here and click the button below to refresh your billing information."
+checkoutOpened = "Checkout Opened in Browser"
+closeLater = "I'll Do This Later"
 emailInvalid = "कृपया मान्य ईमेल पता दर्ज करें"
 enterpriseNote = "सीट्स चेकआउट में समायोजित की जा सकती हैं (1-1000)।"
 error = "भुगतान त्रुटि"
@@ -4445,6 +4456,7 @@ perMonth = "/माह"
 perYear = "/वर्ष"
 preparing = "आपका चेकआउट तैयार किया जा रहा है..."
 redirecting = "सुरक्षित चेकआउट पर रीडायरेक्ट किया जा रहा है..."
+refreshBilling = "I've Completed Payment - Refresh Billing"
 stripeNotConfigured = "Stripe कॉन्फ़िगर नहीं"
 stripeNotConfiguredMessage = "Stripe भुगतान इंटीग्रेशन कॉन्फ़िगर नहीं है। कृपया अपने व्यवस्थापक से संपर्क करें।"
 success = "भुगतान सफल!"
@@ -4777,6 +4789,13 @@ title = "PDF से Word"
 [PDFToWord.selectText]
 1 = "आउटपुट फ़ाइल प्रारूप"
 
+[PDFToXLSX]
+header = "PDF to Excel"
+prompt = "Choose pages to extract tables"
+submit = "Convert"
+tags = "spreadsheet,excel,xlsx,table,extract,convert"
+title = "PDF to Excel (XLSX)"
+
 [PDFToXML]
 credit = "यह सेवा फ़ाइल रूपांतरण के लिए LibreOffice का उपयोग करती है।"
 header = "PDF से XML"
@@ -4835,6 +4854,7 @@ customPricing = "कस्टम"
 featureComparison = "फ़ीचर तुलना"
 from = "से"
 hideComparison = "फ़ीचर तुलना छिपाएँ"
+included = "Included"
 includedInCurrent = "आपके प्लान में शामिल"
 licensedSeats = "लाइसेंस प्राप्त: {{count}} सीटें"
 manage = "प्रबंधित करें"
@@ -4851,6 +4871,7 @@ subtitle = "आपकी वर्तमान सदस्यता विव�
 title = "सक्रिय प्लान"
 
 [plan.availablePlans]
+loadError = "Unable to load plan pricing. Using default values."
 subtitle = "अपनी जरूरतों के अनुसार प्लान चुनें"
 title = "उपलब्ध प्लान"
 
@@ -4861,6 +4882,7 @@ highlight3 = "नवीनतम फीचर्स"
 name = "एंटरप्राइज"
 requiresServer = "सर्वर आवश्यक"
 requiresServerMessage = "एंटरप्राइज़ में अपग्रेड करने से पहले कृपया सर्वर प्लान में अपग्रेड करें।"
+siteLicense = "Site License"
 
 [plan.feature]
 api = "API एक्सेस"
@@ -4928,6 +4950,10 @@ keyDescription = "ईमेल से मिली लाइसेंस कु�
 success = "लाइसेंस सक्रिय हुआ!"
 successMessage = "आपका लाइसेंस सफलतापूर्वक सक्रिय हो गया है। अब आप यह विंडो बंद कर सकते हैं।"
 
+[plan.team]
+name = "Team"
+siteLicense = "Site License"
+
 [printFile]
 header = "प्रिंटर पर फ़ाइल प्रिंट करें"
 submit = "प्रिंट करें"
@@ -4992,15 +5018,15 @@ title = "रिडैक्ट करने के शब्द"
 failed = "PDF रिडैक्ट करते समय त्रुटि हुई।"
 
 [redact.manual]
+activate = "รिडैक्शन उपकरण सक्रिय करें"
+active = "रिडैक्शन मोड सक्रिय"
 apply = "लागू करें"
 applyChanges = "बदलाव लागू करें"
 applyRedactions = "Apply Redactions"
 applyWarning = "⚠️ स्थायी लागू, पूर्ववत नहीं किया जा सकता और नीचे का डेटा हटा दिया जाएगा"
 boxRedaction = "बॉक्स खींचकर रिडैक्शन"
-colourPicker = "रंग चयनकर्ता"
 colorLabel = "रिडैक्शन का रंग"
-active = "रिडैक्शन मोड सक्रिय"
-activate = "รिडैक्शन उपकरण सक्रिय करें"
+colourPicker = "रंग चयनकर्ता"
 controlsTitle = "मैनुअल रिडैक्शन नियंत्रण"
 convertPDFToImageLabel = "PDF को PDF-Image में बदलें (बॉक्स के पीछे का टेक्स्ट हटाने हेतु)"
 export = "निर्यात करें"
@@ -5396,6 +5422,39 @@ title = "उच्च कंट्रास्ट"
 text = "PDF के सभी रंग पूरी तरह उलटें, जिससे नकारात्मक जैसा प्रभाव बने। दस्तावेज़ों का डार्क मोड संस्करण बनाने या कम रोशनी में आँखों का तनाव घटाने के लिए उपयोगी।"
 title = "सभी रंग उलटें"
 
+[rightRail]
+annotations = "एनोटेशन"
+applyRedactionsFirst = "पहले रिडैक्शन लागू करें"
+closePdf = "PDF बंद करें"
+closeSelected = "चयनित फ़ाइलें बंद करें"
+deleteSelected = "चयनित पृष्ठ हटाएँ"
+deselectAll = "सभी अचयनित करें"
+downloadAll = "सभी डाउनलोड करें"
+downloadSelected = "चयनित फ़ाइलें डाउनलोड करें"
+draw = "ड्रॉ"
+exitRedaction = "रिडैक्शन मोड से बाहर निकलें"
+exportAll = "PDF निर्यात करें"
+exportSelected = "चयनित पृष्ठ निर्यात करें"
+formFill = "फ़ॉर्म भरें"
+language = "भाषा"
+panMode = "पैन मोड"
+print = "PDF प्रिंट करें"
+redact = "रिडैक्ट करें"
+rotateLeft = "बाएँ घुमाएँ"
+rotateRight = "दाएँ घुमाएँ"
+ruler = "रूलर / माप"
+save = "सहेजें"
+saveAll = "सभी सहेजें"
+saveChanges = "परिवर्तनों को सहेजें"
+search = "PDF खोजें"
+selectAll = "सभी चुनें"
+selectByNumber = "पृष्ठ संख्याओं से चयन करें"
+toggleAnnotations = "एनोटेशन दृश्यता टॉगल करें"
+toggleAttachments = "संलग्नक दिखाएं/छिपाएं"
+toggleBookmarks = "बुकमार्क्स टॉगल करें"
+toggleSidebar = "साइडबार टॉगल करें"
+toggleTheme = "थीम टॉगल करें"
+
 [rotate]
 rotateLeft = "घड़ी की विपरीत दिशा में घुमाएँ"
 rotateRight = "घड़ी की दिशा में घुमाएँ"
@@ -5647,6 +5706,70 @@ plan = "प्लान"
 title = "लाइसेंसिंग और एनालिटिक्स"
 usageAnalytics = "उपयोग एनालिटिक्स"
 
+[settings.planBilling]
+currentPlan = "Current Plan"
+loading = "Loading billing information..."
+notAvailable = "Plan & Billing is only available when connected to Stirling Cloud (SaaS mode)."
+title = "Plan & Billing"
+
+[settings.planBilling.billing]
+manageBilling = "Manage Billing"
+nextBillingDate = "Next billing date"
+overageCost = "Current overage cost: {{amount}} ({{credits}} credits)"
+
+[settings.planBilling.credits]
+estimatedCost = "Estimated cost: {{amount}}"
+freeTierInfo = "Free plan includes {{freeCredits}} credits per month. Upgrade to Team for {{teamCredits}} credits/month and pay-as-you-go overage billing."
+included = "{{count}} credits/month (included)"
+noOverage = "No overage charges this month. You're using your included {{count}} credits."
+overage = "+ {{count}} overage"
+overageInfo = "Overage credits are billed at {{price}} per credit. You'll only pay for what you use beyond your monthly allowance."
+title = "Credit Usage"
+
+[settings.planBilling.errors]
+fetchFailed = "Unable to fetch billing data"
+retry = "Retry"
+
+[settings.planBilling.status]
+active = "Active"
+canceled = "Canceled"
+pastDue = "Past Due"
+trial = "Trial"
+
+[settings.planBilling.team]
+managedByTeam = "Managed by team"
+memberCount = "{{count}} team members"
+
+[settings.planBilling.tier]
+enterprise = "Enterprise"
+enterpriseDescription = "Custom enterprise features and support"
+free = "Free"
+freeDescription = "50 credits per month"
+team = "Team"
+teamBadge = "Team"
+teamDescription = "500 credits/month included, automatic overage billing for uninterrupted service"
+teamTooltipCredits = "Team plan includes {{credits}} credits/month."
+teamTooltipFineprint = "Only pay for what you use beyond included credits."
+teamTooltipOverage = "Automatic overage billing at {{price}}/credit ensures uninterrupted service."
+
+[settings.planBilling.trial]
+daysRemaining = "{{days}} days remaining"
+daysRemainingFull = "Your trial ends in {{days}} days"
+endDate = "Expires: {{date}}"
+endsOn = "Trial ends"
+title = "Free Trial Active"
+
+[settings.planBilling.upgrade]
+cta = "Upgrade to Team"
+featureApi = "API access for automation"
+featureCredits = "{{teamCredits}} credits per month (vs {{freeCredits}} on Free)"
+featureMembers = "Unlimited team members"
+featureSupport = "Priority support"
+featureThroughput = "Faster processing throughput"
+opensInBrowser = "Opens in browser to complete upgrade"
+subtitle = "Upgrade to Team for:"
+title = "Upgrade Your Plan"
+
 [settings.policiesPrivacy]
 legal = "कानूनी"
 privacy = "गोपनीयता"
@@ -5679,6 +5802,9 @@ connections = "कनेक्शन्स"
 security = "सुरक्षा"
 telegram = "Telegram"
 title = "सुरक्षा और प्रमाणीकरण"
+
+[settings.team]
+title = "Team"
 
 [settings.tooltips]
 enableLoginFirst = "पहले लॉगिन मोड सक्षम करें"
@@ -6016,6 +6142,11 @@ desc = "विशिष्ट पृष्ठ निकालें (1,3,5-10)"
 name = "पृष्ठ संख्याएँ"
 tooltip = "अल्पविराम से अलग पृष्ठ संख्या दर्ज करें या हाइफ़न से रेंज दें"
 
+[split.methods.byPoster]
+desc = "Split large pages into printable sizes"
+name = "Printable Chunks"
+tooltip = "Divide oversized pages into smaller chunks suitable for printing on standard paper (A4, Letter, etc.)"
+
 [split.methods.bySections]
 desc = "पृष्ठों को ग्रिड खंडों में बाँटें"
 name = "खंड"
@@ -6029,6 +6160,7 @@ tooltip = "अधिकतम फ़ाइल आकार निर्दिष
 [split.methods.prefix]
 splitAt = "यहाँ विभाजित करें"
 splitBy = "इसके आधार पर विभाजित करें"
+splitInto = "Split into"
 
 [split.methodSelection.tooltip]
 bullet1 = "किसी विधि कार्ड पर क्लिक कर उसे चुनें"
@@ -6040,6 +6172,21 @@ title = "अपनी विभाजन विधि चुनें"
 [split.methodSelection.tooltip.header]
 text = "अपने PDF दस्तावेज़ को विभाजित करने का तरीका चुनें। हर विधि अलग उपयोग-मामलों और दस्तावेज़ प्रकारों के लिए अनुकूलित है।"
 title = "विभाजन विधि चयन"
+
+[split.poster]
+rightToLeft = "Split right-to-left"
+
+[split.poster.pageSize]
+description = "Size of output pages for printing"
+label = "Target Page Size"
+
+[split.poster.xFactor]
+description = "Number of columns to split each page into"
+label = "Horizontal Divisions"
+
+[split.poster.yFactor]
+description = "Number of rows to split each page into"
+label = "Vertical Divisions"
 
 [split.settings]
 selectMethodFirst = "कृपया पहले एक विभाजन विधि चुनें"
@@ -6091,6 +6238,14 @@ bullet2 = "रेंज विभाजन बिंदु: 3-8 (पृष्ठ
 bullet3 = "मिश्रित: 2,5-10,15 (पृष्ठ 2 के बाद, पृष्ठ 5 से पहले, पृष्ठ 10 के बाद, और पृष्ठ 15 के बाद विभाजित करता है)"
 text = "अपने PDF को विशिष्ट पृष्ठ संख्याओं पर विभाजित करें। 'n' का उपयोग पृष्ठ n के बाद विभाजित करता है। 'n-m' का उपयोग पृष्ठ n से पहले और पृष्ठ m के बाद विभाजित करता है।"
 title = "पृष्ठ संख्याओं पर विभाजित करें"
+
+[split.tooltip.byPoster]
+bullet1 = "Target Page Size: Choose output paper size (A4, Letter, etc.)"
+bullet2 = "Horizontal/Vertical Divisions: Grid size for splitting"
+bullet3 = "Right-to-Left: Reverse column order for RTL layouts"
+bullet4 = "Print and assemble the pieces to create your poster"
+text = "Split large PDF pages into smaller printable chunks suitable for standard paper sizes. Perfect for creating poster prints from oversized pages."
+title = "Split for Poster Print"
 
 [split.tooltip.bySections]
 bullet1 = "क्षैतिज: बनाने के लिए पंक्तियों की संख्या"
@@ -6232,6 +6387,82 @@ title = "API दस्तावेज़ीकरण"
 
 [tableExtraxt]
 tags = "CSV,तालिका निष्कर्षण,निकालें,बदलें"
+
+[team]
+cancelInviteError = "Failed to cancel invitation"
+confirmCancelInvite = "Are you sure you want to cancel this invitation?"
+confirmLeave = "Are you sure you want to leave this team?"
+confirmLeaveLeader = "As a team leader, leaving will remove you from the team. Are you sure?"
+confirmRemove = "Are you sure you want to remove this member?"
+editName = "Edit team name"
+inviteCancelled = "Invitation cancelled"
+inviteError = "Failed to send invitation"
+inviteSent = "Invitation sent successfully"
+leader = "Leader"
+leaveButton = "Leave Team"
+leaveError = "Failed to leave team"
+leaveSuccess = "Successfully left team"
+loading = "Loading team information..."
+memberCount = "{{count}} members"
+memberRemoved = "Member removed successfully"
+namePlaceholder = "Enter team name"
+personal = "Personal"
+removeError = "Failed to remove member"
+renameError = "Failed to rename team"
+renameSuccess = "Team renamed successfully"
+
+[team.features]
+badge = "Team Features"
+subtitle = "Collaborate with your team"
+title = "Team Collaboration"
+viewPlans = "View Plans"
+
+[team.features.billing]
+description = "Manage billing and subscriptions"
+title = "Billing Management"
+
+[team.features.credits]
+description = "Shared credit pool for all members"
+title = "Shared Credits"
+
+[team.features.dashboard]
+description = "View team activity and usage"
+title = "Team Dashboard"
+
+[team.features.invite]
+description = "Add members to your team"
+title = "Invite Members"
+
+[team.invitationBanner]
+acceptButton = "Accept"
+message = "has invited you to join"
+rejectButton = "Decline"
+
+[team.invite]
+cancelLabel = "Cancel"
+invalidEmail = "Invalid email address"
+placeholder = "Enter email address"
+sendButton = "Send Invitation"
+title = "Invite Team Member"
+
+[team.members]
+emailColumn = "Email"
+empty = "No team members yet"
+nameColumn = "Name"
+pending = "Pending"
+remove = "Remove"
+roleColumn = "Role"
+title = "Team Members"
+
+[team.upgrade]
+button = "Upgrade to Team"
+description = "Unlock team collaboration features"
+title = "Upgrade to Team Plan"
+
+[textAlign]
+center = "मध्य"
+left = "बाएँ"
+right = "दाएँ"
 
 [theme]
 toggle = "थीम टॉगल करें"
@@ -6507,6 +6738,37 @@ invalid = "प्रमाणपत्र ट्रस्ट स्टोर म
 fileManager = "फ़ाइल प्रबंधक"
 pageEditor = "पृष्ठ संपादक"
 viewer = "व्यूअर"
+
+[viewer]
+cannotPreviewFile = "फ़ाइल का पूर्वावलोकन नहीं किया जा सकता"
+dualPageView = "दोहरा पृष्ठ दृश्य"
+firstPage = "पहला पृष्ठ"
+lastPage = "अंतिम पृष्ठ"
+nextPage = "अगला पृष्ठ"
+onlyPdfSupported = "व्यूअर केवल PDF फ़ाइलों का समर्थन करता है। यह फ़ाइल किसी भिन्न फ़ॉर्मेट में प्रतीत होती है।"
+previousPage = "पिछला पृष्ठ"
+singlePageView = "एकल पृष्ठ दृश्य"
+unknownFile = "अज्ञात फ़ाइल"
+zoomIn = "ज़ूम इन"
+zoomOut = "ज़ूम आउट"
+
+[viewer.attachments]
+empty = "इस दस्तावेज़ में कोई संलग्नक नहीं हैं"
+loading = "संलग्नक लोड हो रहे हैं..."
+noDocument = "संलग्नक देखने के लिए कोई PDF खोलें।"
+noMatch = "आपकी खोज से कोई संलग्नक मेल नहीं खाते"
+noSupport = "इस व्यूअर में संलग्नक समर्थन उपलब्ध नहीं है।"
+searchPlaceholder = "संलग्नक खोजें"
+title = "संलग्नक"
+
+[viewer.formBar]
+apply = "परिवर्तन लागू करें"
+dismiss = "खारिज करें"
+download = "PDF डाउनलोड करें"
+hasFieldsDesc = "इस PDF में भरने योग्य फ़ील्ड हैं"
+title = "फ़ॉर्म फ़ील्ड"
+unsavedBadge = "असहेजा"
+unsavedDesc = "आपके पास असहेजे परिवर्तन हैं"
 
 [viewPdf]
 header = "PDF देखें"

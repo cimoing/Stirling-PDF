@@ -16,13 +16,13 @@ comingSoon = "به‌زودی"
 confirmClose = "تأیید بستن"
 confirmCloseCancel = "انصراف"
 confirmCloseConfirm = "بستن فایل"
-confirmCloseMessage = "مطمئنید می‌خواهید این فایل را ببندید؟"
 confirmCloseDiscard = "لغو تغییرات و بستن"
+confirmCloseMessage = "مطمئنید می‌خواهید این فایل را ببندید؟"
 confirmCloseSave = "ذخیره و بستن"
+confirmCloseSaveFailed = "با خطا ذخیره شد. {{count}} فایل{{plural}} ذخیره نشد."
+confirmCloseSaveFailedTitle = "ذخیره ناموفق"
 confirmCloseUnsaved = "این فایل دارای تغییرات ذخیره‌نشده است."
 confirmCloseUnsavedList = "شما {{count}} فایل{{plural}} با تغییرات ذخیره‌نشده دارید.\n\n{{fileList}}"
-confirmCloseSaveFailedTitle = "ذخیره ناموفق"
-confirmCloseSaveFailed = "با خطا ذخیره شد. {{count}} فایل{{plural}} ذخیره نشد."
 confirmPasswordErrorMessage = "رمز عبور جدید و تأیید رمز عبور جدید باید یکسان باشند."
 custom = "سفارشی..."
 customPosition = "موقعیت سفارشی"
@@ -45,8 +45,8 @@ edit = "ویرایش"
 editYourNewFiles = "فایل(های) جدید خود را ویرایش کنید"
 exportAndContinue = "خروجی بگیرید و ادامه دهید"
 false = "غلط"
-fileSavedToDisk = "فایل روی دیسک ذخیره شد"
 fileNotSavedToDisk = "روی دیسک ذخیره نشد"
+fileSavedToDisk = "فایل روی دیسک ذخیره شد"
 fileSelected = "انتخاب‌شده: {{filename}}"
 filesSelected = "فایل‌ها انتخاب شدند"
 font = "فونت"
@@ -841,6 +841,14 @@ title = "نقاط پایانی API"
 userDefaults = "پیش‌فرض‌های ترجیحات کاربر"
 userDefaultsDescription = "مقادیر پیش‌فرض برای ترجیحات کاربر را تنظیم کنید. کاربران می‌توانند آن‌ها را در تنظیمات شخصی خود تغییر دهند."
 
+[admin.settings.endpoints.defaultHideUnavailableConversions]
+description = "گزینه‌های تبدیل غیرفعال را به‌جای نمایش به‌شکل خاکستری، حذف کنید"
+label = "پنهان‌کردن تبدیل‌های غیردردسترس به‌صورت پیش‌فرض"
+
+[admin.settings.endpoints.defaultHideUnavailableTools]
+description = "ابزارهای غیرفعال را به‌جای نمایش به‌شکل خاکستری، حذف کنید"
+label = "پنهان‌کردن ابزارهای غیردردسترس به‌صورت پیش‌فرض"
+
 [admin.settings.endpoints.groupsToRemove]
 description = "گروه‌های نقاط پایانی را برای غیرفعال‌سازی انتخاب کنید"
 label = "گروه‌های نقاط پایانی غیرفعال"
@@ -848,14 +856,6 @@ label = "گروه‌های نقاط پایانی غیرفعال"
 [admin.settings.endpoints.toRemove]
 description = "نقاط پایانی منفرد را برای غیرفعال‌سازی انتخاب کنید"
 label = "نقاط پایانی غیرفعال"
-
-[admin.settings.endpoints.defaultHideUnavailableTools]
-description = "ابزارهای غیرفعال را به‌جای نمایش به‌شکل خاکستری، حذف کنید"
-label = "پنهان‌کردن ابزارهای غیردردسترس به‌صورت پیش‌فرض"
-
-[admin.settings.endpoints.defaultHideUnavailableConversions]
-description = "گزینه‌های تبدیل غیرفعال را به‌جای نمایش به‌شکل خاکستری، حذف کنید"
-label = "پنهان‌کردن تبدیل‌های غیردردسترس به‌صورت پیش‌فرض"
 
 [admin.settings.enterpriseRequired]
 message = "برای دسترسی به {{featureName}} به یک مجوز Enterprise نیاز است. شما در حال مشاهده داده‌های نمایشی برای مرجع هستید."
@@ -1228,6 +1228,14 @@ label = "نام کاربری اولیه"
 [admin.settings.security.jwt]
 label = "پیکربندی JWT"
 
+[admin.settings.security.jwt.allowedClockSkewSeconds]
+description = "میزان تحمل انحراف زمانی کلاینت/سرور هنگام اعتبارسنجی توکن (پیش‌فرض: 60 ثانیه)"
+label = "تحمل اختلاف ساعت (ثانیه)"
+
+[admin.settings.security.jwt.desktopTokenExpiryMinutes]
+description = "طول عمر توکن دسترسی به دقیقه برای کلاینت‌های دسکتاپ. برنامه‌های دسکتاپ از طریق User-Agent به‌طور خودکار شناسایی می‌شوند و برای تجربهٔ کاربری بهتر نشست‌های طولانی‌تری دریافت می‌کنند (پیش‌فرض: 43200 = 30 روز)"
+label = "انقضای توکن دسکتاپ (دقیقه)"
+
 [admin.settings.security.jwt.enableKeyCleanup]
 description = "حذف خودکار کلیدهای JWT منقضی‌شده"
 label = "فعال‌سازی پاکسازی کلید"
@@ -1236,29 +1244,21 @@ label = "فعال‌سازی پاکسازی کلید"
 description = "چرخش خودکار کلیدهای امضای JWT به‌صورت دوره‌ای"
 label = "فعال‌سازی چرخش کلید"
 
-[admin.settings.security.jwt.tokenExpiryMinutes]
-description = "طول عمر توکن دسترسی به دقیقه برای کلاینت‌های وب (پیش‌فرض: 1440 = 24 ساعت)"
-label = "انقضای توکن وب (دقیقه)"
-
-[admin.settings.security.jwt.desktopTokenExpiryMinutes]
-description = "طول عمر توکن دسترسی به دقیقه برای کلاینت‌های دسکتاپ. برنامه‌های دسکتاپ از طریق User-Agent به‌طور خودکار شناسایی می‌شوند و برای تجربهٔ کاربری بهتر نشست‌های طولانی‌تری دریافت می‌کنند (پیش‌فرض: 43200 = 30 روز)"
-label = "انقضای توکن دسکتاپ (دقیقه)"
-
-[admin.settings.security.jwt.allowedClockSkewSeconds]
-description = "میزان تحمل انحراف زمانی کلاینت/سرور هنگام اعتبارسنجی توکن (پیش‌فرض: 60 ثانیه)"
-label = "تحمل اختلاف ساعت (ثانیه)"
+[admin.settings.security.jwt.persistence]
+description = "ذخیره پایدار کلیدهای JWT برای مقاومت در برابر راه‌اندازی مجدد سرور"
+label = "فعال‌سازی ماندگاری کلید"
 
 [admin.settings.security.jwt.refreshGraceMinutes]
 description = "اجازهٔ نوسازی توکن تا این تعداد دقیقه پس از انقضا (پیش‌فرض: 15 دقیقه، حداکثر 3 تلاش)"
 label = "دورهٔ مهلت نوسازی (دقیقه)"
 
-[admin.settings.security.jwt.persistence]
-description = "ذخیره پایدار کلیدهای JWT برای مقاومت در برابر راه‌اندازی مجدد سرور"
-label = "فعال‌سازی ماندگاری کلید"
-
 [admin.settings.security.jwt.secureCookie]
 description = "الزام HTTPS برای کوکی‌های JWT (پیشنهاد‌شده برای محیط تولید)"
 label = "کوکی امن"
+
+[admin.settings.security.jwt.tokenExpiryMinutes]
+description = "طول عمر توکن دسترسی به دقیقه برای کلاینت‌های وب (پیش‌فرض: 1440 = 24 ساعت)"
+label = "انقضای توکن وب (دقیقه)"
 
 [admin.settings.security.loginAttemptCount]
 description = "حداکثر تعداد تلاش ناموفق ورود قبل از قفل شدن حساب"
@@ -2238,6 +2238,9 @@ title = "تغییر مجوزها"
 [changePermissions.tooltip.warning]
 text = "برای غیرقابل‌تغییر کردن این مجوزها، از ابزار افزودن رمز عبور برای تنظیم رمز عبور مالک استفاده کنید."
 
+[cloudBadge]
+tooltip = "This operation will use your cloud credits"
+
 [colorPicker]
 title = "انتخاب رنگ"
 
@@ -2254,9 +2257,11 @@ copy = "کپی"
 done = "انجام شد"
 error = "خطا"
 expand = "گسترش دادن"
+learnMore = "Learn more"
 lines = "خطوط"
 loading = "در حال بارگذاری..."
 next = "بعدی"
+operation = "this operation"
 preview = "پیش‌نمایش"
 previous = "قبلی"
 refresh = "تازه‌سازی"
@@ -2670,6 +2675,77 @@ description = "These cookies are essential for the website to function properly.
 posthog = "PostHog Analytics"
 scarf = "Scarf Pixel"
 
+[credits]
+enableOverageBilling = "Enable Overage Billing"
+maybeLater = "Maybe later"
+upgrade = "Upgrade"
+
+[credits.insufficient]
+brief = "Insufficient credits. You need {{required}} credits but have {{current}}."
+freeTier = "Upgrade to Team for 10x more credits and unlimited overage billing."
+managedMember = "Please contact your team leader for assistance."
+message = "You do not have enough credits to run {{tool}}. You currently have {{current}} credits."
+messageWithAmount = "You need {{required}} credits to run {{tool}}, but you only have {{current}}."
+teamMember = "Enable overage billing to never run out of credits."
+title = "Insufficient Credits"
+
+[credits.modal]
+advancedMonitoring = "Advanced monitoring"
+allInOneWorkspace = "All-in-one PDF workspace (viewer, tools & agent)"
+apiSandbox = "API sandbox"
+contactSales = "Contact Sales"
+creditsRemaining = "{{current}} of {{total}} remaining"
+creditsThisMonth = "Monthly credits"
+current = "Current Plan"
+customPricing = "Custom"
+customSmartFolders = "Custom Smart Folders"
+dedicatedSupportSlas = "Dedicated support & SLAs"
+enterpriseSubscription = "Enterprise"
+everythingInCredits = "Everything in Credits, plus:"
+everythingInFree = "Everything in Free, plus:"
+fasterThroughput = "10x faster throughput"
+forRegularWork = "For regular PDF work:"
+freeTier = "Free Tier"
+fullyPrivateFiles = "Fully private files"
+largeFileProcessing = "Large file processing"
+managedMemberMessage = "You have unlimited access to credits through your team. If you need assistance, please contact your team leader."
+managedMemberTitle = "Unlimited Credits"
+meteringBillingNote = "Overage credits are billed monthly alongside your Team subscription. Track your usage anytime in your account settings."
+meteringExplanation = "Your Team plan includes {{credits}} credits per month. When you run out, overage billing automatically provides additional credits so you never have to stop working."
+meteringIncluded = "{{credits}} credits/month included with Team"
+meteringNeverRunOut = "Never run out of credits"
+meteringNoCommitment = "No commitment, cancel anytime"
+meteringPayAsYouGo = "Only pay for what you use"
+meteringPrice = "Additional credits at {{price}}/credit"
+meteringTitle = "Pay-What-You-Use Overage Billing"
+monthlyCredits = "monthly credits"
+orgWideAccess = "Org-wide access controls"
+overage = "overage"
+perMonth = "/month"
+popular = "Popular"
+premiumAiModels = "Premium AI models"
+prioritySupport = "Priority support"
+privateDocCloud = "Private Document Cloud"
+ragFineTuning = "RAG + fine-tuning"
+secureApiAccess = "Secure API access"
+selfHostLink = "Review the docs and plans"
+selfHostPrompt = "Want to self host?"
+standardThroughput = "Standard throughput"
+subtitle = "Upgrade to Team for 10x the credits and faster processing."
+subtitlePro = "Enable automatic overage billing to never run out of credits."
+teamLeaderOnly = "Only team leaders can enable overage billing"
+teamSubscription = "Team"
+titleExhausted = "You've used your free credits"
+titleExhaustedPro = "You have run out of credits"
+unlimitedApiAccess = "Unlimited API access"
+unlimitedMonthlyCredits = "Site License"
+unlimitedSeats = "Unlimited seats"
+
+[credits.modal.features]
+everythingInCredits = "Everything in Credits, plus:"
+everythingInFree = "Everything in Free, plus:"
+forRegularWork = "For regular PDF work:"
+
 [crop]
 autoCrop = "برش خودکار فضاهای خالی"
 header = "برش PDF"
@@ -2920,6 +2996,7 @@ copyStack = "کپی Trace Stack"
 discordSubmit = "Discord - ارسال پست پشتیبانی"
 dismissAllErrors = "نادیده گرفتن همه خطاها"
 encryptedPdfMustRemovePassword = "این PDF رمزگذاری یا با گذرواژه محافظت شده است. لطفاً پیش از تبدیل به PDF/A قفل آن را باز کنید."
+generic = "An error occurred"
 github = "ارسال تیکت در GitHub"
 githubSubmit = "GitHub - ارسال تیکت"
 incorrectPasswordProvided = "گذرواژه PDF نادرست است یا ارائه نشده است."
@@ -3346,10 +3423,6 @@ desc = "ساخت گردش‌کارهای چندمرحله‌ای با زنجیر
 tags = "گردش‌کار,توالی,اتوماسیون"
 title = "اتوماسیون"
 
-[home.formFill]
-desc = "پر کردن فیلدهای فرم PDF به‌صورت تعاملی با ویرایشگر بصری"
-title = "پر کردن فرم"
-
 [home.autoRename]
 desc = "به‌طور خودکار نام فایل PDF را بر اساس سربرگ شناسایی‌شده تغییر می‌دهد"
 tags = "تشخیص خودکار,بر پایه سربرگ,سازمان‌دهی,نام‌گذاری مجدد"
@@ -3444,6 +3517,10 @@ title = "استخراج صفحات"
 desc = "حذف تمام عناصر تعاملی و فرم‌ها از یک PDF"
 tags = "ساده‌سازی,حذف,تعامل"
 title = "تسطیح"
+
+[home.formFill]
+desc = "پر کردن فیلدهای فرم PDF به‌صورت تعاملی با ویرایشگر بصری"
+title = "پر کردن فرم"
 
 [home.getPdfInfo]
 desc = "گرفتن هر اطلاعات ممکن در مورد PDF"
@@ -4247,75 +4324,6 @@ title = "ویرایشگر صفحه"
 zoomIn = "بزرگ‌نمایی"
 zoomOut = "کوچک‌نمایی"
 
-[viewer]
-cannotPreviewFile = "امکان پیش‌نمایش فایل نیست"
-dualPageView = "نمای دوصفحه‌ای"
-firstPage = "صفحه نخست"
-lastPage = "صفحه آخر"
-nextPage = "صفحه بعد"
-onlyPdfSupported = "نمایشگر فقط فایل‌های PDF را پشتیبانی می‌کند. به نظر می‌رسد این فایل قالب متفاوتی دارد."
-previousPage = "صفحه قبل"
-singlePageView = "نمای تک‌صفحه‌ای"
-unknownFile = "فایل ناشناخته"
-zoomIn = "بزرگ‌نمایی"
-zoomOut = "کوچک‌نمایی"
-
-[viewer.attachments]
-title = "پیوست‌ها"
-searchPlaceholder = "جستجوی پیوست‌ها"
-noSupport = "پشتیبانی از پیوست در این نمایشگر در دسترس نیست."
-noDocument = "برای مشاهدهٔ پیوست‌های آن، یک PDF باز کنید."
-loading = "در حال بارگذاری پیوست‌ها..."
-empty = "در این سند هیچ پیوستی وجود ندارد"
-noMatch = "هیچ پیوستی با جستجوی شما مطابقت ندارد"
-
-[viewer.formBar]
-title = "فیلدهای فرم"
-unsavedBadge = "ذخیره‌نشده"
-unsavedDesc = "تغییرات ذخیره‌نشده دارید"
-hasFieldsDesc = "این PDF شامل فیلدهای قابل‌پرکردن است"
-dismiss = "بستن"
-apply = "اعمال تغییرات"
-download = "دانلود PDF"
-
-[rightRail]
-closeSelected = "بستن فایل‌های انتخاب‌شده"
-selectAll = "انتخاب همه"
-deselectAll = "لغو انتخاب همه"
-selectByNumber = "انتخاب بر اساس شماره صفحات"
-deleteSelected = "حذف صفحات انتخاب‌شده"
-closePdf = "بستن PDF"
-exportAll = "برون‌بری PDF"
-downloadSelected = "دانلود فایل‌های انتخاب‌شده"
-annotations = "حاشیه‌نویسی‌ها"
-exportSelected = "برون‌بری صفحات انتخاب‌شده"
-formFill = "پر کردن فرم"
-saveChanges = "ذخیره تغییرات"
-toggleAttachments = "نمایش/پنهان‌کردن پیوست‌ها"
-toggleTheme = "تغییر تم"
-language = "زبان"
-toggleAnnotations = "تغییر وضعیت نمایش حاشیه‌نویسی‌ها"
-search = "جستجوی PDF"
-panMode = "حالت پیمایش"
-applyRedactionsFirst = "ابتدا سانسورها را اعمال کنید"
-rotateLeft = "چرخش به چپ"
-rotateRight = "چرخش به راست"
-toggleSidebar = "تغییر وضعیت نوار کناری"
-toggleBookmarks = "نمایش/پنهان‌کردن نشانک‌ها"
-print = "چاپ PDF"
-ruler = "خط‌کش / اندازه‌گیری"
-draw = "رسم"
-redact = "سانسور"
-exitRedaction = "خروج از حالت سانسور"
-save = "ذخیره"
-downloadAll = "دانلود همه"
-saveAll = "ذخیره همه"
-
-[textAlign]
-left = "چپ"
-center = "وسط"
-right = "راست"
-
 [pageExtracter]
 header = "استخراج صفحات"
 placeholder = "(مثال: 1,2,8 یا 4,7,12-16 یا 2n-1)"
@@ -4424,6 +4432,9 @@ title = "نکات"
 autoClose = "این پنجره به‌صورت خودکار بسته خواهد شد..."
 billingPeriod = "دوره صورتحساب"
 canCloseWindow = "اکنون می‌توانید این پنجره را ببندید."
+checkoutInstructions = "Complete your purchase in the browser window that just opened. After payment is complete, return here and click the button below to refresh your billing information."
+checkoutOpened = "Checkout Opened in Browser"
+closeLater = "I'll Do This Later"
 emailInvalid = "لطفاً یک آدرس ایمیل معتبر وارد کنید"
 enterpriseNote = "تعداد صندلی‌ها در مرحله پرداخت قابل تنظیم است (۱–۱۰۰۰)."
 error = "خطای پرداخت"
@@ -4445,6 +4456,7 @@ perMonth = "/ماه"
 perYear = "/سال"
 preparing = "در حال آماده‌سازی پرداخت شما..."
 redirecting = "در حال انتقال به تسویه‌حساب امن..."
+refreshBilling = "I've Completed Payment - Refresh Billing"
 stripeNotConfigured = "Stripe پیکربندی نشده است"
 stripeNotConfiguredMessage = "یکپارچه‌سازی پرداخت Stripe پیکربندی نشده است. لطفاً با مدیر خود تماس بگیرید."
 success = "پرداخت با موفقیت انجام شد!"
@@ -4777,6 +4789,13 @@ title = "PDF به ورد"
 [PDFToWord.selectText]
 1 = "فرمت فایل خروجی"
 
+[PDFToXLSX]
+header = "PDF to Excel"
+prompt = "Choose pages to extract tables"
+submit = "Convert"
+tags = "spreadsheet,excel,xlsx,table,extract,convert"
+title = "PDF to Excel (XLSX)"
+
 [PDFToXML]
 credit = "این سرویس از LibreOffice برای تبدیل فایل استفاده می‌کند."
 header = "PDF به XML"
@@ -4835,6 +4854,7 @@ customPricing = "سفارشی"
 featureComparison = "مقایسه قابلیت‌ها"
 from = "از"
 hideComparison = "پنهان کردن مقایسه قابلیت‌ها"
+included = "Included"
 includedInCurrent = "در پلن شما شامل است"
 licensedSeats = "دارای مجوز: {{count}} صندلی"
 manage = "مدیریت"
@@ -4851,6 +4871,7 @@ subtitle = "جزئیات اشتراک فعلی شما"
 title = "طرح فعال"
 
 [plan.availablePlans]
+loadError = "Unable to load plan pricing. Using default values."
 subtitle = "طرحی را انتخاب کنید که با نیازهای شما سازگار است"
 title = "طرح‌های موجود"
 
@@ -4861,6 +4882,7 @@ highlight3 = "جدیدترین قابلیت‌ها"
 name = "سازمانی"
 requiresServer = "نیازمند سرور"
 requiresServerMessage = "لطفاً پیش از ارتقا به Enterprise، ابتدا به پلن سرور ارتقا دهید."
+siteLicense = "Site License"
 
 [plan.feature]
 api = "دسترسی API"
@@ -4928,6 +4950,10 @@ keyDescription = "کلید لایسنس موجود در ایمیل خود را �
 success = "لایسنس فعال شد!"
 successMessage = "لایسنس شما با موفقیت فعال شد. اکنون می‌توانید این پنجره را ببندید."
 
+[plan.team]
+name = "Team"
+siteLicense = "Site License"
+
 [printFile]
 header = "چاپ فایل به چاپگر"
 submit = "چاپ"
@@ -4992,15 +5018,15 @@ title = "کلمات برای پنهان‌سازی"
 failed = "هنگام پنهان‌سازی PDF خطایی رخ داد."
 
 [redact.manual]
+activate = "فعال‌سازی ابزار پوشاندن"
+active = "حالت پوشاندن فعال است"
 apply = "اعمال"
 applyChanges = "اعمال تغییرات"
 applyRedactions = "Apply Redactions"
 applyWarning = "⚠️ اعمال دائمی، قابل بازگشت نیست و داده‌های زیرین حذف خواهند شد"
 boxRedaction = "پنهان‌سازی با ترسیم کادر"
-colourPicker = "انتخابگر رنگ"
 colorLabel = "رنگ پوشاندن"
-active = "حالت پوشاندن فعال است"
-activate = "فعال‌سازی ابزار پوشاندن"
+colourPicker = "انتخابگر رنگ"
 controlsTitle = "کنترل‌های سانسور دستی"
 convertPDFToImageLabel = "تبدیل PDF به PDF-Image (برای حذف متن پشت کادر استفاده می‌شود)"
 export = "صادر کردن"
@@ -5396,6 +5422,39 @@ title = "کنتراست بالا"
 text = "تمام رنگ‌های PDF را کاملاً وارونه می‌کند و اثری شبیه نگاتیو ایجاد می‌کند. برای ساخت نسخه‌های حالت تاریک اسناد یا کاهش فشار چشم در نور کم مفید است."
 title = "وارونه‌سازی همه رنگ‌ها"
 
+[rightRail]
+annotations = "حاشیه‌نویسی‌ها"
+applyRedactionsFirst = "ابتدا سانسورها را اعمال کنید"
+closePdf = "بستن PDF"
+closeSelected = "بستن فایل‌های انتخاب‌شده"
+deleteSelected = "حذف صفحات انتخاب‌شده"
+deselectAll = "لغو انتخاب همه"
+downloadAll = "دانلود همه"
+downloadSelected = "دانلود فایل‌های انتخاب‌شده"
+draw = "رسم"
+exitRedaction = "خروج از حالت سانسور"
+exportAll = "برون‌بری PDF"
+exportSelected = "برون‌بری صفحات انتخاب‌شده"
+formFill = "پر کردن فرم"
+language = "زبان"
+panMode = "حالت پیمایش"
+print = "چاپ PDF"
+redact = "سانسور"
+rotateLeft = "چرخش به چپ"
+rotateRight = "چرخش به راست"
+ruler = "خط‌کش / اندازه‌گیری"
+save = "ذخیره"
+saveAll = "ذخیره همه"
+saveChanges = "ذخیره تغییرات"
+search = "جستجوی PDF"
+selectAll = "انتخاب همه"
+selectByNumber = "انتخاب بر اساس شماره صفحات"
+toggleAnnotations = "تغییر وضعیت نمایش حاشیه‌نویسی‌ها"
+toggleAttachments = "نمایش/پنهان‌کردن پیوست‌ها"
+toggleBookmarks = "نمایش/پنهان‌کردن نشانک‌ها"
+toggleSidebar = "تغییر وضعیت نوار کناری"
+toggleTheme = "تغییر تم"
+
 [rotate]
 rotateLeft = "چرخش پادساعت‌گرد"
 rotateRight = "چرخش ساعت‌گرد"
@@ -5647,6 +5706,70 @@ plan = "طرح"
 title = "مجوزها و آنالیتیکس"
 usageAnalytics = "آنالیتیکس استفاده"
 
+[settings.planBilling]
+currentPlan = "Current Plan"
+loading = "Loading billing information..."
+notAvailable = "Plan & Billing is only available when connected to Stirling Cloud (SaaS mode)."
+title = "Plan & Billing"
+
+[settings.planBilling.billing]
+manageBilling = "Manage Billing"
+nextBillingDate = "Next billing date"
+overageCost = "Current overage cost: {{amount}} ({{credits}} credits)"
+
+[settings.planBilling.credits]
+estimatedCost = "Estimated cost: {{amount}}"
+freeTierInfo = "Free plan includes {{freeCredits}} credits per month. Upgrade to Team for {{teamCredits}} credits/month and pay-as-you-go overage billing."
+included = "{{count}} credits/month (included)"
+noOverage = "No overage charges this month. You're using your included {{count}} credits."
+overage = "+ {{count}} overage"
+overageInfo = "Overage credits are billed at {{price}} per credit. You'll only pay for what you use beyond your monthly allowance."
+title = "Credit Usage"
+
+[settings.planBilling.errors]
+fetchFailed = "Unable to fetch billing data"
+retry = "Retry"
+
+[settings.planBilling.status]
+active = "Active"
+canceled = "Canceled"
+pastDue = "Past Due"
+trial = "Trial"
+
+[settings.planBilling.team]
+managedByTeam = "Managed by team"
+memberCount = "{{count}} team members"
+
+[settings.planBilling.tier]
+enterprise = "Enterprise"
+enterpriseDescription = "Custom enterprise features and support"
+free = "Free"
+freeDescription = "50 credits per month"
+team = "Team"
+teamBadge = "Team"
+teamDescription = "500 credits/month included, automatic overage billing for uninterrupted service"
+teamTooltipCredits = "Team plan includes {{credits}} credits/month."
+teamTooltipFineprint = "Only pay for what you use beyond included credits."
+teamTooltipOverage = "Automatic overage billing at {{price}}/credit ensures uninterrupted service."
+
+[settings.planBilling.trial]
+daysRemaining = "{{days}} days remaining"
+daysRemainingFull = "Your trial ends in {{days}} days"
+endDate = "Expires: {{date}}"
+endsOn = "Trial ends"
+title = "Free Trial Active"
+
+[settings.planBilling.upgrade]
+cta = "Upgrade to Team"
+featureApi = "API access for automation"
+featureCredits = "{{teamCredits}} credits per month (vs {{freeCredits}} on Free)"
+featureMembers = "Unlimited team members"
+featureSupport = "Priority support"
+featureThroughput = "Faster processing throughput"
+opensInBrowser = "Opens in browser to complete upgrade"
+subtitle = "Upgrade to Team for:"
+title = "Upgrade Your Plan"
+
 [settings.policiesPrivacy]
 legal = "حقوقی"
 privacy = "حریم خصوصی"
@@ -5679,6 +5802,9 @@ connections = "اتصالات"
 security = "امنیت"
 telegram = "Telegram"
 title = "امنیت و احراز هویت"
+
+[settings.team]
+title = "Team"
 
 [settings.tooltips]
 enableLoginFirst = "ابتدا حالت ورود را فعال کنید"
@@ -6016,6 +6142,11 @@ desc = "استخراج صفحات خاص (1,3,5-10)"
 name = "شماره صفحات"
 tooltip = "شماره صفحات را با کاما جدا کنید یا بازه‌ها را با خط تیره وارد کنید"
 
+[split.methods.byPoster]
+desc = "Split large pages into printable sizes"
+name = "Printable Chunks"
+tooltip = "Divide oversized pages into smaller chunks suitable for printing on standard paper (A4, Letter, etc.)"
+
 [split.methods.bySections]
 desc = "تقسیم صفحات به بخش‌های شبکه‌ای"
 name = "بخش‌ها"
@@ -6029,6 +6160,7 @@ tooltip = "حداکثر اندازه فایل را مشخص کنید (مثلاً
 [split.methods.prefix]
 splitAt = "تفکیک در"
 splitBy = "تفکیک بر اساس"
+splitInto = "Split into"
 
 [split.methodSelection.tooltip]
 bullet1 = "برای انتخاب، روی کارت یک روش کلیک کنید"
@@ -6040,6 +6172,21 @@ title = "روش تفکیک خود را انتخاب کنید"
 [split.methodSelection.tooltip.header]
 text = "نحوه تفکیک سند PDF خود را انتخاب کنید. هر روش برای موارد استفاده و انواع سند متفاوتی بهینه شده است."
 title = "انتخاب روش تفکیک"
+
+[split.poster]
+rightToLeft = "Split right-to-left"
+
+[split.poster.pageSize]
+description = "Size of output pages for printing"
+label = "Target Page Size"
+
+[split.poster.xFactor]
+description = "Number of columns to split each page into"
+label = "Horizontal Divisions"
+
+[split.poster.yFactor]
+description = "Number of rows to split each page into"
+label = "Vertical Divisions"
 
 [split.settings]
 selectMethodFirst = "لطفاً ابتدا یک روش تفکیک انتخاب کنید"
@@ -6091,6 +6238,14 @@ bullet2 = "نقاط تفکیک بازه: 3-8 (قبل از صفحه 3 و بعد �
 bullet3 = "ترکیبی: 2,5-10,15 (بعد از صفحه 2، قبل از صفحه 5، بعد از صفحه 10 و بعد از صفحه 15 تفکیک می‌کند)"
 text = "PDF خود را در شماره صفحات مشخص تفکیک کنید. استفاده از 'n' بعد از صفحه n تفکیک می‌کند. استفاده از 'n-m' قبل از صفحه n و بعد از صفحه m تفکیک می‌کند."
 title = "تفکیک در شماره صفحات"
+
+[split.tooltip.byPoster]
+bullet1 = "Target Page Size: Choose output paper size (A4, Letter, etc.)"
+bullet2 = "Horizontal/Vertical Divisions: Grid size for splitting"
+bullet3 = "Right-to-Left: Reverse column order for RTL layouts"
+bullet4 = "Print and assemble the pieces to create your poster"
+text = "Split large PDF pages into smaller printable chunks suitable for standard paper sizes. Perfect for creating poster prints from oversized pages."
+title = "Split for Poster Print"
 
 [split.tooltip.bySections]
 bullet1 = "افقی: تعداد ردیف‌های قابل ایجاد"
@@ -6232,6 +6387,82 @@ title = "مستندات API"
 
 [tableExtraxt]
 tags = "CSV، استخراج جدول، استخراج، تبدیل"
+
+[team]
+cancelInviteError = "Failed to cancel invitation"
+confirmCancelInvite = "Are you sure you want to cancel this invitation?"
+confirmLeave = "Are you sure you want to leave this team?"
+confirmLeaveLeader = "As a team leader, leaving will remove you from the team. Are you sure?"
+confirmRemove = "Are you sure you want to remove this member?"
+editName = "Edit team name"
+inviteCancelled = "Invitation cancelled"
+inviteError = "Failed to send invitation"
+inviteSent = "Invitation sent successfully"
+leader = "Leader"
+leaveButton = "Leave Team"
+leaveError = "Failed to leave team"
+leaveSuccess = "Successfully left team"
+loading = "Loading team information..."
+memberCount = "{{count}} members"
+memberRemoved = "Member removed successfully"
+namePlaceholder = "Enter team name"
+personal = "Personal"
+removeError = "Failed to remove member"
+renameError = "Failed to rename team"
+renameSuccess = "Team renamed successfully"
+
+[team.features]
+badge = "Team Features"
+subtitle = "Collaborate with your team"
+title = "Team Collaboration"
+viewPlans = "View Plans"
+
+[team.features.billing]
+description = "Manage billing and subscriptions"
+title = "Billing Management"
+
+[team.features.credits]
+description = "Shared credit pool for all members"
+title = "Shared Credits"
+
+[team.features.dashboard]
+description = "View team activity and usage"
+title = "Team Dashboard"
+
+[team.features.invite]
+description = "Add members to your team"
+title = "Invite Members"
+
+[team.invitationBanner]
+acceptButton = "Accept"
+message = "has invited you to join"
+rejectButton = "Decline"
+
+[team.invite]
+cancelLabel = "Cancel"
+invalidEmail = "Invalid email address"
+placeholder = "Enter email address"
+sendButton = "Send Invitation"
+title = "Invite Team Member"
+
+[team.members]
+emailColumn = "Email"
+empty = "No team members yet"
+nameColumn = "Name"
+pending = "Pending"
+remove = "Remove"
+roleColumn = "Role"
+title = "Team Members"
+
+[team.upgrade]
+button = "Upgrade to Team"
+description = "Unlock team collaboration features"
+title = "Upgrade to Team Plan"
+
+[textAlign]
+center = "وسط"
+left = "چپ"
+right = "راست"
 
 [theme]
 toggle = "تغییر تم"
@@ -6507,6 +6738,37 @@ invalid = "گواهی در مخزن اعتماد نیست - منبع قابل ت
 fileManager = "مدیر فایل"
 pageEditor = "ویرایشگر صفحه"
 viewer = "نمایشگر"
+
+[viewer]
+cannotPreviewFile = "امکان پیش‌نمایش فایل نیست"
+dualPageView = "نمای دوصفحه‌ای"
+firstPage = "صفحه نخست"
+lastPage = "صفحه آخر"
+nextPage = "صفحه بعد"
+onlyPdfSupported = "نمایشگر فقط فایل‌های PDF را پشتیبانی می‌کند. به نظر می‌رسد این فایل قالب متفاوتی دارد."
+previousPage = "صفحه قبل"
+singlePageView = "نمای تک‌صفحه‌ای"
+unknownFile = "فایل ناشناخته"
+zoomIn = "بزرگ‌نمایی"
+zoomOut = "کوچک‌نمایی"
+
+[viewer.attachments]
+empty = "در این سند هیچ پیوستی وجود ندارد"
+loading = "در حال بارگذاری پیوست‌ها..."
+noDocument = "برای مشاهدهٔ پیوست‌های آن، یک PDF باز کنید."
+noMatch = "هیچ پیوستی با جستجوی شما مطابقت ندارد"
+noSupport = "پشتیبانی از پیوست در این نمایشگر در دسترس نیست."
+searchPlaceholder = "جستجوی پیوست‌ها"
+title = "پیوست‌ها"
+
+[viewer.formBar]
+apply = "اعمال تغییرات"
+dismiss = "بستن"
+download = "دانلود PDF"
+hasFieldsDesc = "این PDF شامل فیلدهای قابل‌پرکردن است"
+title = "فیلدهای فرم"
+unsavedBadge = "ذخیره‌نشده"
+unsavedDesc = "تغییرات ذخیره‌نشده دارید"
 
 [viewPdf]
 header = "مشاهده PDF"

@@ -16,13 +16,13 @@ comingSoon = "Hamarosan"
 confirmClose = "Bezárás megerősítése"
 confirmCloseCancel = "Mégse"
 confirmCloseConfirm = "Fájl bezárása"
-confirmCloseMessage = "Biztosan be akarja zárni ezt a fájlt?"
 confirmCloseDiscard = "Módosítások elvetése és bezárás"
+confirmCloseMessage = "Biztosan be akarja zárni ezt a fájlt?"
 confirmCloseSave = "Mentés és bezárás"
+confirmCloseSaveFailed = "Hibákkal mentve. {{count}} file{{plural}} mentése nem sikerült."
+confirmCloseSaveFailedTitle = "Mentés sikertelen"
 confirmCloseUnsaved = "Ez a fájl mentetlen módosításokat tartalmaz."
 confirmCloseUnsavedList = "Önnél {{count}} file{{plural}} van mentetlen módosításokkal.\n\n{{fileList}}"
-confirmCloseSaveFailedTitle = "Mentés sikertelen"
-confirmCloseSaveFailed = "Hibákkal mentve. {{count}} file{{plural}} mentése nem sikerült."
 confirmPasswordErrorMessage = "Az új jelszó és a jelszó megerősítése nem egyezik."
 custom = "Egyéni..."
 customPosition = "Egyéni pozíció"
@@ -45,8 +45,8 @@ edit = "Szerkesztés"
 editYourNewFiles = "Új fájl(ok) szerkesztése"
 exportAndContinue = "Exportálás és folytatás"
 false = "Nem"
-fileSavedToDisk = "Fájl mentve a lemezre"
 fileNotSavedToDisk = "Nincs lemezre mentve"
+fileSavedToDisk = "Fájl mentve a lemezre"
 fileSelected = "Kiválasztva: {{filename}}"
 filesSelected = "fájl kiválasztva"
 font = "Betűtípus"
@@ -841,6 +841,14 @@ title = "API végpontok"
 userDefaults = "Felhasználói preferenciák alapértelmezései"
 userDefaultsDescription = "Alapértelmezett értékek beállítása a felhasználói preferenciákhoz. A felhasználók ezeket felülírhatják a saját beállításaikban."
 
+[admin.settings.endpoints.defaultHideUnavailableConversions]
+description = "A letiltott konverziós lehetőségek eltávolítása ahelyett, hogy szürkítve jelenjenek meg"
+label = "Nem elérhető konverziók elrejtése alapértelmezetten"
+
+[admin.settings.endpoints.defaultHideUnavailableTools]
+description = "A letiltott eszközök eltávolítása ahelyett, hogy szürkítve jelenjenek meg"
+label = "Nem elérhető eszközök elrejtése alapértelmezetten"
+
 [admin.settings.endpoints.groupsToRemove]
 description = "Letiltandó végpontcsoportok kiválasztása"
 label = "Letiltott végpontcsoportok"
@@ -848,14 +856,6 @@ label = "Letiltott végpontcsoportok"
 [admin.settings.endpoints.toRemove]
 description = "Letiltandó egyes végpontok kiválasztása"
 label = "Letiltott végpontok"
-
-[admin.settings.endpoints.defaultHideUnavailableTools]
-description = "A letiltott eszközök eltávolítása ahelyett, hogy szürkítve jelenjenek meg"
-label = "Nem elérhető eszközök elrejtése alapértelmezetten"
-
-[admin.settings.endpoints.defaultHideUnavailableConversions]
-description = "A letiltott konverziós lehetőségek eltávolítása ahelyett, hogy szürkítve jelenjenek meg"
-label = "Nem elérhető konverziók elrejtése alapértelmezetten"
 
 [admin.settings.enterpriseRequired]
 message = "{{featureName}} eléréséhez vállalati licenc szükséges. Jelenleg referenciaként demóadatokat lát."
@@ -1228,6 +1228,14 @@ label = "Kezdeti felhasználónév"
 [admin.settings.security.jwt]
 label = "JWT konfiguráció"
 
+[admin.settings.security.jwt.allowedClockSkewSeconds]
+description = "Tűrés a kliens/szerver időeltérésére a token érvényesítésekor (alapértelmezés: 60 másodperc)"
+label = "Óraeltérés tűrése (másodperc)"
+
+[admin.settings.security.jwt.desktopTokenExpiryMinutes]
+description = "Hozzáférési token élettartama percekben asztali kliensek számára. Az asztali alkalmazások User-Agent alapján automatikusan felismerhetők, és a jobb felhasználói élmény érdekében hosszabb munkamenetet kapnak (alapértelmezés: 43200 = 30 nap)"
+label = "Asztali token lejárata (perc)"
+
 [admin.settings.security.jwt.enableKeyCleanup]
 description = "Lejárt JWT kulcsok automatikus eltávolítása"
 label = "Kulcsok tisztításának engedélyezése"
@@ -1236,29 +1244,21 @@ label = "Kulcsok tisztításának engedélyezése"
 description = "JWT aláíró kulcsok időszakos automatikus forgatása"
 label = "Kulcsforgatás engedélyezése"
 
-[admin.settings.security.jwt.tokenExpiryMinutes]
-description = "Hozzáférési token élettartama percekben webes kliensek számára (alapértelmezés: 1440 = 24 óra)"
-label = "Webes token lejárata (perc)"
-
-[admin.settings.security.jwt.desktopTokenExpiryMinutes]
-description = "Hozzáférési token élettartama percekben asztali kliensek számára. Az asztali alkalmazások User-Agent alapján automatikusan felismerhetők, és a jobb felhasználói élmény érdekében hosszabb munkamenetet kapnak (alapértelmezés: 43200 = 30 nap)"
-label = "Asztali token lejárata (perc)"
-
-[admin.settings.security.jwt.allowedClockSkewSeconds]
-description = "Tűrés a kliens/szerver időeltérésére a token érvényesítésekor (alapértelmezés: 60 másodperc)"
-label = "Óraeltérés tűrése (másodperc)"
+[admin.settings.security.jwt.persistence]
+description = "JWT kulcsok tartós tárolása a szerver újraindításai között"
+label = "Kulcsok tartós tárolása"
 
 [admin.settings.security.jwt.refreshGraceMinutes]
 description = "Lehetővé teszi a token frissítését a lejárat után ennyi percig (alapértelmezés: 15 perc, max. 3 kísérlet)"
 label = "Frissítési türelmi idő (perc)"
 
-[admin.settings.security.jwt.persistence]
-description = "JWT kulcsok tartós tárolása a szerver újraindításai között"
-label = "Kulcsok tartós tárolása"
-
 [admin.settings.security.jwt.secureCookie]
 description = "HTTPS megkövetelése a JWT sütikhez (éles környezetben ajánlott)"
 label = "Biztonságos süti"
+
+[admin.settings.security.jwt.tokenExpiryMinutes]
+description = "Hozzáférési token élettartama percekben webes kliensek számára (alapértelmezés: 1440 = 24 óra)"
+label = "Webes token lejárata (perc)"
 
 [admin.settings.security.loginAttemptCount]
 description = "Sikertelen bejelentkezési kísérletek maximális száma fiókzárolás előtt"
@@ -2238,6 +2238,9 @@ title = "Jogosultságok módosítása"
 [changePermissions.tooltip.warning]
 text = "Ezeket a jogosultságokat tegye megváltoztathatatlanná a \"Jelszó hozzáadása\" eszközzel beállított tulajdonosi jelszóval."
 
+[cloudBadge]
+tooltip = "This operation will use your cloud credits"
+
 [colorPicker]
 title = "Szín kiválasztása"
 
@@ -2254,9 +2257,11 @@ copy = "Másolás"
 done = "Kész"
 error = "Hiba"
 expand = "Kibontás"
+learnMore = "Learn more"
 lines = "sor"
 loading = "Betöltés..."
 next = "Következő"
+operation = "this operation"
 preview = "Előnézet"
 previous = "Előző"
 refresh = "Frissítés"
@@ -2670,6 +2675,77 @@ description = "Ezek a sütik elengedhetetlenek a weboldal megfelelő működés�
 posthog = "PostHog Analytics"
 scarf = "Scarf Pixel"
 
+[credits]
+enableOverageBilling = "Enable Overage Billing"
+maybeLater = "Maybe later"
+upgrade = "Upgrade"
+
+[credits.insufficient]
+brief = "Insufficient credits. You need {{required}} credits but have {{current}}."
+freeTier = "Upgrade to Team for 10x more credits and unlimited overage billing."
+managedMember = "Please contact your team leader for assistance."
+message = "You do not have enough credits to run {{tool}}. You currently have {{current}} credits."
+messageWithAmount = "You need {{required}} credits to run {{tool}}, but you only have {{current}}."
+teamMember = "Enable overage billing to never run out of credits."
+title = "Insufficient Credits"
+
+[credits.modal]
+advancedMonitoring = "Advanced monitoring"
+allInOneWorkspace = "All-in-one PDF workspace (viewer, tools & agent)"
+apiSandbox = "API sandbox"
+contactSales = "Contact Sales"
+creditsRemaining = "{{current}} of {{total}} remaining"
+creditsThisMonth = "Monthly credits"
+current = "Current Plan"
+customPricing = "Custom"
+customSmartFolders = "Custom Smart Folders"
+dedicatedSupportSlas = "Dedicated support & SLAs"
+enterpriseSubscription = "Enterprise"
+everythingInCredits = "Everything in Credits, plus:"
+everythingInFree = "Everything in Free, plus:"
+fasterThroughput = "10x faster throughput"
+forRegularWork = "For regular PDF work:"
+freeTier = "Free Tier"
+fullyPrivateFiles = "Fully private files"
+largeFileProcessing = "Large file processing"
+managedMemberMessage = "You have unlimited access to credits through your team. If you need assistance, please contact your team leader."
+managedMemberTitle = "Unlimited Credits"
+meteringBillingNote = "Overage credits are billed monthly alongside your Team subscription. Track your usage anytime in your account settings."
+meteringExplanation = "Your Team plan includes {{credits}} credits per month. When you run out, overage billing automatically provides additional credits so you never have to stop working."
+meteringIncluded = "{{credits}} credits/month included with Team"
+meteringNeverRunOut = "Never run out of credits"
+meteringNoCommitment = "No commitment, cancel anytime"
+meteringPayAsYouGo = "Only pay for what you use"
+meteringPrice = "Additional credits at {{price}}/credit"
+meteringTitle = "Pay-What-You-Use Overage Billing"
+monthlyCredits = "monthly credits"
+orgWideAccess = "Org-wide access controls"
+overage = "overage"
+perMonth = "/month"
+popular = "Popular"
+premiumAiModels = "Premium AI models"
+prioritySupport = "Priority support"
+privateDocCloud = "Private Document Cloud"
+ragFineTuning = "RAG + fine-tuning"
+secureApiAccess = "Secure API access"
+selfHostLink = "Review the docs and plans"
+selfHostPrompt = "Want to self host?"
+standardThroughput = "Standard throughput"
+subtitle = "Upgrade to Team for 10x the credits and faster processing."
+subtitlePro = "Enable automatic overage billing to never run out of credits."
+teamLeaderOnly = "Only team leaders can enable overage billing"
+teamSubscription = "Team"
+titleExhausted = "You've used your free credits"
+titleExhaustedPro = "You have run out of credits"
+unlimitedApiAccess = "Unlimited API access"
+unlimitedMonthlyCredits = "Site License"
+unlimitedSeats = "Unlimited seats"
+
+[credits.modal.features]
+everythingInCredits = "Everything in Credits, plus:"
+everythingInFree = "Everything in Free, plus:"
+forRegularWork = "For regular PDF work:"
+
 [crop]
 autoCrop = "Üres terület automatikus levágása"
 header = "PDF vágása"
@@ -2920,6 +2996,7 @@ copyStack = "Stacktrace másolása"
 discordSubmit = "Discord - Támogatási poszt létrehozása"
 dismissAllErrors = "Összes hiba elvetése"
 encryptedPdfMustRemovePassword = "Ez a PDF titkosított vagy jelszóval védett. Kérjük, oldja fel, mielőtt PDF/A formátumba konvertálja."
+generic = "An error occurred"
 github = "Hiba bejelentése GitHubon"
 githubSubmit = "GitHub - Hiba bejelentése"
 incorrectPasswordProvided = "A PDF jelszava helytelen vagy nincs megadva."
@@ -3346,10 +3423,6 @@ desc = "Többlépéses munkafolyamatok összeállítása PDF műveletek összef�
 tags = "munkafolyamat,sorozat,automatizálás"
 title = "Automatizálás"
 
-[home.formFill]
-desc = "PDF-űrlapmezők interaktív kitöltése vizuális szerkesztővel"
-title = "Űrlap kitöltése"
-
 [home.autoRename]
 desc = "Automatikusan átnevezi a PDF fájlt az észlelt fejléc alapján"
 tags = "automatikus,fejlécalapú,rendez,átcímkéz"
@@ -3444,6 +3517,10 @@ title = "Oldalak kinyerése"
 desc = "Minden interaktív elem és űrlap eltávolítása a PDF-ből"
 tags = "egyszerűsít,eltávolít,interaktív"
 title = "Lapítás"
+
+[home.formFill]
+desc = "PDF-űrlapmezők interaktív kitöltése vizuális szerkesztővel"
+title = "Űrlap kitöltése"
 
 [home.getPdfInfo]
 desc = "Minden elérhető információ lekérése PDF-ekről"
@@ -4247,75 +4324,6 @@ title = "Oldalszerkesztő"
 zoomIn = "Nagyítás"
 zoomOut = "Kicsinyítés"
 
-[viewer]
-cannotPreviewFile = "A fájl előnézete nem lehetséges"
-dualPageView = "Kétoldalas nézet"
-firstPage = "Első oldal"
-lastPage = "Utolsó oldal"
-nextPage = "Következő oldal"
-onlyPdfSupported = "A megjelenítő csak PDF fájlokat támogat. Úgy tűnik, ez a fájl más formátumú."
-previousPage = "Előző oldal"
-singlePageView = "Egyoldalas nézet"
-unknownFile = "Ismeretlen fájl"
-zoomIn = "Nagyítás"
-zoomOut = "Kicsinyítés"
-
-[viewer.attachments]
-title = "Mellékletek"
-searchPlaceholder = "Mellékletek keresése"
-noSupport = "Ez a megjelenítő nem támogatja a mellékleteket."
-noDocument = "Nyisson meg egy PDF-et a mellékletek megtekintéséhez."
-loading = "Mellékletek betöltése..."
-empty = "Nincsenek mellékletek ebben a dokumentumban"
-noMatch = "Nincs a keresésnek megfelelő melléklet"
-
-[viewer.formBar]
-title = "Űrlapmezők"
-unsavedBadge = "Mentetlen"
-unsavedDesc = "Mentetlen módosításai vannak"
-hasFieldsDesc = "Ez a PDF kitölthető mezőket tartalmaz"
-dismiss = "Bezárás"
-apply = "Módosítások alkalmazása"
-download = "PDF letöltése"
-
-[rightRail]
-closeSelected = "Kijelölt fájlok bezárása"
-selectAll = "Összes kijelölése"
-deselectAll = "Kijelölés megszüntetése"
-selectByNumber = "Kijelölés oldalszámok alapján"
-deleteSelected = "Kijelölt oldalak törlése"
-closePdf = "PDF bezárása"
-exportAll = "PDF exportálása"
-downloadSelected = "Kijelölt fájlok letöltése"
-annotations = "Jegyzetek"
-exportSelected = "Kijelölt oldalak exportálása"
-formFill = "Űrlap kitöltése"
-saveChanges = "Változtatások mentése"
-toggleAttachments = "Mellékletek megjelenítése/elrejtése"
-toggleTheme = "Téma váltása"
-language = "Nyelv"
-toggleAnnotations = "Jegyzetek láthatóságának váltása"
-search = "PDF keresése"
-panMode = "Pásztázó mód"
-applyRedactionsFirst = "Előbb alkalmazza a kitakarásokat"
-rotateLeft = "Forgatás balra"
-rotateRight = "Forgatás jobbra"
-toggleSidebar = "Oldalsáv ki/be"
-toggleBookmarks = "Könyvjelzők megjelenítése/elrejtése"
-print = "PDF nyomtatása"
-ruler = "Vonalzó / mérés"
-draw = "Rajzolás"
-redact = "Kitakarás"
-exitRedaction = "Kilépés a kitakarás módból"
-save = "Mentés"
-downloadAll = "Összes letöltése"
-saveAll = "Összes mentése"
-
-[textAlign]
-left = "Balra"
-center = "Középre"
-right = "Jobbra"
-
 [pageExtracter]
 header = "Oldalak kinyerése"
 placeholder = "(pl. 1,2,8 vagy 4,7,12-16 vagy 2n-1)"
@@ -4424,6 +4432,9 @@ title = "Tippek"
 autoClose = "Ez az ablak automatikusan bezárul..."
 billingPeriod = "Számlázási időszak"
 canCloseWindow = "Most bezárhatja ezt az ablakot."
+checkoutInstructions = "Complete your purchase in the browser window that just opened. After payment is complete, return here and click the button below to refresh your billing information."
+checkoutOpened = "Checkout Opened in Browser"
+closeLater = "I'll Do This Later"
 emailInvalid = "Adjon meg egy érvényes e-mail-címet"
 enterpriseNote = "A helyek a fizetéskor állíthatók (1–1000)."
 error = "Fizetési hiba"
@@ -4445,6 +4456,7 @@ perMonth = "/hó"
 perYear = "/év"
 preparing = "Fizetés előkészítése..."
 redirecting = "Átirányítás a biztonságos pénztárhoz..."
+refreshBilling = "I've Completed Payment - Refresh Billing"
 stripeNotConfigured = "Stripe nincs beállítva"
 stripeNotConfiguredMessage = "A Stripe fizetési integráció nincs beállítva. Kérjük, lépjen kapcsolatba az adminisztrátorral."
 success = "Sikeres fizetés!"
@@ -4777,6 +4789,13 @@ title = "PDF konvertálása Word formátumba"
 [PDFToWord.selectText]
 1 = "Kimeneti fájlformátum"
 
+[PDFToXLSX]
+header = "PDF to Excel"
+prompt = "Choose pages to extract tables"
+submit = "Convert"
+tags = "spreadsheet,excel,xlsx,table,extract,convert"
+title = "PDF to Excel (XLSX)"
+
 [PDFToXML]
 credit = "Ez a szolgáltatás a LibreOffice használatával végzi a konverziót."
 header = "PDF konvertálása XML-be"
@@ -4835,6 +4854,7 @@ customPricing = "Egyedi"
 featureComparison = "Funkció-összehasonlítás"
 from = "Ettől"
 hideComparison = "Funkció-összehasonlítás elrejtése"
+included = "Included"
 includedInCurrent = "Szerepel a csomagjában"
 licensedSeats = "Licencelve: {{count}} hely"
 manage = "Kezelés"
@@ -4851,6 +4871,7 @@ subtitle = "Jelenlegi előfizetése részletei"
 title = "Aktív csomag"
 
 [plan.availablePlans]
+loadError = "Unable to load plan pricing. Using default values."
 subtitle = "Válassza ki az igényeinek megfelelő csomagot"
 title = "Elérhető csomagok"
 
@@ -4861,6 +4882,7 @@ highlight3 = "Legújabb funkciók"
 name = "Enterprise"
 requiresServer = "Szerver szükséges"
 requiresServerMessage = "Először váltson a Server csomagra, majd frissítsen Enterprise-ra."
+siteLicense = "Site License"
 
 [plan.feature]
 api = "API-hozzáférés"
@@ -4928,6 +4950,10 @@ keyDescription = "Illessze be az e-mailben kapott licenckulcsot"
 success = "A licenc aktiválva!"
 successMessage = "A licenc sikeresen aktiválva. Most bezárhatja ezt az ablakot."
 
+[plan.team]
+name = "Team"
+siteLicense = "Site License"
+
 [printFile]
 header = "Fájl nyomtatása nyomtatóra"
 submit = "Nyomtatás"
@@ -4992,15 +5018,15 @@ title = "Kitakarandó szavak"
 failed = "Hiba történt a PDF kitakarása közben."
 
 [redact.manual]
+activate = "Kitakaró eszköz aktiválása"
+active = "Kitakarási mód aktív"
 apply = "Alkalmazás"
 applyChanges = "Változtatások alkalmazása"
 applyRedactions = "Apply Redactions"
 applyWarning = "⚠️ Végleges alkalmazás, nem vonható vissza, és az alatta lévő adatok törlődnek"
 boxRedaction = "Dobozos kitakarás rajzolása"
-colourPicker = "Színválasztó"
 colorLabel = "Kitakarás színe"
-active = "Kitakarási mód aktív"
-activate = "Kitakaró eszköz aktiválása"
+colourPicker = "Színválasztó"
 controlsTitle = "Kézi kitakarás vezérlők"
 convertPDFToImageLabel = "PDF konvertálása PDF-Image formátumra (a doboz mögötti szöveg eltávolításához)"
 export = "Exportálás"
@@ -5396,6 +5422,39 @@ title = "Magas kontraszt"
 text = "A PDF összes színének teljes invertálása, negatívhoz hasonló hatással. Hasznos dokumentumok sötét módú változatához vagy a szemfáradás csökkentéséhez gyenge fényviszonyok között."
 title = "Minden szín invertálása"
 
+[rightRail]
+annotations = "Jegyzetek"
+applyRedactionsFirst = "Előbb alkalmazza a kitakarásokat"
+closePdf = "PDF bezárása"
+closeSelected = "Kijelölt fájlok bezárása"
+deleteSelected = "Kijelölt oldalak törlése"
+deselectAll = "Kijelölés megszüntetése"
+downloadAll = "Összes letöltése"
+downloadSelected = "Kijelölt fájlok letöltése"
+draw = "Rajzolás"
+exitRedaction = "Kilépés a kitakarás módból"
+exportAll = "PDF exportálása"
+exportSelected = "Kijelölt oldalak exportálása"
+formFill = "Űrlap kitöltése"
+language = "Nyelv"
+panMode = "Pásztázó mód"
+print = "PDF nyomtatása"
+redact = "Kitakarás"
+rotateLeft = "Forgatás balra"
+rotateRight = "Forgatás jobbra"
+ruler = "Vonalzó / mérés"
+save = "Mentés"
+saveAll = "Összes mentése"
+saveChanges = "Változtatások mentése"
+search = "PDF keresése"
+selectAll = "Összes kijelölése"
+selectByNumber = "Kijelölés oldalszámok alapján"
+toggleAnnotations = "Jegyzetek láthatóságának váltása"
+toggleAttachments = "Mellékletek megjelenítése/elrejtése"
+toggleBookmarks = "Könyvjelzők megjelenítése/elrejtése"
+toggleSidebar = "Oldalsáv ki/be"
+toggleTheme = "Téma váltása"
+
 [rotate]
 rotateLeft = "Forgatás az óramutató járásával ellentétesen"
 rotateRight = "Forgatás az óramutató járásával megegyezően"
@@ -5647,6 +5706,70 @@ plan = "Csomag"
 title = "Licencelés és analitika"
 usageAnalytics = "Használati analitika"
 
+[settings.planBilling]
+currentPlan = "Current Plan"
+loading = "Loading billing information..."
+notAvailable = "Plan & Billing is only available when connected to Stirling Cloud (SaaS mode)."
+title = "Plan & Billing"
+
+[settings.planBilling.billing]
+manageBilling = "Manage Billing"
+nextBillingDate = "Next billing date"
+overageCost = "Current overage cost: {{amount}} ({{credits}} credits)"
+
+[settings.planBilling.credits]
+estimatedCost = "Estimated cost: {{amount}}"
+freeTierInfo = "Free plan includes {{freeCredits}} credits per month. Upgrade to Team for {{teamCredits}} credits/month and pay-as-you-go overage billing."
+included = "{{count}} credits/month (included)"
+noOverage = "No overage charges this month. You're using your included {{count}} credits."
+overage = "+ {{count}} overage"
+overageInfo = "Overage credits are billed at {{price}} per credit. You'll only pay for what you use beyond your monthly allowance."
+title = "Credit Usage"
+
+[settings.planBilling.errors]
+fetchFailed = "Unable to fetch billing data"
+retry = "Retry"
+
+[settings.planBilling.status]
+active = "Active"
+canceled = "Canceled"
+pastDue = "Past Due"
+trial = "Trial"
+
+[settings.planBilling.team]
+managedByTeam = "Managed by team"
+memberCount = "{{count}} team members"
+
+[settings.planBilling.tier]
+enterprise = "Enterprise"
+enterpriseDescription = "Custom enterprise features and support"
+free = "Free"
+freeDescription = "50 credits per month"
+team = "Team"
+teamBadge = "Team"
+teamDescription = "500 credits/month included, automatic overage billing for uninterrupted service"
+teamTooltipCredits = "Team plan includes {{credits}} credits/month."
+teamTooltipFineprint = "Only pay for what you use beyond included credits."
+teamTooltipOverage = "Automatic overage billing at {{price}}/credit ensures uninterrupted service."
+
+[settings.planBilling.trial]
+daysRemaining = "{{days}} days remaining"
+daysRemainingFull = "Your trial ends in {{days}} days"
+endDate = "Expires: {{date}}"
+endsOn = "Trial ends"
+title = "Free Trial Active"
+
+[settings.planBilling.upgrade]
+cta = "Upgrade to Team"
+featureApi = "API access for automation"
+featureCredits = "{{teamCredits}} credits per month (vs {{freeCredits}} on Free)"
+featureMembers = "Unlimited team members"
+featureSupport = "Priority support"
+featureThroughput = "Faster processing throughput"
+opensInBrowser = "Opens in browser to complete upgrade"
+subtitle = "Upgrade to Team for:"
+title = "Upgrade Your Plan"
+
 [settings.policiesPrivacy]
 legal = "Jogi"
 privacy = "Adatvédelem"
@@ -5679,6 +5802,9 @@ connections = "Kapcsolatok"
 security = "Biztonság"
 telegram = "Telegram"
 title = "Biztonság és hitelesítés"
+
+[settings.team]
+title = "Team"
 
 [settings.tooltips]
 enableLoginFirst = "Először engedélyezze a bejelentkezési módot"
@@ -6016,6 +6142,11 @@ desc = "Adott oldalak kinyerése (1,3,5-10)"
 name = "Oldalszámok"
 tooltip = "Adja meg az oldalszámokat vesszővel elválasztva, a tartományokat kötőjellel"
 
+[split.methods.byPoster]
+desc = "Split large pages into printable sizes"
+name = "Printable Chunks"
+tooltip = "Divide oversized pages into smaller chunks suitable for printing on standard paper (A4, Letter, etc.)"
+
 [split.methods.bySections]
 desc = "Oldalak felosztása rácsszerű szakaszokra"
 name = "Szakaszok"
@@ -6029,6 +6160,7 @@ tooltip = "Adjon meg maximális fájlméretet (pl. 10MB, 500KB)"
 [split.methods.prefix]
 splitAt = "Vágás itt"
 splitBy = "Felosztás aszerint"
+splitInto = "Split into"
 
 [split.methodSelection.tooltip]
 bullet1 = "Kattintson egy módszerkártyára a kiválasztáshoz"
@@ -6040,6 +6172,21 @@ title = "Válassza ki a felosztási módszert"
 [split.methodSelection.tooltip.header]
 text = "Válassza ki, hogyan szeretné felosztani a PDF dokumentumot. Minden módszer más esetre és dokumentumtípusra optimalizált."
 title = "Felosztási módszer kiválasztása"
+
+[split.poster]
+rightToLeft = "Split right-to-left"
+
+[split.poster.pageSize]
+description = "Size of output pages for printing"
+label = "Target Page Size"
+
+[split.poster.xFactor]
+description = "Number of columns to split each page into"
+label = "Horizontal Divisions"
+
+[split.poster.yFactor]
+description = "Number of rows to split each page into"
+label = "Vertical Divisions"
 
 [split.settings]
 selectMethodFirst = "Kérjük, először válasszon felosztási módszert"
@@ -6091,6 +6238,14 @@ bullet2 = "Tartomány vágási pontok: 3-8 (vágás a 3. oldal előtt és a 8. o
 bullet3 = "Kevert: 2,5-10,15 (vágás a 2. oldal után, az 5. oldal előtt, a 10. oldal után és a 15. oldal után)"
 text = "Ossza fel a PDF-et meghatározott oldalszámoknál. Az 'n' használatával az n. oldal után vág. Az 'n-m' használatával az n. oldal elé és az m. oldal után vág."
 title = "Vágás oldalszámoknál"
+
+[split.tooltip.byPoster]
+bullet1 = "Target Page Size: Choose output paper size (A4, Letter, etc.)"
+bullet2 = "Horizontal/Vertical Divisions: Grid size for splitting"
+bullet3 = "Right-to-Left: Reverse column order for RTL layouts"
+bullet4 = "Print and assemble the pieces to create your poster"
+text = "Split large PDF pages into smaller printable chunks suitable for standard paper sizes. Perfect for creating poster prints from oversized pages."
+title = "Split for Poster Print"
 
 [split.tooltip.bySections]
 bullet1 = "Vízszintes: Létrehozandó sorok száma"
@@ -6232,6 +6387,82 @@ title = "API-dokumentáció"
 
 [tableExtraxt]
 tags = "CSV,Táblázat kinyerése,kinyerés,konvertálás"
+
+[team]
+cancelInviteError = "Failed to cancel invitation"
+confirmCancelInvite = "Are you sure you want to cancel this invitation?"
+confirmLeave = "Are you sure you want to leave this team?"
+confirmLeaveLeader = "As a team leader, leaving will remove you from the team. Are you sure?"
+confirmRemove = "Are you sure you want to remove this member?"
+editName = "Edit team name"
+inviteCancelled = "Invitation cancelled"
+inviteError = "Failed to send invitation"
+inviteSent = "Invitation sent successfully"
+leader = "Leader"
+leaveButton = "Leave Team"
+leaveError = "Failed to leave team"
+leaveSuccess = "Successfully left team"
+loading = "Loading team information..."
+memberCount = "{{count}} members"
+memberRemoved = "Member removed successfully"
+namePlaceholder = "Enter team name"
+personal = "Personal"
+removeError = "Failed to remove member"
+renameError = "Failed to rename team"
+renameSuccess = "Team renamed successfully"
+
+[team.features]
+badge = "Team Features"
+subtitle = "Collaborate with your team"
+title = "Team Collaboration"
+viewPlans = "View Plans"
+
+[team.features.billing]
+description = "Manage billing and subscriptions"
+title = "Billing Management"
+
+[team.features.credits]
+description = "Shared credit pool for all members"
+title = "Shared Credits"
+
+[team.features.dashboard]
+description = "View team activity and usage"
+title = "Team Dashboard"
+
+[team.features.invite]
+description = "Add members to your team"
+title = "Invite Members"
+
+[team.invitationBanner]
+acceptButton = "Accept"
+message = "has invited you to join"
+rejectButton = "Decline"
+
+[team.invite]
+cancelLabel = "Cancel"
+invalidEmail = "Invalid email address"
+placeholder = "Enter email address"
+sendButton = "Send Invitation"
+title = "Invite Team Member"
+
+[team.members]
+emailColumn = "Email"
+empty = "No team members yet"
+nameColumn = "Name"
+pending = "Pending"
+remove = "Remove"
+roleColumn = "Role"
+title = "Team Members"
+
+[team.upgrade]
+button = "Upgrade to Team"
+description = "Unlock team collaboration features"
+title = "Upgrade to Team Plan"
+
+[textAlign]
+center = "Középre"
+left = "Balra"
+right = "Jobbra"
 
 [theme]
 toggle = "Téma váltása"
@@ -6507,6 +6738,37 @@ invalid = "A tanúsítvány nincs a megbízható tárolóban - a forrás nem ell
 fileManager = "Fájlkezelő"
 pageEditor = "Oldalszerkesztő"
 viewer = "Megjelenítő"
+
+[viewer]
+cannotPreviewFile = "A fájl előnézete nem lehetséges"
+dualPageView = "Kétoldalas nézet"
+firstPage = "Első oldal"
+lastPage = "Utolsó oldal"
+nextPage = "Következő oldal"
+onlyPdfSupported = "A megjelenítő csak PDF fájlokat támogat. Úgy tűnik, ez a fájl más formátumú."
+previousPage = "Előző oldal"
+singlePageView = "Egyoldalas nézet"
+unknownFile = "Ismeretlen fájl"
+zoomIn = "Nagyítás"
+zoomOut = "Kicsinyítés"
+
+[viewer.attachments]
+empty = "Nincsenek mellékletek ebben a dokumentumban"
+loading = "Mellékletek betöltése..."
+noDocument = "Nyisson meg egy PDF-et a mellékletek megtekintéséhez."
+noMatch = "Nincs a keresésnek megfelelő melléklet"
+noSupport = "Ez a megjelenítő nem támogatja a mellékleteket."
+searchPlaceholder = "Mellékletek keresése"
+title = "Mellékletek"
+
+[viewer.formBar]
+apply = "Módosítások alkalmazása"
+dismiss = "Bezárás"
+download = "PDF letöltése"
+hasFieldsDesc = "Ez a PDF kitölthető mezőket tartalmaz"
+title = "Űrlapmezők"
+unsavedBadge = "Mentetlen"
+unsavedDesc = "Mentetlen módosításai vannak"
 
 [viewPdf]
 header = "PDF megtekintése"

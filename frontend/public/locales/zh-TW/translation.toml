@@ -16,13 +16,13 @@ comingSoon = "即將推出"
 confirmClose = "確認關閉"
 confirmCloseCancel = "取消"
 confirmCloseConfirm = "關閉檔案"
-confirmCloseMessage = "確定要關閉此檔案嗎？"
 confirmCloseDiscard = "捨棄變更並關閉"
+confirmCloseMessage = "確定要關閉此檔案嗎？"
 confirmCloseSave = "儲存並關閉"
+confirmCloseSaveFailed = "已儲存但有錯誤。{{count}} 個檔案{{plural}}無法儲存。"
+confirmCloseSaveFailedTitle = "儲存失敗"
 confirmCloseUnsaved = "此檔案有未儲存的變更。"
 confirmCloseUnsavedList = "您有 {{count}} 個檔案{{plural}}有未儲存的變更。\n\n{{fileList}}"
-confirmCloseSaveFailedTitle = "儲存失敗"
-confirmCloseSaveFailed = "已儲存但有錯誤。{{count}} 個檔案{{plural}}無法儲存。"
 confirmPasswordErrorMessage = "新密碼與確認新密碼必須相符。"
 custom = "自訂..."
 customPosition = "自訂位置"
@@ -45,8 +45,8 @@ edit = "編輯"
 editYourNewFiles = "編輯新檔案"
 exportAndContinue = "匯出並繼續"
 false = "否"
-fileSavedToDisk = "檔案已儲存至磁碟"
 fileNotSavedToDisk = "未儲存至磁碟"
+fileSavedToDisk = "檔案已儲存至磁碟"
 fileSelected = "已選取：{{filename}}"
 filesSelected = "已選擇的檔案"
 font = "字型"
@@ -841,6 +841,14 @@ title = "API 端點"
 userDefaults = "使用者偏好預設值"
 userDefaultsDescription = "設定使用者偏好的預設值。使用者可在個人設定中覆寫。"
 
+[admin.settings.endpoints.defaultHideUnavailableConversions]
+description = "移除已停用的轉換選項，而非以灰色顯示"
+label = "預設隱藏不可用的轉換"
+
+[admin.settings.endpoints.defaultHideUnavailableTools]
+description = "移除已停用的工具，而非以灰色顯示"
+label = "預設隱藏不可用的工具"
+
 [admin.settings.endpoints.groupsToRemove]
 description = "選擇要停用的端點群組"
 label = "已停用的端點群組"
@@ -848,14 +856,6 @@ label = "已停用的端點群組"
 [admin.settings.endpoints.toRemove]
 description = "選擇要停用的個別端點"
 label = "已停用的端點"
-
-[admin.settings.endpoints.defaultHideUnavailableTools]
-description = "移除已停用的工具，而非以灰色顯示"
-label = "預設隱藏不可用的工具"
-
-[admin.settings.endpoints.defaultHideUnavailableConversions]
-description = "移除已停用的轉換選項，而非以灰色顯示"
-label = "預設隱藏不可用的轉換"
 
 [admin.settings.enterpriseRequired]
 message = "存取 {{featureName}} 需要企業版授權。您目前看到的是示範資料，供參考。"
@@ -1228,6 +1228,14 @@ label = "初始使用者名稱"
 [admin.settings.security.jwt]
 label = "JWT 設定"
 
+[admin.settings.security.jwt.allowedClockSkewSeconds]
+description = "權杖驗證期間允許的用戶端/伺服器時間偏差（預設：60 秒）"
+label = "時鐘偏差容許值（秒）"
+
+[admin.settings.security.jwt.desktopTokenExpiryMinutes]
+description = "桌面用戶端的存取權杖有效期限（分鐘）。會透過 User-Agent 自動偵測桌面應用程式，並提供較長的工作階段以提升 UX（預設：43200 = 30 天）"
+label = "桌面權杖到期（分鐘）"
+
 [admin.settings.security.jwt.enableKeyCleanup]
 description = "自動移除過期的 JWT 金鑰"
 label = "啟用金鑰清理"
@@ -1236,29 +1244,21 @@ label = "啟用金鑰清理"
 description = "定期自動輪替 JWT 簽署金鑰"
 label = "啟用金鑰輪替"
 
-[admin.settings.security.jwt.tokenExpiryMinutes]
-description = "網頁用戶端的存取權杖有效期限（分鐘）（預設：1440 = 24 小時）"
-label = "Web 權杖到期（分鐘）"
-
-[admin.settings.security.jwt.desktopTokenExpiryMinutes]
-description = "桌面用戶端的存取權杖有效期限（分鐘）。會透過 User-Agent 自動偵測桌面應用程式，並提供較長的工作階段以提升 UX（預設：43200 = 30 天）"
-label = "桌面權杖到期（分鐘）"
-
-[admin.settings.security.jwt.allowedClockSkewSeconds]
-description = "權杖驗證期間允許的用戶端/伺服器時間偏差（預設：60 秒）"
-label = "時鐘偏差容許值（秒）"
+[admin.settings.security.jwt.persistence]
+description = "持久儲存 JWT 金鑰，以在伺服器重啟後保留"
+label = "啟用金鑰永續化"
 
 [admin.settings.security.jwt.refreshGraceMinutes]
 description = "允許在到期後於此分鐘數內更新權杖（預設：15 分鐘，最多 3 次嘗試）"
 label = "更新寬限期（分鐘）"
 
-[admin.settings.security.jwt.persistence]
-description = "持久儲存 JWT 金鑰，以在伺服器重啟後保留"
-label = "啟用金鑰永續化"
-
 [admin.settings.security.jwt.secureCookie]
 description = "要求 JWT Cookie 使用 HTTPS（建議用於正式環境）"
 label = "安全 Cookie"
+
+[admin.settings.security.jwt.tokenExpiryMinutes]
+description = "網頁用戶端的存取權杖有效期限（分鐘）（預設：1440 = 24 小時）"
+label = "Web 權杖到期（分鐘）"
 
 [admin.settings.security.loginAttemptCount]
 description = "帳戶被鎖定前允許的最大登入失敗次數"
@@ -2238,6 +2238,9 @@ title = "變更權限"
 [changePermissions.tooltip.warning]
 text = "若要使這些權限無法被變更，請使用「新增密碼」工具設定擁有者密碼。"
 
+[cloudBadge]
+tooltip = "This operation will use your cloud credits"
+
 [colorPicker]
 title = "選擇顏色"
 
@@ -2254,9 +2257,11 @@ copy = "複製"
 done = "完成"
 error = "錯誤"
 expand = "展開"
+learnMore = "Learn more"
 lines = "行"
 loading = "正在載入..."
 next = "下一步"
+operation = "this operation"
 preview = "預覽"
 previous = "上一步"
 refresh = "重新整理"
@@ -2670,6 +2675,77 @@ description = "這些 Cookies 對網站正常運作至關重要。它們讓核�
 posthog = "PostHog 分析"
 scarf = "Scarf 像素"
 
+[credits]
+enableOverageBilling = "Enable Overage Billing"
+maybeLater = "Maybe later"
+upgrade = "Upgrade"
+
+[credits.insufficient]
+brief = "Insufficient credits. You need {{required}} credits but have {{current}}."
+freeTier = "Upgrade to Team for 10x more credits and unlimited overage billing."
+managedMember = "Please contact your team leader for assistance."
+message = "You do not have enough credits to run {{tool}}. You currently have {{current}} credits."
+messageWithAmount = "You need {{required}} credits to run {{tool}}, but you only have {{current}}."
+teamMember = "Enable overage billing to never run out of credits."
+title = "Insufficient Credits"
+
+[credits.modal]
+advancedMonitoring = "Advanced monitoring"
+allInOneWorkspace = "All-in-one PDF workspace (viewer, tools & agent)"
+apiSandbox = "API sandbox"
+contactSales = "Contact Sales"
+creditsRemaining = "{{current}} of {{total}} remaining"
+creditsThisMonth = "Monthly credits"
+current = "Current Plan"
+customPricing = "Custom"
+customSmartFolders = "Custom Smart Folders"
+dedicatedSupportSlas = "Dedicated support & SLAs"
+enterpriseSubscription = "Enterprise"
+everythingInCredits = "Everything in Credits, plus:"
+everythingInFree = "Everything in Free, plus:"
+fasterThroughput = "10x faster throughput"
+forRegularWork = "For regular PDF work:"
+freeTier = "Free Tier"
+fullyPrivateFiles = "Fully private files"
+largeFileProcessing = "Large file processing"
+managedMemberMessage = "You have unlimited access to credits through your team. If you need assistance, please contact your team leader."
+managedMemberTitle = "Unlimited Credits"
+meteringBillingNote = "Overage credits are billed monthly alongside your Team subscription. Track your usage anytime in your account settings."
+meteringExplanation = "Your Team plan includes {{credits}} credits per month. When you run out, overage billing automatically provides additional credits so you never have to stop working."
+meteringIncluded = "{{credits}} credits/month included with Team"
+meteringNeverRunOut = "Never run out of credits"
+meteringNoCommitment = "No commitment, cancel anytime"
+meteringPayAsYouGo = "Only pay for what you use"
+meteringPrice = "Additional credits at {{price}}/credit"
+meteringTitle = "Pay-What-You-Use Overage Billing"
+monthlyCredits = "monthly credits"
+orgWideAccess = "Org-wide access controls"
+overage = "overage"
+perMonth = "/month"
+popular = "Popular"
+premiumAiModels = "Premium AI models"
+prioritySupport = "Priority support"
+privateDocCloud = "Private Document Cloud"
+ragFineTuning = "RAG + fine-tuning"
+secureApiAccess = "Secure API access"
+selfHostLink = "Review the docs and plans"
+selfHostPrompt = "Want to self host?"
+standardThroughput = "Standard throughput"
+subtitle = "Upgrade to Team for 10x the credits and faster processing."
+subtitlePro = "Enable automatic overage billing to never run out of credits."
+teamLeaderOnly = "Only team leaders can enable overage billing"
+teamSubscription = "Team"
+titleExhausted = "You've used your free credits"
+titleExhaustedPro = "You have run out of credits"
+unlimitedApiAccess = "Unlimited API access"
+unlimitedMonthlyCredits = "Site License"
+unlimitedSeats = "Unlimited seats"
+
+[credits.modal.features]
+everythingInCredits = "Everything in Credits, plus:"
+everythingInFree = "Everything in Free, plus:"
+forRegularWork = "For regular PDF work:"
+
 [crop]
 autoCrop = "自動裁切空白"
 header = "裁剪 PDF"
@@ -2920,6 +2996,7 @@ copyStack = "複製堆疊追蹤"
 discordSubmit = "Discord - 發表支援文章"
 dismissAllErrors = "關閉所有錯誤"
 encryptedPdfMustRemovePassword = "此 PDF 已加密或受密碼保護。請先解除鎖定再轉換為 PDF/A。"
+generic = "An error occurred"
 github = "在 GitHub 上回報問題"
 githubSubmit = "GitHub - 回報問題"
 incorrectPasswordProvided = "PDF 密碼不正確或未提供。"
@@ -3346,10 +3423,6 @@ desc = "將多個 PDF 動作串接，建立多步驟工作流程。適合重複�
 tags = "工作流程,序列,自動化"
 title = "自動化"
 
-[home.formFill]
-desc = "使用視覺化編輯器互動式填寫 PDF 表單欄位"
-title = "填寫表單"
-
 [home.autoRename]
 desc = "依偵測到的標頭自動重新命名 PDF 檔案"
 tags = "自動偵測,依標頭,整理,重新命名"
@@ -3444,6 +3517,10 @@ title = "提取頁面"
 desc = "從 PDF 中移除所有互動元素和表單"
 tags = "簡化,移除,互動"
 title = "平坦化"
+
+[home.formFill]
+desc = "使用視覺化編輯器互動式填寫 PDF 表單欄位"
+title = "填寫表單"
 
 [home.getPdfInfo]
 desc = "取得 PDF 的所有可能資訊"
@@ -4247,75 +4324,6 @@ title = "頁面編輯器"
 zoomIn = "放大"
 zoomOut = "縮小"
 
-[viewer]
-cannotPreviewFile = "無法預覽檔案"
-dualPageView = "雙頁檢視"
-firstPage = "第一頁"
-lastPage = "最後一頁"
-nextPage = "下一頁"
-onlyPdfSupported = "此檢視器僅支援 PDF 檔案。此檔案似乎是其他格式。"
-previousPage = "上一頁"
-singlePageView = "單頁檢視"
-unknownFile = "未知檔案"
-zoomIn = "放大"
-zoomOut = "縮小"
-
-[viewer.attachments]
-title = "附件"
-searchPlaceholder = "搜尋附件"
-noSupport = "此檢視器不支援附件。"
-noDocument = "開啟 PDF 以檢視其附件。"
-loading = "正在載入附件..."
-empty = "此文件沒有附件"
-noMatch = "沒有符合搜尋的附件"
-
-[viewer.formBar]
-title = "表單欄位"
-unsavedBadge = "未儲存"
-unsavedDesc = "您有未儲存的變更"
-hasFieldsDesc = "此 PDF 包含可填寫欄位"
-dismiss = "關閉"
-apply = "套用變更"
-download = "下載 PDF"
-
-[rightRail]
-closeSelected = "關閉已選檔案"
-selectAll = "全選"
-deselectAll = "取消全選"
-selectByNumber = "依頁碼選取"
-deleteSelected = "刪除所選頁面"
-closePdf = "關閉 PDF"
-exportAll = "匯出 PDF"
-downloadSelected = "下載選取的檔案"
-annotations = "註解"
-exportSelected = "匯出選取的頁面"
-formFill = "填寫表單"
-saveChanges = "儲存變更"
-toggleAttachments = "切換附件"
-toggleTheme = "切換主題"
-language = "語言"
-toggleAnnotations = "切換註解可見度"
-search = "搜尋 PDF"
-panMode = "平移模式"
-applyRedactionsFirst = "請先套用塗黑"
-rotateLeft = "向左旋轉"
-rotateRight = "向右旋轉"
-toggleSidebar = "切換側邊欄"
-toggleBookmarks = "切換書籤"
-print = "列印 PDF"
-ruler = "尺規 / 量測"
-draw = "繪圖"
-redact = "塗黑"
-exitRedaction = "退出塗黑模式"
-save = "儲存"
-downloadAll = "全部下載"
-saveAll = "全部儲存"
-
-[textAlign]
-left = "靠左"
-center = "置中"
-right = "靠右"
-
 [pageExtracter]
 header = "提取頁面"
 placeholder = "（例如 1,2,8 或 4,7,12-16 或 2n-1）"
@@ -4424,6 +4432,9 @@ title = "提示"
 autoClose = "此視窗將自動關閉..."
 billingPeriod = "計費週期"
 canCloseWindow = "你現在可以關閉此視窗。"
+checkoutInstructions = "Complete your purchase in the browser window that just opened. After payment is complete, return here and click the button below to refresh your billing information."
+checkoutOpened = "Checkout Opened in Browser"
+closeLater = "I'll Do This Later"
 emailInvalid = "請輸入有效的 Email 位址"
 enterpriseNote = "席次可在結帳時調整（1-1000）。"
 error = "付款錯誤"
@@ -4445,6 +4456,7 @@ perMonth = "/月"
 perYear = "/年"
 preparing = "正在準備結帳..."
 redirecting = "正在重新導向至安全結帳..."
+refreshBilling = "I've Completed Payment - Refresh Billing"
 stripeNotConfigured = "未設定 Stripe"
 stripeNotConfiguredMessage = "尚未設定 Stripe 付款整合。請聯絡你的管理員。"
 success = "付款成功！"
@@ -4777,6 +4789,13 @@ title = "PDF 轉 Word"
 [PDFToWord.selectText]
 1 = "輸出文件格式"
 
+[PDFToXLSX]
+header = "PDF to Excel"
+prompt = "Choose pages to extract tables"
+submit = "Convert"
+tags = "spreadsheet,excel,xlsx,table,extract,convert"
+title = "PDF to Excel (XLSX)"
+
 [PDFToXML]
 credit = "此服務使用 LibreOffice 進行檔案轉換。"
 header = "PDF 轉換為 XML"
@@ -4835,6 +4854,7 @@ customPricing = "自訂"
 featureComparison = "功能比較"
 from = "起"
 hideComparison = "隱藏功能比較"
+included = "Included"
 includedInCurrent = "已包含於你的方案"
 licensedSeats = "已授權：{{count}} 席"
 manage = "管理"
@@ -4851,6 +4871,7 @@ subtitle = "您目前的訂閱詳情"
 title = "使用中方案"
 
 [plan.availablePlans]
+loadError = "Unable to load plan pricing. Using default values."
 subtitle = "選擇符合您需求的方案"
 title = "可用方案"
 
@@ -4861,6 +4882,7 @@ highlight3 = "最新功能"
 name = "企業版"
 requiresServer = "需要 Server"
 requiresServerMessage = "請先升級到 Server 方案，再升級至 Enterprise。"
+siteLicense = "Site License"
 
 [plan.feature]
 api = "API 存取"
@@ -4928,6 +4950,10 @@ keyDescription = "貼上電子郵件中的授權金鑰"
 success = "授權已啟用！"
 successMessage = "您的授權已成功啟用。您現在可以關閉此視窗。"
 
+[plan.team]
+name = "Team"
+siteLicense = "Site License"
+
 [printFile]
 header = "使用印表機印出檔案"
 submit = "列印"
@@ -4992,15 +5018,15 @@ title = "要遮蔽的字詞"
 failed = "遮蔽 PDF 時發生錯誤。"
 
 [redact.manual]
+activate = "啟用遮蔽工具"
+active = "遮蔽模式已啟用"
 apply = "套用"
 applyChanges = "套用變更"
 applyRedactions = "Apply Redactions"
 applyWarning = "⚠️ 永久套用，無法復原，且底層資料將被刪除"
 boxRedaction = "方框繪製遮蔽"
-colourPicker = "顏色選擇器"
 colorLabel = "遮蔽顏色"
-active = "遮蔽模式已啟用"
-activate = "啟用遮蔽工具"
+colourPicker = "顏色選擇器"
 controlsTitle = "手動塗黑控制"
 convertPDFToImageLabel = "將 PDF 轉為 PDF-Image（用於移除方框後方文字）"
 export = "匯出"
@@ -5396,6 +5422,39 @@ title = "高對比"
 text = "完全反轉 PDF 中的所有顏色，形成類似負片的效果。可用於建立文件的深色模式版本，或在低光環境下減輕眼睛疲勞。"
 title = "反轉所有顏色"
 
+[rightRail]
+annotations = "註解"
+applyRedactionsFirst = "請先套用塗黑"
+closePdf = "關閉 PDF"
+closeSelected = "關閉已選檔案"
+deleteSelected = "刪除所選頁面"
+deselectAll = "取消全選"
+downloadAll = "全部下載"
+downloadSelected = "下載選取的檔案"
+draw = "繪圖"
+exitRedaction = "退出塗黑模式"
+exportAll = "匯出 PDF"
+exportSelected = "匯出選取的頁面"
+formFill = "填寫表單"
+language = "語言"
+panMode = "平移模式"
+print = "列印 PDF"
+redact = "塗黑"
+rotateLeft = "向左旋轉"
+rotateRight = "向右旋轉"
+ruler = "尺規 / 量測"
+save = "儲存"
+saveAll = "全部儲存"
+saveChanges = "儲存變更"
+search = "搜尋 PDF"
+selectAll = "全選"
+selectByNumber = "依頁碼選取"
+toggleAnnotations = "切換註解可見度"
+toggleAttachments = "切換附件"
+toggleBookmarks = "切換書籤"
+toggleSidebar = "切換側邊欄"
+toggleTheme = "切換主題"
+
 [rotate]
 rotateLeft = "逆時針旋轉"
 rotateRight = "順時針旋轉"
@@ -5647,6 +5706,70 @@ plan = "方案"
 title = "授權與分析"
 usageAnalytics = "使用分析"
 
+[settings.planBilling]
+currentPlan = "Current Plan"
+loading = "Loading billing information..."
+notAvailable = "Plan & Billing is only available when connected to Stirling Cloud (SaaS mode)."
+title = "Plan & Billing"
+
+[settings.planBilling.billing]
+manageBilling = "Manage Billing"
+nextBillingDate = "Next billing date"
+overageCost = "Current overage cost: {{amount}} ({{credits}} credits)"
+
+[settings.planBilling.credits]
+estimatedCost = "Estimated cost: {{amount}}"
+freeTierInfo = "Free plan includes {{freeCredits}} credits per month. Upgrade to Team for {{teamCredits}} credits/month and pay-as-you-go overage billing."
+included = "{{count}} credits/month (included)"
+noOverage = "No overage charges this month. You're using your included {{count}} credits."
+overage = "+ {{count}} overage"
+overageInfo = "Overage credits are billed at {{price}} per credit. You'll only pay for what you use beyond your monthly allowance."
+title = "Credit Usage"
+
+[settings.planBilling.errors]
+fetchFailed = "Unable to fetch billing data"
+retry = "Retry"
+
+[settings.planBilling.status]
+active = "Active"
+canceled = "Canceled"
+pastDue = "Past Due"
+trial = "Trial"
+
+[settings.planBilling.team]
+managedByTeam = "Managed by team"
+memberCount = "{{count}} team members"
+
+[settings.planBilling.tier]
+enterprise = "Enterprise"
+enterpriseDescription = "Custom enterprise features and support"
+free = "Free"
+freeDescription = "50 credits per month"
+team = "Team"
+teamBadge = "Team"
+teamDescription = "500 credits/month included, automatic overage billing for uninterrupted service"
+teamTooltipCredits = "Team plan includes {{credits}} credits/month."
+teamTooltipFineprint = "Only pay for what you use beyond included credits."
+teamTooltipOverage = "Automatic overage billing at {{price}}/credit ensures uninterrupted service."
+
+[settings.planBilling.trial]
+daysRemaining = "{{days}} days remaining"
+daysRemainingFull = "Your trial ends in {{days}} days"
+endDate = "Expires: {{date}}"
+endsOn = "Trial ends"
+title = "Free Trial Active"
+
+[settings.planBilling.upgrade]
+cta = "Upgrade to Team"
+featureApi = "API access for automation"
+featureCredits = "{{teamCredits}} credits per month (vs {{freeCredits}} on Free)"
+featureMembers = "Unlimited team members"
+featureSupport = "Priority support"
+featureThroughput = "Faster processing throughput"
+opensInBrowser = "Opens in browser to complete upgrade"
+subtitle = "Upgrade to Team for:"
+title = "Upgrade Your Plan"
+
 [settings.policiesPrivacy]
 legal = "法務"
 privacy = "隱私"
@@ -5679,6 +5802,9 @@ connections = "連線"
 security = "安全性"
 telegram = "Telegram"
 title = "安全性與身分驗證"
+
+[settings.team]
+title = "Team"
 
 [settings.tooltips]
 enableLoginFirst = "先啟用登入模式"
@@ -6016,6 +6142,11 @@ desc = "擷取特定頁面（1,3,5-10）"
 name = "頁碼"
 tooltip = "輸入以逗號分隔的頁碼，或以連字號表示的範圍"
 
+[split.methods.byPoster]
+desc = "Split large pages into printable sizes"
+name = "Printable Chunks"
+tooltip = "Divide oversized pages into smaller chunks suitable for printing on standard paper (A4, Letter, etc.)"
+
 [split.methods.bySections]
 desc = "將頁面劃分為格狀區塊"
 name = "區塊"
@@ -6029,6 +6160,7 @@ tooltip = "指定最大檔案大小（例如 10MB、500KB）"
 [split.methods.prefix]
 splitAt = "在"
 splitBy = "依"
+splitInto = "Split into"
 
 [split.methodSelection.tooltip]
 bullet1 = "點擊方法卡片以選擇"
@@ -6040,6 +6172,21 @@ title = "選擇您的分割方法"
 [split.methodSelection.tooltip.header]
 text = "選擇您想如何分割 PDF 文件。每種方法都針對不同使用情境與文件類型最佳化。"
 title = "分割方法選擇"
+
+[split.poster]
+rightToLeft = "Split right-to-left"
+
+[split.poster.pageSize]
+description = "Size of output pages for printing"
+label = "Target Page Size"
+
+[split.poster.xFactor]
+description = "Number of columns to split each page into"
+label = "Horizontal Divisions"
+
+[split.poster.yFactor]
+description = "Number of rows to split each page into"
+label = "Vertical Divisions"
 
 [split.settings]
 selectMethodFirst = "請先選擇分割方法"
@@ -6091,6 +6238,14 @@ bullet2 = "範圍分割點：3-8（在第 3 頁之前與第 8 頁之後分割）
 bullet3 = "混合：2,5-10,15（在第 2 頁之後、第 5 頁之前、第 10 頁之後與第 15 頁之後分割）"
 text = "在特定頁碼處分割您的 PDF。使用「n」會在第 n 頁之後分割。使用「n-m」會在第 n 頁之前與第 m 頁之後分割。"
 title = "依頁碼分割"
+
+[split.tooltip.byPoster]
+bullet1 = "Target Page Size: Choose output paper size (A4, Letter, etc.)"
+bullet2 = "Horizontal/Vertical Divisions: Grid size for splitting"
+bullet3 = "Right-to-Left: Reverse column order for RTL layouts"
+bullet4 = "Print and assemble the pieces to create your poster"
+text = "Split large PDF pages into smaller printable chunks suitable for standard paper sizes. Perfect for creating poster prints from oversized pages."
+title = "Split for Poster Print"
 
 [split.tooltip.bySections]
 bullet1 = "水平：要建立的列數"
@@ -6232,6 +6387,82 @@ title = "API 文件"
 
 [tableExtraxt]
 tags = "CSV,表格提取,提取,轉換"
+
+[team]
+cancelInviteError = "Failed to cancel invitation"
+confirmCancelInvite = "Are you sure you want to cancel this invitation?"
+confirmLeave = "Are you sure you want to leave this team?"
+confirmLeaveLeader = "As a team leader, leaving will remove you from the team. Are you sure?"
+confirmRemove = "Are you sure you want to remove this member?"
+editName = "Edit team name"
+inviteCancelled = "Invitation cancelled"
+inviteError = "Failed to send invitation"
+inviteSent = "Invitation sent successfully"
+leader = "Leader"
+leaveButton = "Leave Team"
+leaveError = "Failed to leave team"
+leaveSuccess = "Successfully left team"
+loading = "Loading team information..."
+memberCount = "{{count}} members"
+memberRemoved = "Member removed successfully"
+namePlaceholder = "Enter team name"
+personal = "Personal"
+removeError = "Failed to remove member"
+renameError = "Failed to rename team"
+renameSuccess = "Team renamed successfully"
+
+[team.features]
+badge = "Team Features"
+subtitle = "Collaborate with your team"
+title = "Team Collaboration"
+viewPlans = "View Plans"
+
+[team.features.billing]
+description = "Manage billing and subscriptions"
+title = "Billing Management"
+
+[team.features.credits]
+description = "Shared credit pool for all members"
+title = "Shared Credits"
+
+[team.features.dashboard]
+description = "View team activity and usage"
+title = "Team Dashboard"
+
+[team.features.invite]
+description = "Add members to your team"
+title = "Invite Members"
+
+[team.invitationBanner]
+acceptButton = "Accept"
+message = "has invited you to join"
+rejectButton = "Decline"
+
+[team.invite]
+cancelLabel = "Cancel"
+invalidEmail = "Invalid email address"
+placeholder = "Enter email address"
+sendButton = "Send Invitation"
+title = "Invite Team Member"
+
+[team.members]
+emailColumn = "Email"
+empty = "No team members yet"
+nameColumn = "Name"
+pending = "Pending"
+remove = "Remove"
+roleColumn = "Role"
+title = "Team Members"
+
+[team.upgrade]
+button = "Upgrade to Team"
+description = "Unlock team collaboration features"
+title = "Upgrade to Team Plan"
+
+[textAlign]
+center = "置中"
+left = "靠左"
+right = "靠右"
 
 [theme]
 toggle = "切換主題"
@@ -6507,6 +6738,37 @@ invalid = "憑證不在信任儲存區中 - 無法驗證來源"
 fileManager = "檔案管理器"
 pageEditor = "頁面編輯器"
 viewer = "檢視器"
+
+[viewer]
+cannotPreviewFile = "無法預覽檔案"
+dualPageView = "雙頁檢視"
+firstPage = "第一頁"
+lastPage = "最後一頁"
+nextPage = "下一頁"
+onlyPdfSupported = "此檢視器僅支援 PDF 檔案。此檔案似乎是其他格式。"
+previousPage = "上一頁"
+singlePageView = "單頁檢視"
+unknownFile = "未知檔案"
+zoomIn = "放大"
+zoomOut = "縮小"
+
+[viewer.attachments]
+empty = "此文件沒有附件"
+loading = "正在載入附件..."
+noDocument = "開啟 PDF 以檢視其附件。"
+noMatch = "沒有符合搜尋的附件"
+noSupport = "此檢視器不支援附件。"
+searchPlaceholder = "搜尋附件"
+title = "附件"
+
+[viewer.formBar]
+apply = "套用變更"
+dismiss = "關閉"
+download = "下載 PDF"
+hasFieldsDesc = "此 PDF 包含可填寫欄位"
+title = "表單欄位"
+unsavedBadge = "未儲存"
+unsavedDesc = "您有未儲存的變更"
 
 [viewPdf]
 header = "檢視 PDF"

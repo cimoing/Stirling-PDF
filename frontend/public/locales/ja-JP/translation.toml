@@ -16,13 +16,13 @@ comingSoon = "近日公開"
 confirmClose = "閉じる確認"
 confirmCloseCancel = "キャンセル"
 confirmCloseConfirm = "ファイルを閉じる"
-confirmCloseMessage = "このファイルを閉じてもよろしいですか？"
 confirmCloseDiscard = "変更を破棄して閉じる"
+confirmCloseMessage = "このファイルを閉じてもよろしいですか？"
 confirmCloseSave = "保存して閉じる"
+confirmCloseSaveFailed = "エラーがあります。{{count}} file{{plural}} を保存できませんでした。"
+confirmCloseSaveFailedTitle = "保存に失敗しました"
 confirmCloseUnsaved = "このファイルには未保存の変更があります。"
 confirmCloseUnsavedList = "未保存の変更がある {{count}} file{{plural}} があります。\n\n{{fileList}}"
-confirmCloseSaveFailedTitle = "保存に失敗しました"
-confirmCloseSaveFailed = "エラーがあります。{{count}} file{{plural}} を保存できませんでした。"
 confirmPasswordErrorMessage = "新しいパスワードと新しいパスワードの確認は一致する必要があります。"
 custom = "カスタム..."
 customPosition = "カスタム位置"
@@ -45,8 +45,8 @@ edit = "編集"
 editYourNewFiles = "新しいファイルを編集"
 exportAndContinue = "エクスポートして続行"
 false = "偽"
-fileSavedToDisk = "ファイルをディスクに保存しました"
 fileNotSavedToDisk = "ディスクに保存されていません"
+fileSavedToDisk = "ファイルをディスクに保存しました"
 fileSelected = "選択中：{{filename}}"
 filesSelected = "選択されたファイル"
 font = "フォント"
@@ -841,6 +841,14 @@ title = "API エンドポイント"
 userDefaults = "ユーザー設定の既定値"
 userDefaultsDescription = "ユーザー設定の既定値を設定します。ユーザーは個人設定で上書きできます。"
 
+[admin.settings.endpoints.defaultHideUnavailableConversions]
+description = "無効な変換オプションをグレー表示ではなく一覧から非表示にする"
+label = "利用できない変換をデフォルトで非表示にする"
+
+[admin.settings.endpoints.defaultHideUnavailableTools]
+description = "無効なツールをグレー表示ではなく一覧から非表示にする"
+label = "利用できないツールをデフォルトで非表示にする"
+
 [admin.settings.endpoints.groupsToRemove]
 description = "無効化するエンドポイントグループを選択"
 label = "無効化するエンドポイントグループ"
@@ -848,14 +856,6 @@ label = "無効化するエンドポイントグループ"
 [admin.settings.endpoints.toRemove]
 description = "無効化する個別エンドポイントを選択"
 label = "無効化するエンドポイント"
-
-[admin.settings.endpoints.defaultHideUnavailableTools]
-description = "無効なツールをグレー表示ではなく一覧から非表示にする"
-label = "利用できないツールをデフォルトで非表示にする"
-
-[admin.settings.endpoints.defaultHideUnavailableConversions]
-description = "無効な変換オプションをグレー表示ではなく一覧から非表示にする"
-label = "利用できない変換をデフォルトで非表示にする"
 
 [admin.settings.enterpriseRequired]
 message = "{{featureName}} にアクセスするには Enterprise ライセンスが必要です。現在は参照用のデモデータを表示しています。"
@@ -1228,6 +1228,14 @@ label = "初期ユーザー名"
 [admin.settings.security.jwt]
 label = "JWT 設定"
 
+[admin.settings.security.jwt.allowedClockSkewSeconds]
+description = "トークン検証時のクライアント/サーバー間の時刻ずれ許容値（既定: 60 秒）"
+label = "時刻ずれ許容値（秒）"
+
+[admin.settings.security.jwt.desktopTokenExpiryMinutes]
+description = "デスクトップ クライアント用のアクセストークン有効期間（分）。デスクトップ アプリは User-Agent により自動判別され、UX 向上のためより長いセッションが付与されます（既定: 43200 = 30 日）"
+label = "デスクトップ トークン有効期限（分）"
+
 [admin.settings.security.jwt.enableKeyCleanup]
 description = "期限切れの JWT キーを自動的に削除"
 label = "キークリーンアップを有効化"
@@ -1236,29 +1244,21 @@ label = "キークリーンアップを有効化"
 description = "JWT 署名キーを定期的に自動ローテーション"
 label = "キーローテーションを有効化"
 
-[admin.settings.security.jwt.tokenExpiryMinutes]
-description = "Web クライアント用のアクセストークン有効期間（分）（既定: 1440 = 24 時間）"
-label = "Web トークン有効期限（分）"
-
-[admin.settings.security.jwt.desktopTokenExpiryMinutes]
-description = "デスクトップ クライアント用のアクセストークン有効期間（分）。デスクトップ アプリは User-Agent により自動判別され、UX 向上のためより長いセッションが付与されます（既定: 43200 = 30 日）"
-label = "デスクトップ トークン有効期限（分）"
-
-[admin.settings.security.jwt.allowedClockSkewSeconds]
-description = "トークン検証時のクライアント/サーバー間の時刻ずれ許容値（既定: 60 秒）"
-label = "時刻ずれ許容値（秒）"
+[admin.settings.security.jwt.persistence]
+description = "サーバー再起動後も維持するよう JWT キーを永続保存"
+label = "キー永続化を有効化"
 
 [admin.settings.security.jwt.refreshGraceMinutes]
 description = "有効期限切れ後、この分数以内のトークン更新を許可します（既定: 15 分、最大 3 回試行）"
 label = "更新猶予期間（分）"
 
-[admin.settings.security.jwt.persistence]
-description = "サーバー再起動後も維持するよう JWT キーを永続保存"
-label = "キー永続化を有効化"
-
 [admin.settings.security.jwt.secureCookie]
 description = "JWT クッキーに HTTPS を必須（本番環境推奨）"
 label = "セキュアクッキー"
+
+[admin.settings.security.jwt.tokenExpiryMinutes]
+description = "Web クライアント用のアクセストークン有効期間（分）（既定: 1440 = 24 時間）"
+label = "Web トークン有効期限（分）"
 
 [admin.settings.security.loginAttemptCount]
 description = "アカウントロックまでの最大失敗回数"
@@ -2238,6 +2238,9 @@ title = "権限の変更"
 [changePermissions.tooltip.warning]
 text = "これらの権限を変更不可にするには、パスワード追加ツールでオーナーパスワードを設定してください。"
 
+[cloudBadge]
+tooltip = "This operation will use your cloud credits"
+
 [colorPicker]
 title = "色を選択"
 
@@ -2254,9 +2257,11 @@ copy = "コピー"
 done = "完了"
 error = "エラー"
 expand = "展開"
+learnMore = "Learn more"
 lines = "行"
 loading = "読み込み中..."
 next = "次へ"
+operation = "this operation"
 preview = "プレビュー"
 previous = "前へ"
 refresh = "更新"
@@ -2670,6 +2675,77 @@ description = "これらのCookieはウェブサイトが正常に機能する�
 posthog = "PostHog Analytics"
 scarf = "Scarf Pixel"
 
+[credits]
+enableOverageBilling = "Enable Overage Billing"
+maybeLater = "Maybe later"
+upgrade = "Upgrade"
+
+[credits.insufficient]
+brief = "Insufficient credits. You need {{required}} credits but have {{current}}."
+freeTier = "Upgrade to Team for 10x more credits and unlimited overage billing."
+managedMember = "Please contact your team leader for assistance."
+message = "You do not have enough credits to run {{tool}}. You currently have {{current}} credits."
+messageWithAmount = "You need {{required}} credits to run {{tool}}, but you only have {{current}}."
+teamMember = "Enable overage billing to never run out of credits."
+title = "Insufficient Credits"
+
+[credits.modal]
+advancedMonitoring = "Advanced monitoring"
+allInOneWorkspace = "All-in-one PDF workspace (viewer, tools & agent)"
+apiSandbox = "API sandbox"
+contactSales = "Contact Sales"
+creditsRemaining = "{{current}} of {{total}} remaining"
+creditsThisMonth = "Monthly credits"
+current = "Current Plan"
+customPricing = "Custom"
+customSmartFolders = "Custom Smart Folders"
+dedicatedSupportSlas = "Dedicated support & SLAs"
+enterpriseSubscription = "Enterprise"
+everythingInCredits = "Everything in Credits, plus:"
+everythingInFree = "Everything in Free, plus:"
+fasterThroughput = "10x faster throughput"
+forRegularWork = "For regular PDF work:"
+freeTier = "Free Tier"
+fullyPrivateFiles = "Fully private files"
+largeFileProcessing = "Large file processing"
+managedMemberMessage = "You have unlimited access to credits through your team. If you need assistance, please contact your team leader."
+managedMemberTitle = "Unlimited Credits"
+meteringBillingNote = "Overage credits are billed monthly alongside your Team subscription. Track your usage anytime in your account settings."
+meteringExplanation = "Your Team plan includes {{credits}} credits per month. When you run out, overage billing automatically provides additional credits so you never have to stop working."
+meteringIncluded = "{{credits}} credits/month included with Team"
+meteringNeverRunOut = "Never run out of credits"
+meteringNoCommitment = "No commitment, cancel anytime"
+meteringPayAsYouGo = "Only pay for what you use"
+meteringPrice = "Additional credits at {{price}}/credit"
+meteringTitle = "Pay-What-You-Use Overage Billing"
+monthlyCredits = "monthly credits"
+orgWideAccess = "Org-wide access controls"
+overage = "overage"
+perMonth = "/month"
+popular = "Popular"
+premiumAiModels = "Premium AI models"
+prioritySupport = "Priority support"
+privateDocCloud = "Private Document Cloud"
+ragFineTuning = "RAG + fine-tuning"
+secureApiAccess = "Secure API access"
+selfHostLink = "Review the docs and plans"
+selfHostPrompt = "Want to self host?"
+standardThroughput = "Standard throughput"
+subtitle = "Upgrade to Team for 10x the credits and faster processing."
+subtitlePro = "Enable automatic overage billing to never run out of credits."
+teamLeaderOnly = "Only team leaders can enable overage billing"
+teamSubscription = "Team"
+titleExhausted = "You've used your free credits"
+titleExhaustedPro = "You have run out of credits"
+unlimitedApiAccess = "Unlimited API access"
+unlimitedMonthlyCredits = "Site License"
+unlimitedSeats = "Unlimited seats"
+
+[credits.modal.features]
+everythingInCredits = "Everything in Credits, plus:"
+everythingInFree = "Everything in Free, plus:"
+forRegularWork = "For regular PDF work:"
+
 [crop]
 autoCrop = "余白を自動トリミング"
 header = "PDFのトリミング"
@@ -2920,6 +2996,7 @@ copyStack = "スタックトレースをコピー"
 discordSubmit = "Discord - サポート投稿を提出"
 dismissAllErrors = "すべてのエラーを閉じる"
 encryptedPdfMustRemovePassword = "この PDF は暗号化またはパスワード保護されています。PDF/A へ変換する前にロックを解除してください。"
+generic = "An error occurred"
 github = "GitHubでチケットを提出"
 githubSubmit = "GitHub - チケットを提出"
 incorrectPasswordProvided = "PDF のパスワードが間違っているか指定されていません。"
@@ -3346,10 +3423,6 @@ desc = "PDF アクションを連結して複数ステップのワークフロ�
 tags = "ワークフロー,シーケンス,自動化"
 title = "自動化"
 
-[home.formFill]
-desc = "ビジュアルエディターで PDF のフォームフィールドを対話的に入力"
-title = "フォーム入力"
-
 [home.autoRename]
 desc = "検出されたヘッダーに基づいて PDF ファイル名を自動変更"
 tags = "自動検出,ヘッダー基準,整理,ラベル変更"
@@ -3444,6 +3517,10 @@ title = "ページの抽出"
 desc = "PDFからインタラクティブな要素とフォームをすべて削除します。"
 tags = "平坦化,削除,インタラクティブ除去"
 title = "平坦化"
+
+[home.formFill]
+desc = "ビジュアルエディターで PDF のフォームフィールドを対話的に入力"
+title = "フォーム入力"
 
 [home.getPdfInfo]
 desc = "PDFのあらゆる情報を取得します。"
@@ -4247,75 +4324,6 @@ title = "ページエディタ"
 zoomIn = "拡大"
 zoomOut = "縮小"
 
-[viewer]
-cannotPreviewFile = "ファイルをプレビューできません"
-dualPageView = "見開き表示"
-firstPage = "最初のページ"
-lastPage = "最後のページ"
-nextPage = "次のページ"
-onlyPdfSupported = "このビューアは PDF ファイルのみをサポートしています。このファイルは別の形式のようです。"
-previousPage = "前のページ"
-singlePageView = "単一ページ表示"
-unknownFile = "不明なファイル"
-zoomIn = "拡大"
-zoomOut = "縮小"
-
-[viewer.attachments]
-title = "添付ファイル"
-searchPlaceholder = "添付ファイルを検索"
-noSupport = "このビューアでは添付ファイルはサポートされていません。"
-noDocument = "添付ファイルを表示するには PDF を開いてください。"
-loading = "添付ファイルを読み込み中..."
-empty = "このドキュメントには添付ファイルがありません"
-noMatch = "検索条件に一致する添付ファイルはありません"
-
-[viewer.formBar]
-title = "フォームフィールド"
-unsavedBadge = "未保存"
-unsavedDesc = "未保存の変更があります"
-hasFieldsDesc = "この PDF には入力可能なフィールドがあります"
-dismiss = "閉じる"
-apply = "変更を適用"
-download = "PDF をダウンロード"
-
-[rightRail]
-closeSelected = "選択したファイルを閉じる"
-selectAll = "すべて選択"
-deselectAll = "選択を解除"
-selectByNumber = "ページ番号で選択"
-deleteSelected = "選択したページを削除"
-closePdf = "PDF を閉じる"
-exportAll = "PDF を書き出し"
-downloadSelected = "選択したファイルをダウンロード"
-annotations = "注釈"
-exportSelected = "選択したページを書き出し"
-formFill = "フォーム入力"
-saveChanges = "変更を保存"
-toggleAttachments = "添付ファイルの表示切替"
-toggleTheme = "テーマを切り替え"
-language = "言語"
-toggleAnnotations = "注釈の表示を切り替え"
-search = "PDF を検索"
-panMode = "パンモード"
-applyRedactionsFirst = "先に墨消しを適用"
-rotateLeft = "左に回転"
-rotateRight = "右に回転"
-toggleSidebar = "サイドバーを切り替え"
-toggleBookmarks = "ブックマークを切り替え"
-print = "PDFを印刷"
-ruler = "定規 / 測定"
-draw = "描画"
-redact = "墨消し"
-exitRedaction = "墨消しモードを終了"
-save = "保存"
-downloadAll = "すべてをダウンロード"
-saveAll = "すべて保存"
-
-[textAlign]
-left = "左揃え"
-center = "中央揃え"
-right = "右揃え"
-
 [pageExtracter]
 header = "ページの抽出"
 placeholder = "(例:1,2,8、4,7,12-16、2n-1)"
@@ -4424,6 +4432,9 @@ title = "ヒント"
 autoClose = "このウィンドウは自動的に閉じます..."
 billingPeriod = "請求期間"
 canCloseWindow = "このウィンドウは閉じても構いません。"
+checkoutInstructions = "Complete your purchase in the browser window that just opened. After payment is complete, return here and click the button below to refresh your billing information."
+checkoutOpened = "Checkout Opened in Browser"
+closeLater = "I'll Do This Later"
 emailInvalid = "有効なメールアドレスを入力してください"
 enterpriseNote = "席数はチェックアウトで調整できます（1〜1000）。"
 error = "支払いエラー"
@@ -4445,6 +4456,7 @@ perMonth = "/月"
 perYear = "/年"
 preparing = "チェックアウトを準備しています..."
 redirecting = "安全なチェックアウトにリダイレクトしています..."
+refreshBilling = "I've Completed Payment - Refresh Billing"
 stripeNotConfigured = "Stripe が未設定"
 stripeNotConfiguredMessage = "Stripe の決済連携が設定されていません。管理者に連絡してください。"
 success = "支払いが完了しました"
@@ -4777,6 +4789,13 @@ title = "PDFをWordに変換"
 [PDFToWord.selectText]
 1 = "出力ファイル形式"
 
+[PDFToXLSX]
+header = "PDF to Excel"
+prompt = "Choose pages to extract tables"
+submit = "Convert"
+tags = "spreadsheet,excel,xlsx,table,extract,convert"
+title = "PDF to Excel (XLSX)"
+
 [PDFToXML]
 credit = "本サービスはファイル変換にLibreOfficeを使用しています。"
 header = "PDFをXMLに変換"
@@ -4835,6 +4854,7 @@ customPricing = "カスタム"
 featureComparison = "機能比較"
 from = "から"
 hideComparison = "機能比較を隠す"
+included = "Included"
 includedInCurrent = "ご利用中のプランに含まれています"
 licensedSeats = "ライセンス: {{count}} 席"
 manage = "管理"
@@ -4851,6 +4871,7 @@ subtitle = "現在のサブスクリプションの詳細"
 title = "アクティブなプラン"
 
 [plan.availablePlans]
+loadError = "Unable to load plan pricing. Using default values."
 subtitle = "ニーズに合ったプランを選択"
 title = "利用可能なプラン"
 
@@ -4861,6 +4882,7 @@ highlight3 = "最新機能"
 name = "エンタープライズ"
 requiresServer = "Server が必要"
 requiresServerMessage = "Enterprise にアップグレードする前に、先に Server プランへアップグレードしてください。"
+siteLicense = "Site License"
 
 [plan.feature]
 api = "API アクセス"
@@ -4928,6 +4950,10 @@ keyDescription = "メールに記載のライセンスキーを貼り付け"
 success = "ライセンスを有効化しました！"
 successMessage = "ライセンスは正常に有効化されました。このウィンドウを閉じても構いません。"
 
+[plan.team]
+name = "Team"
+siteLicense = "Site License"
+
 [printFile]
 header = "ファイルをプリンタで印刷"
 submit = "プリント"
@@ -4992,15 +5018,15 @@ title = "墨消し語句"
 failed = "PDF の墨消し中にエラーが発生しました。"
 
 [redact.manual]
+activate = "墨消しツールを有効化"
+active = "墨消しモードが有効"
 apply = "適用"
 applyChanges = "変更を適用"
 applyRedactions = "Apply Redactions"
 applyWarning = "⚠️ 永久適用で元に戻せず、下のデータは削除されます"
 boxRedaction = "ボックス描画による墨消し"
-colourPicker = "カラーピッカー"
 colorLabel = "墨消しの色"
-active = "墨消しモードが有効"
-activate = "墨消しツールを有効化"
+colourPicker = "カラーピッカー"
 controlsTitle = "手動墨消しコントロール"
 convertPDFToImageLabel = "PDF を PDF-Image に変換（ボックス背後のテキスト除去用）"
 export = "エクスポート"
@@ -5396,6 +5422,39 @@ title = "高コントラスト"
 text = "PDF 内のすべての色を完全に反転し、ネガのような効果を作ります。ダークモード版の作成や暗所での眼精疲労の軽減に有用です。"
 title = "全色反転"
 
+[rightRail]
+annotations = "注釈"
+applyRedactionsFirst = "先に墨消しを適用"
+closePdf = "PDF を閉じる"
+closeSelected = "選択したファイルを閉じる"
+deleteSelected = "選択したページを削除"
+deselectAll = "選択を解除"
+downloadAll = "すべてをダウンロード"
+downloadSelected = "選択したファイルをダウンロード"
+draw = "描画"
+exitRedaction = "墨消しモードを終了"
+exportAll = "PDF を書き出し"
+exportSelected = "選択したページを書き出し"
+formFill = "フォーム入力"
+language = "言語"
+panMode = "パンモード"
+print = "PDFを印刷"
+redact = "墨消し"
+rotateLeft = "左に回転"
+rotateRight = "右に回転"
+ruler = "定規 / 測定"
+save = "保存"
+saveAll = "すべて保存"
+saveChanges = "変更を保存"
+search = "PDF を検索"
+selectAll = "すべて選択"
+selectByNumber = "ページ番号で選択"
+toggleAnnotations = "注釈の表示を切り替え"
+toggleAttachments = "添付ファイルの表示切替"
+toggleBookmarks = "ブックマークを切り替え"
+toggleSidebar = "サイドバーを切り替え"
+toggleTheme = "テーマを切り替え"
+
 [rotate]
 rotateLeft = "反時計回りに回転"
 rotateRight = "時計回りに回転"
@@ -5647,6 +5706,70 @@ plan = "プラン"
 title = "ライセンスと分析"
 usageAnalytics = "利用分析"
 
+[settings.planBilling]
+currentPlan = "Current Plan"
+loading = "Loading billing information..."
+notAvailable = "Plan & Billing is only available when connected to Stirling Cloud (SaaS mode)."
+title = "Plan & Billing"
+
+[settings.planBilling.billing]
+manageBilling = "Manage Billing"
+nextBillingDate = "Next billing date"
+overageCost = "Current overage cost: {{amount}} ({{credits}} credits)"
+
+[settings.planBilling.credits]
+estimatedCost = "Estimated cost: {{amount}}"
+freeTierInfo = "Free plan includes {{freeCredits}} credits per month. Upgrade to Team for {{teamCredits}} credits/month and pay-as-you-go overage billing."
+included = "{{count}} credits/month (included)"
+noOverage = "No overage charges this month. You're using your included {{count}} credits."
+overage = "+ {{count}} overage"
+overageInfo = "Overage credits are billed at {{price}} per credit. You'll only pay for what you use beyond your monthly allowance."
+title = "Credit Usage"
+
+[settings.planBilling.errors]
+fetchFailed = "Unable to fetch billing data"
+retry = "Retry"
+
+[settings.planBilling.status]
+active = "Active"
+canceled = "Canceled"
+pastDue = "Past Due"
+trial = "Trial"
+
+[settings.planBilling.team]
+managedByTeam = "Managed by team"
+memberCount = "{{count}} team members"
+
+[settings.planBilling.tier]
+enterprise = "Enterprise"
+enterpriseDescription = "Custom enterprise features and support"
+free = "Free"
+freeDescription = "50 credits per month"
+team = "Team"
+teamBadge = "Team"
+teamDescription = "500 credits/month included, automatic overage billing for uninterrupted service"
+teamTooltipCredits = "Team plan includes {{credits}} credits/month."
+teamTooltipFineprint = "Only pay for what you use beyond included credits."
+teamTooltipOverage = "Automatic overage billing at {{price}}/credit ensures uninterrupted service."
+
+[settings.planBilling.trial]
+daysRemaining = "{{days}} days remaining"
+daysRemainingFull = "Your trial ends in {{days}} days"
+endDate = "Expires: {{date}}"
+endsOn = "Trial ends"
+title = "Free Trial Active"
+
+[settings.planBilling.upgrade]
+cta = "Upgrade to Team"
+featureApi = "API access for automation"
+featureCredits = "{{teamCredits}} credits per month (vs {{freeCredits}} on Free)"
+featureMembers = "Unlimited team members"
+featureSupport = "Priority support"
+featureThroughput = "Faster processing throughput"
+opensInBrowser = "Opens in browser to complete upgrade"
+subtitle = "Upgrade to Team for:"
+title = "Upgrade Your Plan"
+
 [settings.policiesPrivacy]
 legal = "法務"
 privacy = "プライバシー"
@@ -5679,6 +5802,9 @@ connections = "接続"
 security = "セキュリティ"
 telegram = "Telegram"
 title = "セキュリティと認証"
+
+[settings.team]
+title = "Team"
 
 [settings.tooltips]
 enableLoginFirst = "先にログインモードを有効にしてください"
@@ -6016,6 +6142,11 @@ desc = "特定のページを抽出（1,3,5-10）"
 name = "ページ番号"
 tooltip = "カンマで区切ったページ番号、またはハイフンで範囲を入力"
 
+[split.methods.byPoster]
+desc = "Split large pages into printable sizes"
+name = "Printable Chunks"
+tooltip = "Divide oversized pages into smaller chunks suitable for printing on standard paper (A4, Letter, etc.)"
+
 [split.methods.bySections]
 desc = "ページをグリッド状のセクションに分割"
 name = "セクション"
@@ -6029,6 +6160,7 @@ tooltip = "最大ファイルサイズを指定（例: 10MB, 500KB）"
 [split.methods.prefix]
 splitAt = "分割位置:"
 splitBy = "分割基準:"
+splitInto = "Split into"
 
 [split.methodSelection.tooltip]
 bullet1 = "方法カードをクリックして選択"
@@ -6040,6 +6172,21 @@ title = "分割方法を選択"
 [split.methodSelection.tooltip.header]
 text = "PDF をどのように分割するか選択してください。各方法はユースケースや文書タイプに最適化されています。"
 title = "分割方法の選択"
+
+[split.poster]
+rightToLeft = "Split right-to-left"
+
+[split.poster.pageSize]
+description = "Size of output pages for printing"
+label = "Target Page Size"
+
+[split.poster.xFactor]
+description = "Number of columns to split each page into"
+label = "Horizontal Divisions"
+
+[split.poster.yFactor]
+description = "Number of rows to split each page into"
+label = "Vertical Divisions"
 
 [split.settings]
 selectMethodFirst = "先に分割方法を選択してください"
@@ -6091,6 +6238,14 @@ bullet2 = "範囲の分割点: 3-8（3ページ目の前と8ページ目の後�
 bullet3 = "混在: 2,5-10,15（2の後、5の前、10の後、15の後で分割）"
 text = "PDF を特定のページ番号で分割します。'n' はページ n の後で分割。'n-m' はページ n の前とページ m の後で分割します。"
 title = "ページ番号で分割"
+
+[split.tooltip.byPoster]
+bullet1 = "Target Page Size: Choose output paper size (A4, Letter, etc.)"
+bullet2 = "Horizontal/Vertical Divisions: Grid size for splitting"
+bullet3 = "Right-to-Left: Reverse column order for RTL layouts"
+bullet4 = "Print and assemble the pieces to create your poster"
+text = "Split large PDF pages into smaller printable chunks suitable for standard paper sizes. Perfect for creating poster prints from oversized pages."
+title = "Split for Poster Print"
 
 [split.tooltip.bySections]
 bullet1 = "水平: 作成する行数"
@@ -6232,6 +6387,82 @@ title = "API ドキュメント"
 
 [tableExtraxt]
 tags = "CSV,表抽出,抽出,変換"
+
+[team]
+cancelInviteError = "Failed to cancel invitation"
+confirmCancelInvite = "Are you sure you want to cancel this invitation?"
+confirmLeave = "Are you sure you want to leave this team?"
+confirmLeaveLeader = "As a team leader, leaving will remove you from the team. Are you sure?"
+confirmRemove = "Are you sure you want to remove this member?"
+editName = "Edit team name"
+inviteCancelled = "Invitation cancelled"
+inviteError = "Failed to send invitation"
+inviteSent = "Invitation sent successfully"
+leader = "Leader"
+leaveButton = "Leave Team"
+leaveError = "Failed to leave team"
+leaveSuccess = "Successfully left team"
+loading = "Loading team information..."
+memberCount = "{{count}} members"
+memberRemoved = "Member removed successfully"
+namePlaceholder = "Enter team name"
+personal = "Personal"
+removeError = "Failed to remove member"
+renameError = "Failed to rename team"
+renameSuccess = "Team renamed successfully"
+
+[team.features]
+badge = "Team Features"
+subtitle = "Collaborate with your team"
+title = "Team Collaboration"
+viewPlans = "View Plans"
+
+[team.features.billing]
+description = "Manage billing and subscriptions"
+title = "Billing Management"
+
+[team.features.credits]
+description = "Shared credit pool for all members"
+title = "Shared Credits"
+
+[team.features.dashboard]
+description = "View team activity and usage"
+title = "Team Dashboard"
+
+[team.features.invite]
+description = "Add members to your team"
+title = "Invite Members"
+
+[team.invitationBanner]
+acceptButton = "Accept"
+message = "has invited you to join"
+rejectButton = "Decline"
+
+[team.invite]
+cancelLabel = "Cancel"
+invalidEmail = "Invalid email address"
+placeholder = "Enter email address"
+sendButton = "Send Invitation"
+title = "Invite Team Member"
+
+[team.members]
+emailColumn = "Email"
+empty = "No team members yet"
+nameColumn = "Name"
+pending = "Pending"
+remove = "Remove"
+roleColumn = "Role"
+title = "Team Members"
+
+[team.upgrade]
+button = "Upgrade to Team"
+description = "Unlock team collaboration features"
+title = "Upgrade to Team Plan"
+
+[textAlign]
+center = "中央揃え"
+left = "左揃え"
+right = "右揃え"
 
 [theme]
 toggle = "テーマを切り替え"
@@ -6507,6 +6738,37 @@ invalid = "証明書が信頼ストアにありません - ソースを検証で
 fileManager = "ファイルマネージャー"
 pageEditor = "ページエディタ"
 viewer = "ビューア"
+
+[viewer]
+cannotPreviewFile = "ファイルをプレビューできません"
+dualPageView = "見開き表示"
+firstPage = "最初のページ"
+lastPage = "最後のページ"
+nextPage = "次のページ"
+onlyPdfSupported = "このビューアは PDF ファイルのみをサポートしています。このファイルは別の形式のようです。"
+previousPage = "前のページ"
+singlePageView = "単一ページ表示"
+unknownFile = "不明なファイル"
+zoomIn = "拡大"
+zoomOut = "縮小"
+
+[viewer.attachments]
+empty = "このドキュメントには添付ファイルがありません"
+loading = "添付ファイルを読み込み中..."
+noDocument = "添付ファイルを表示するには PDF を開いてください。"
+noMatch = "検索条件に一致する添付ファイルはありません"
+noSupport = "このビューアでは添付ファイルはサポートされていません。"
+searchPlaceholder = "添付ファイルを検索"
+title = "添付ファイル"
+
+[viewer.formBar]
+apply = "変更を適用"
+dismiss = "閉じる"
+download = "PDF をダウンロード"
+hasFieldsDesc = "この PDF には入力可能なフィールドがあります"
+title = "フォームフィールド"
+unsavedBadge = "未保存"
+unsavedDesc = "未保存の変更があります"
 
 [viewPdf]
 header = "PDFを表示"
