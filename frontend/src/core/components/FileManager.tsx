@@ -148,6 +148,7 @@ const FileManager: React.FC<FileManagerProps> = ({ selectedTool }) => {
             onNewFilesSelect={handleNewFileUpload}
             onClose={closeFilesModal}
             isFileSupported={isFileSupported}
+            supportedFormats={selectedTool?.supportedFormats}
             isOpen={isFilesModalOpen}
             onFileRemove={handleRemoveFileByIndex}
             modalHeight={modalHeight}

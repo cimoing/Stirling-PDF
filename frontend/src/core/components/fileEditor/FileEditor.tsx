@@ -15,6 +15,10 @@ import { alert } from '@app/components/toast';
 import { downloadFile } from '@app/services/downloadService';
 import { useFileEditorRightRailButtons } from '@app/components/fileEditor/fileEditorRightRailButtons';
 import { useToolWorkflow } from '@app/contexts/ToolWorkflowContext';
+import {
+  getFileDialogFiltersForSupportedFormats,
+  supportedFormatsToAcceptAttribute,
+} from '@app/utils/fileDialogUtils';
 
 
 interface FileEditorProps {
@@ -74,6 +78,15 @@ const FileEditor = ({
     const rawMax = selectedTool?.maxFiles;
     return (!toolMode || rawMax == null || rawMax < 0) ? Infinity : rawMax;
   }, [selectedTool?.maxFiles, toolMode]);
+
+  const addCardFileDialogFilters = useMemo(
+    () => getFileDialogFiltersForSupportedFormats(supportedExtensions),
+    [supportedExtensions]
+  );
+  const addCardAccept = useMemo(
+    () => supportedFormatsToAcceptAttribute(supportedExtensions),
+    [supportedExtensions]
+  );
 
   // Enable selection mode automatically in tool mode
   useEffect(() => {
@@ -409,6 +422,8 @@ const FileEditor = ({
               <AddFileCard
                 key="add-file-card"
                 onFileSelect={handleFileUpload}
+                accept={addCardAccept}
+                fileDialogFilters={addCardFileDialogFilters}
               />
             )}
 

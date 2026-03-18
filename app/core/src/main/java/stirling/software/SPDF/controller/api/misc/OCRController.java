@@ -34,6 +34,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import stirling.software.SPDF.config.EndpointConfiguration;
 import stirling.software.SPDF.model.api.misc.ProcessPdfWithOcrRequest;
+import stirling.software.SPDF.service.FormatConvertService;
 import stirling.software.common.annotations.AutoJobPostMapping;
 import stirling.software.common.annotations.api.MiscApi;
 import stirling.software.common.configuration.RuntimePathConfig;
@@ -58,6 +59,7 @@ public class OCRController {
     private final TempFileManager tempFileManager;
     private final EndpointConfiguration endpointConfiguration;
     private final RuntimePathConfig runtimePathConfig;
+    private final FormatConvertService formatConvertService;
 
     private boolean isOcrMyPdfEnabled() {
         return endpointConfiguration.isGroupEnabled("OCRmyPDF");
@@ -102,23 +104,27 @@ public class OCRController {
         String ocrRenderType = request.getOcrRenderType();
         Boolean removeImagesAfter = request.isRemoveImagesAfter();
 
-        if (selectedLanguages == null || selectedLanguages.isEmpty()) {
-            throw ExceptionUtils.createOcrLanguageRequiredException();
-        }
+        // 当使用远端 FormatConvert OCR 时，不再依赖本地 Tesseract 语言列表校验，
+        // 仅保留最基本的参数存在性检查；具体语言被远端服务消费。
+        if (formatConvertService == null || !formatConvertService.isEnabled()) {
+            if (selectedLanguages == null || selectedLanguages.isEmpty()) {
+                throw ExceptionUtils.createOcrLanguageRequiredException();
+            }
 
-        if (!"hocr".equals(ocrRenderType) && !"sandwich".equals(ocrRenderType)) {
-            throw ExceptionUtils.createOcrInvalidRenderTypeException();
-        }
+            if (!"hocr".equals(ocrRenderType) && !"sandwich".equals(ocrRenderType)) {
+                throw ExceptionUtils.createOcrInvalidRenderTypeException();
+            }
 
-        // Get available Tesseract languages
-        List<String> availableLanguages = getAvailableTesseractLanguages();
+            // Get available Tesseract languages
+            List<String> availableLanguages = getAvailableTesseractLanguages();
 
-        // Validate selected languages
-        selectedLanguages =
-                selectedLanguages.stream().filter(availableLanguages::contains).toList();
+            // Validate selected languages
+            selectedLanguages =
+                    selectedLanguages.stream().filter(availableLanguages::contains).toList();
 
-        if (selectedLanguages.isEmpty()) {
-            throw ExceptionUtils.createOcrInvalidLanguagesException();
+            if (selectedLanguages.isEmpty()) {
+                throw ExceptionUtils.createOcrInvalidLanguagesException();
+            }
         }
 
         // Use try-with-resources for proper temp file management
@@ -128,32 +134,24 @@ public class OCRController {
 
             inputFile.transferTo(tempInputFile.getFile());
 
-            // Use OCRmyPDF if available (no fallback - error if it fails)
-            if (isOcrMyPdfEnabled()) {
-                processWithOcrMyPdf(
-                        selectedLanguages,
-                        sidecar,
-                        deskew,
-                        clean,
-                        cleanFinal,
-                        ocrType,
-                        ocrRenderType,
-                        removeImagesAfter,
-                        tempInputFile.getPath(),
-                        tempOutputFile.getPath(),
-                        sidecarTextFile != null ? sidecarTextFile.getPath() : null);
-                log.info("OCRmyPDF processing completed successfully");
-            }
-            // Use Tesseract only if OCRmyPDF is not available
-            else if (isTesseractEnabled()) {
-                processWithTesseract(
-                        selectedLanguages,
-                        ocrType,
-                        tempInputFile.getPath(),
-                        tempOutputFile.getPath());
-                log.info("Tesseract processing completed successfully");
-            } else {
+            // OCR 完全由远端 FormatConvert 完成（PDF -> DOCX -> PDF）
+            if (formatConvertService == null || !formatConvertService.isEnabled()) {
                 throw ExceptionUtils.createOcrToolsUnavailableException();
+            }
+
+            try {
+                log.info("Running OCR via FormatConvert PDF->DOCX->PDF pipeline (remote)");
+                File ocrPdf =
+                        formatConvertService.ocrPdfViaFormatConvert(
+                                tempInputFile.getFile(), inputFile.getOriginalFilename());
+                Files.copy(
+                        ocrPdf.toPath(),
+                        tempOutputFile.getPath(),
+                        java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+                log.info("FormatConvert OCR pipeline completed successfully");
+            } catch (Exception ex) {
+                log.error("FormatConvert OCR pipeline failed", ex);
+                throw new IOException("Remote OCR (FormatConvert) failed", ex);
             }
 
             // Read the processed PDF file

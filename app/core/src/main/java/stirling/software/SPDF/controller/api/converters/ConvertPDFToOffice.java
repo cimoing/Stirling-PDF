@@ -1,7 +1,9 @@
 package stirling.software.SPDF.controller.api.converters;
 
+import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.springframework.http.MediaType;
@@ -12,10 +14,12 @@ import org.springframework.web.multipart.MultipartFile;
 import io.swagger.v3.oas.annotations.Operation;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import stirling.software.SPDF.model.api.converters.PdfToPresentationRequest;
 import stirling.software.SPDF.model.api.converters.PdfToTextOrRTFRequest;
 import stirling.software.SPDF.model.api.converters.PdfToWordRequest;
+import stirling.software.SPDF.service.FormatConvertService;
 import stirling.software.common.annotations.AutoJobPostMapping;
 import stirling.software.common.annotations.api.ConvertApi;
 import stirling.software.common.configuration.RuntimePathConfig;
@@ -28,11 +32,13 @@ import stirling.software.common.util.WebResponseUtils;
 
 @ConvertApi
 @RequiredArgsConstructor
+@Slf4j
 public class ConvertPDFToOffice {
 
     private final CustomPDFDocumentFactory pdfDocumentFactory;
     private final TempFileManager tempFileManager;
     private final RuntimePathConfig runtimePathConfig;
+    private final FormatConvertService formatConvertService;
 
     @AutoJobPostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, value = "/pdf/presentation")
     @Operation(
@@ -45,6 +51,26 @@ public class ConvertPDFToOffice {
             throws IOException, InterruptedException {
         MultipartFile inputFile = request.getFileInput();
         String outputFormat = request.getOutputFormat();
+
+        if (formatConvertService.isEnabled() && "pptx".equalsIgnoreCase(outputFormat)) {
+            File remoteResult = null;
+            try {
+                remoteResult = formatConvertService.convertPdfToOffice(inputFile, "pptx");
+                return WebResponseUtils.bytesToWebResponse(
+                        java.nio.file.Files.readAllBytes(remoteResult.toPath()),
+                        GeneralUtils.generateFilename(inputFile.getOriginalFilename(), ".pptx"),
+                        MediaType.parseMediaType(
+                                "application/vnd.openxmlformats-officedocument.presentationml.presentation"));
+            } catch (Exception ex) {
+                log.warn(
+                        "FormatConvert PDF to presentation failed, falling back to local flow", ex);
+            } finally {
+                if (remoteResult != null && remoteResult.getParentFile() != null) {
+                    FileUtils.deleteQuietly(remoteResult.getParentFile());
+                }
+            }
+        }
+
         PDFToFile pdfToFile = new PDFToFile(tempFileManager, runtimePathConfig);
         return pdfToFile.processPdfToOfficeFormat(inputFile, outputFormat, "impress_pdf_import");
     }
@@ -85,6 +111,25 @@ public class ConvertPDFToOffice {
             throws IOException, InterruptedException {
         MultipartFile inputFile = request.getFileInput();
         String outputFormat = request.getOutputFormat();
+
+        if (formatConvertService.isEnabled() && "docx".equalsIgnoreCase(outputFormat)) {
+            File remoteResult = null;
+            try {
+                remoteResult = formatConvertService.convertPdfToOffice(inputFile, "docx");
+                return WebResponseUtils.bytesToWebResponse(
+                        java.nio.file.Files.readAllBytes(remoteResult.toPath()),
+                        GeneralUtils.generateFilename(inputFile.getOriginalFilename(), ".docx"),
+                        MediaType.parseMediaType(
+                                "application/vnd.openxmlformats-officedocument.wordprocessingml.document"));
+            } catch (Exception ex) {
+                log.warn("FormatConvert PDF to word failed, falling back to local flow", ex);
+            } finally {
+                if (remoteResult != null && remoteResult.getParentFile() != null) {
+                    FileUtils.deleteQuietly(remoteResult.getParentFile());
+                }
+            }
+        }
+
         PDFToFile pdfToFile = new PDFToFile(tempFileManager, runtimePathConfig);
         return pdfToFile.processPdfToOfficeFormat(inputFile, outputFormat, "writer_pdf_import");
     }

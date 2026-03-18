@@ -68,6 +68,8 @@ public class ApplicationProperties {
 
     private Premium premium = new Premium();
 
+    private FormatConvert formatConvert = new FormatConvert();
+
     @JsonIgnore // Deprecated - completely hidden from JSON serialization
     private EnterpriseEdition enterpriseEdition = new EnterpriseEdition();
 
@@ -651,6 +653,24 @@ public class ApplicationProperties {
             }
             return new File(getBaseTmpDir(), "libreoffice").getPath();
         }
+    }
+
+    @Data
+    public static class FormatConvert {
+        /** Whether remote format conversion service is enabled. */
+        private boolean enabled = false;
+
+        /** Base URL of the remote format conversion service, e.g. https://format.example.com */
+        private String baseUrl = "";
+
+        /** Optional API key or token for the remote service. */
+        private String apiKey = "";
+
+        /** Max seconds to wait for a single remote conversion task to complete. */
+        private long timeoutSeconds = 300;
+
+        /** Poll interval in milliseconds for remote task status checks. */
+        private long pollIntervalMillis = 1000;
     }
 
     @Data

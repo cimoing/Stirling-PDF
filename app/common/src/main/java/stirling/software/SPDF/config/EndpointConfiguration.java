@@ -535,6 +535,13 @@ public class EndpointConfiguration {
         /* OCRmyPDF */
         addEndpointToGroup("OCRmyPDF", "ocr-pdf");
 
+        /* FormatConvert (remote conversion/OCR service) */
+        addEndpointToGroup("FormatConvert", "ocr-pdf");
+        addEndpointToGroup("FormatConvert", "file-to-pdf");
+        addEndpointToGroup("FormatConvert", "pdf-to-word");
+        addEndpointToGroup("FormatConvert", "pdf-to-presentation");
+        addEndpointToGroup("FormatConvert", "pdf-to-xlsx");
+
         // Multi-tool endpoints - endpoints that can be handled by multiple tools
         addEndpointAlternative("repair", "qpdf");
         addEndpointAlternative("repair", "Ghostscript");
@@ -545,10 +552,19 @@ public class EndpointConfiguration {
         addEndpointAlternative("crop", "Java");
         addEndpointAlternative("ocr-pdf", "tesseract");
         addEndpointAlternative("ocr-pdf", "OCRmyPDF");
+        addEndpointAlternative("ocr-pdf", "FormatConvert");
 
         // file-to-pdf has multiple implementations
         addEndpointAlternative("file-to-pdf", "LibreOffice");
         addEndpointAlternative("file-to-pdf", "Unoconvert");
+        addEndpointAlternative("file-to-pdf", "FormatConvert");
+
+        // Remote FormatConvert can also serve key PDF->Office exports
+        addEndpointAlternative("pdf-to-word", "LibreOffice");
+        addEndpointAlternative("pdf-to-word", "FormatConvert");
+        addEndpointAlternative("pdf-to-presentation", "LibreOffice");
+        addEndpointAlternative("pdf-to-presentation", "FormatConvert");
+        addEndpointAlternative("pdf-to-xlsx", "FormatConvert");
 
         // pdf-to-html and pdf-to-markdown can use either LibreOffice or Pdftohtml
         addEndpointAlternative("pdf-to-html", "LibreOffice");
@@ -600,6 +616,18 @@ public class EndpointConfiguration {
         if (!applicationProperties.getSystem().isEnableUrlToPDF()) {
             disableEndpoint("url-to-pdf");
         }
+
+        // Remote FormatConvert tool group enablement
+        // When configured, it must be considered available for endpoints like
+        // ocr-pdf/file-to-pdf/pdf-to-word/pdf-to-presentation/pdf-to-xlsx.
+        if (applicationProperties.getFormatConvert() != null
+                && applicationProperties.getFormatConvert().isEnabled()
+                && applicationProperties.getFormatConvert().getBaseUrl() != null
+                && !applicationProperties.getFormatConvert().getBaseUrl().isBlank()) {
+            enableGroup("FormatConvert");
+        } else {
+            disableGroup("FormatConvert", DisableReason.DEPENDENCY);
+        }
     }
 
     public Set<String> getEndpointsForGroup(String group) {
@@ -618,6 +646,7 @@ public class EndpointConfiguration {
                 || "Ghostscript".equals(group)
                 || "LibreOffice".equals(group)
                 || "tesseract".equals(group)
+                || "FormatConvert".equals(group)
                 || "CLI".equals(group)
                 || "Python".equals(group)
                 || "OpenCV".equals(group)

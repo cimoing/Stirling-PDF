@@ -6,6 +6,10 @@ import { downloadFiles } from '@app/utils/downloadUtils';
 import { FileId } from '@app/types/file';
 import { groupFilesByOriginal } from '@app/utils/fileHistoryUtils';
 import { openFilesFromDisk } from '@app/services/openFilesFromDisk';
+import {
+  getFileDialogFiltersForSupportedFormats,
+  supportedFormatsToAcceptAttribute,
+} from '@app/utils/fileDialogUtils';
 
 // Module-level storage for file path mappings (quickKey -> localFilePath)
 // Used to pass file paths from Tauri file dialog to FileContext
@@ -50,6 +54,8 @@ interface FileManagerContextValue {
   recentFiles: StirlingFileStub[];
   isFileSupported: (fileName: string) => boolean;
   modalHeight: string;
+  /** HTML file input accept + native dialog filters (tool-supported extensions) */
+  fileInputAccept?: string;
 }
 
 // Create the context
@@ -69,6 +75,8 @@ interface FileManagerProviderProps {
   refreshRecentFiles: () => Promise<void>;
   isLoading: boolean;
   activeFileIds: FileId[];
+  /** When set (e.g. Convert tool), local file picker includes Office and other formats */
+  supportedFormats?: string[];
 }
 
 export const FileManagerProvider: React.FC<FileManagerProviderProps> = ({
@@ -84,6 +92,7 @@ export const FileManagerProvider: React.FC<FileManagerProviderProps> = ({
   refreshRecentFiles,
   isLoading,
   activeFileIds,
+  supportedFormats,
 }) => {
   const [activeSource, setActiveSource] = useState<'recent' | 'local'>('recent');
   const [selectedFileIds, setSelectedFileIds] = useState<FileId[]>([]);
@@ -140,13 +149,19 @@ export const FileManagerProvider: React.FC<FileManagerProviderProps> = ({
     }
   }, []);
 
+  const fileInputAccept = useMemo(
+    () => supportedFormatsToAcceptAttribute(supportedFormats),
+    [supportedFormats]
+  );
+
   const handleLocalFileClick = useCallback(async () => {
     console.log('[FileManager] Opening file dialog...');
 
-    // Try native dialog first (desktop), falls back to empty array (web)
+    const filters = getFileDialogFiltersForSupportedFormats(supportedFormats);
     const files = await openFilesFromDisk({
       multiple: true,
-      onFallbackOpen: () => fileInputRef.current?.click()
+      filters,
+      onFallbackOpen: () => fileInputRef.current?.click(),
     });
 
     if (files.length > 0) {
@@ -156,7 +171,7 @@ export const FileManagerProvider: React.FC<FileManagerProviderProps> = ({
       await refreshRecentFiles();
       onClose();
     }
-  }, [onNewFilesSelect, refreshRecentFiles, onClose]);
+  }, [onNewFilesSelect, refreshRecentFiles, onClose, supportedFormats]);
 
   const handleFileSelect = useCallback((file: StirlingFileStub, currentIndex: number, shiftKey?: boolean) => {
     const fileId = file.id;
@@ -651,6 +666,7 @@ export const FileManagerProvider: React.FC<FileManagerProviderProps> = ({
     recentFiles,
     isFileSupported,
     modalHeight,
+    fileInputAccept,
   }), [
     activeSource,
     selectedFileIds,
@@ -683,6 +699,7 @@ export const FileManagerProvider: React.FC<FileManagerProviderProps> = ({
     recentFiles,
     isFileSupported,
     modalHeight,
+    fileInputAccept,
   ]);
 
   return (

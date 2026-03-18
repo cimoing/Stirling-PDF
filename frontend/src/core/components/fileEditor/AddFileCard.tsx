@@ -9,16 +9,20 @@ import styles from '@app/components/fileEditor/FileEditor.module.css';
 import { useFileActionTerminology } from '@app/hooks/useFileActionTerminology';
 import { useFileActionIcons } from '@app/hooks/useFileActionIcons';
 import { openFilesFromDisk } from '@app/services/openFilesFromDisk';
+import { getDocumentFileDialogFilter } from '@app/utils/fileDialogUtils';
 
 interface AddFileCardProps {
   onFileSelect: (files: File[]) => void;
   accept?: string;
+  /** Native dialog extension filters (desktop); falls back to default document set */
+  fileDialogFilters?: Array<{ name: string; extensions: string[] }>;
   multiple?: boolean;
 }
 
 const AddFileCard = ({
   onFileSelect,
   accept,
+  fileDialogFilters,
   multiple = true
 }: AddFileCardProps) => {
   const { t } = useTranslation();
@@ -38,6 +42,7 @@ const AddFileCard = ({
     e.stopPropagation();
     const files = await openFilesFromDisk({
       multiple,
+      filters: fileDialogFilters ?? getDocumentFileDialogFilter(),
       onFallbackOpen: () => fileInputRef.current?.click()
     });
     if (files.length > 0) {

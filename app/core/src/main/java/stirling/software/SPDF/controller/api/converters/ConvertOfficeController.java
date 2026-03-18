@@ -25,9 +25,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import stirling.software.SPDF.config.EndpointConfiguration;
+import stirling.software.SPDF.service.FormatConvertService;
 import stirling.software.common.annotations.AutoJobPostMapping;
 import stirling.software.common.annotations.api.ConvertApi;
 import stirling.software.common.configuration.RuntimePathConfig;
+import stirling.software.common.model.ApplicationProperties;
 import stirling.software.common.model.api.GeneralFile;
 import stirling.software.common.service.CustomPDFDocumentFactory;
 import stirling.software.common.util.CustomHtmlSanitizer;
@@ -47,6 +49,8 @@ public class ConvertOfficeController {
     private final RuntimePathConfig runtimePathConfig;
     private final CustomHtmlSanitizer customHtmlSanitizer;
     private final EndpointConfiguration endpointConfiguration;
+    private final FormatConvertService formatConvertService;
+    private final ApplicationProperties applicationProperties;
 
     private boolean isUnoconvertAvailable() {
         return endpointConfiguration.isGroupEnabled("Unoconvert")
@@ -192,7 +196,18 @@ public class ConvertOfficeController {
         // LibreOfficeListener.getInstance().start();
         File file = null;
         try {
-            file = convertToPdf(inputFile);
+            if (formatConvertService.isEnabled()) {
+                try {
+                    file = formatConvertService.convertToPdf(inputFile);
+                } catch (Exception ex) {
+                    log.warn(
+                            "FormatConvert service failed, falling back to LibreOffice conversion",
+                            ex);
+                    file = convertToPdf(inputFile);
+                }
+            } else {
+                file = convertToPdf(inputFile);
+            }
 
             try (PDDocument doc = pdfDocumentFactory.load(file)) {
                 return WebResponseUtils.pdfDocToWebResponse(

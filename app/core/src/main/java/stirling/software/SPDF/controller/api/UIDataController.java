@@ -182,7 +182,13 @@ public class UIDataController {
     @GetMapping("/ocr-pdf")
     @Operation(summary = "Get OCR PDF data")
     public ResponseEntity<OcrData> getOcrPdfData() {
-        List<String> languages = getAvailableTesseractLanguages();
+        // When using remote FormatConvert OCR pipeline, language selection is not required.
+        // Still return a minimal list to keep the frontend language picker functional.
+        List<String> languages =
+                applicationProperties.getFormatConvert() != null
+                                && applicationProperties.getFormatConvert().isEnabled()
+                        ? List.of("eng", "chi_sim", "chi_tra", "jpn", "kor", "fra", "deu", "spa")
+                        : getAvailableTesseractLanguages();
 
         OcrData data = new OcrData();
         data.setLanguages(languages);

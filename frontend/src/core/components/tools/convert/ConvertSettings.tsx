@@ -76,9 +76,12 @@ const ConvertSettings = ({
     const baseOptions = FROM_FORMAT_OPTIONS.map(option => {
       // Check if this source format has any available conversions
       const availableConversions = getAvailableToExtensions(option.value) || [];
-      const hasAvailableConversions = availableConversions.some(targetOption =>
-        isConversionAvailable(option.value, targetOption.value)
-      );
+      // PDF is always a valid "from" format for Convert (Word/Excel/PPT export, images, etc.)
+      const hasAvailableConversions =
+        option.value === 'pdf' ||
+        availableConversions.some((targetOption) =>
+          isConversionAvailable(option.value, targetOption.value)
+        );
 
       return {
         ...option,
@@ -113,18 +116,35 @@ const ConvertSettings = ({
   const enhancedToOptions = useMemo(() => {
     if (!parameters.fromExtension) return [];
 
+    const pdfOfficeTargets = new Set(['docx', 'xlsx', 'pptx']);
     const availableOptions = getAvailableToExtensions(parameters.fromExtension) || [];
-    const enhanced = availableOptions.map(option => {
-      const enabled = isConversionAvailable(parameters.fromExtension, option.value);
+    const enhanced = availableOptions.map((option) => {
+      const endpointOk = isConversionAvailable(
+        parameters.fromExtension,
+        option.value
+      );
+      // Always allow choosing PDF → Word / Excel / PowerPoint in the UI
+      const enabled =
+        parameters.fromExtension === 'pdf' && pdfOfficeTargets.has(option.value)
+          ? true
+          : endpointOk;
       return {
         ...option,
-        enabled
+        enabled,
       };
     });
 
-    // Filter out unavailable conversions if preference is enabled
+    // Filter out unavailable conversions if preference is enabled — except PDF→Office exports.
     if (preferences.hideUnavailableConversions) {
-      return enhanced.filter(opt => opt.enabled !== false);
+      return enhanced.filter((opt) => {
+        if (
+          parameters.fromExtension === 'pdf' &&
+          pdfOfficeTargets.has(opt.value)
+        ) {
+          return true;
+        }
+        return opt.enabled !== false;
+      });
     }
 
     return enhanced;

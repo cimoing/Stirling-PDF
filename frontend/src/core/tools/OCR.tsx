@@ -129,7 +129,12 @@ const OCR = ({ onPreviewFile, onComplete, onError }: BaseToolProps) => {
       loadingText: t("loading"),
       onClick: handleOCR,
       isVisible: hasValidSettings && !hasResults,
-      disabled: !ocrParams.validateParameters() || !hasFiles || !endpointEnabled,
+      // endpointEnabled starts as null while loading; only treat explicit false as disabled
+      disabled:
+        endpointLoading ||
+        !hasValidSettings ||
+        !hasFiles ||
+        endpointEnabled === false,
     },
     review: {
       isVisible: hasResults,

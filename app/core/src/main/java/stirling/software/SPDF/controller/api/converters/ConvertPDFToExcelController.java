@@ -1,9 +1,11 @@
 package stirling.software.SPDF.controller.api.converters;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.List;
 import java.util.Locale;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -23,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import stirling.software.SPDF.model.api.PDFWithPageNums;
+import stirling.software.SPDF.service.FormatConvertService;
 import stirling.software.common.annotations.AutoJobPostMapping;
 import stirling.software.common.annotations.api.ConvertApi;
 import stirling.software.common.service.CustomPDFDocumentFactory;
@@ -40,6 +43,7 @@ import technology.tabula.extractors.SpreadsheetExtractionAlgorithm;
 public class ConvertPDFToExcelController {
 
     private final CustomPDFDocumentFactory pdfDocumentFactory;
+    private final FormatConvertService formatConvertService;
 
     @AutoJobPostMapping(value = "/pdf/xlsx", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(
@@ -51,6 +55,34 @@ public class ConvertPDFToExcelController {
             throws Exception {
         String baseName =
                 GeneralUtils.removeExtension(request.getFileInput().getOriginalFilename());
+
+        if (formatConvertService.isEnabled()
+                && (request.getPageNumbers() == null
+                        || request.getPageNumbers().isBlank()
+                        || "all".equalsIgnoreCase(request.getPageNumbers()))) {
+            File remoteResult = null;
+            try {
+                remoteResult =
+                        formatConvertService.convertPdfToOffice(request.getFileInput(), "xlsx");
+                HttpHeaders headers = new HttpHeaders();
+                headers.setContentDisposition(
+                        ContentDisposition.builder("attachment")
+                                .filename(baseName + ".xlsx")
+                                .build());
+                headers.setContentType(
+                        MediaType.parseMediaType(
+                                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"));
+                return ResponseEntity.ok()
+                        .headers(headers)
+                        .body(java.nio.file.Files.readAllBytes(remoteResult.toPath()));
+            } catch (Exception ex) {
+                log.warn("FormatConvert PDF to Excel failed, falling back to local extraction", ex);
+            } finally {
+                if (remoteResult != null && remoteResult.getParentFile() != null) {
+                    FileUtils.deleteQuietly(remoteResult.getParentFile());
+                }
+            }
+        }
 
         try (PDDocument document = pdfDocumentFactory.load(request);
                 XSSFWorkbook workbook = new XSSFWorkbook();

@@ -134,6 +134,7 @@ export const convertProcessor = async (
   selectedFiles: File[]
 ): Promise<CustomProcessorResult> => {
   const processedFiles: File[] = [];
+  let lastError: unknown = null;
 
   // Map PDF/X to use PDF/A endpoint
   const actualToExtension = parameters.toExtension === 'pdfx' ? 'pdfa' : parameters.toExtension;
@@ -161,6 +162,7 @@ export const convertProcessor = async (
 
         processedFiles.push(convertedFile);
       } catch (error) {
+        lastError = error;
         console.warn(`Failed to convert file ${file.name}:`, error);
       }
     }
@@ -175,6 +177,13 @@ export const convertProcessor = async (
 
     const convertedFile = createFileFromResponse(response.data, response.headers, baseFilename, actualToExtension === 'pdfa' ? 'pdfx' : parameters.toExtension);
     processedFiles.push(convertedFile);
+  }
+
+  if (processedFiles.length === 0) {
+    if (lastError instanceof Error) {
+      throw lastError;
+    }
+    throw new Error('Conversion completed without any output files');
   }
 
   // When batch processing multiple files into one output (e.g., 3 images → 1 PDF),
