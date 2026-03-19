@@ -301,9 +301,7 @@ pdfEditor:
     enabled: false # IMPORTANT: Disable to preserve ToUnicode CMaps for correct font rendering. Ghostscript strips Unicode mappings from CID fonts.
   cff-converter:
     enabled: true # Wrap CFF/Type1CFF fonts as OpenType-CFF for browser compatibility
-    method: python # Converter method: 'python' (fontTools, recommended - wraps as OTF), 'fontforge' (legacy - converts to TTF, may hang on CID fonts)
-    python-command: /opt/venv/bin/python3 # Python interpreter path
-    python-script: /scripts/convert_cff_to_ttf.py # Path to font wrapping script
+    method: fontforge # Converter method: 'fontforge' (no Python runtime)
     fontforge-command: fontforge # Override if FontForge is installed under a different name/path
   type3:
     library:

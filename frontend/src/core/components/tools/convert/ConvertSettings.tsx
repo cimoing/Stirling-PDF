@@ -8,7 +8,6 @@ import { getConversionEndpoints } from "@app/data/toolsTaxonomy";
 import { useFileSelection } from "@app/contexts/FileContext";
 import { useFileState } from "@app/contexts/FileContext";
 import { detectFileExtension } from "@app/utils/fileUtils";
-import { usePreferences } from "@app/contexts/PreferencesContext";
 import GroupedFormatDropdown from "@app/components/tools/convert/GroupedFormatDropdown";
 import ConvertToImageSettings from "@app/components/tools/convert/ConvertToImageSettings";
 import ConvertFromImageSettings from "@app/components/tools/convert/ConvertFromImageSettings";
@@ -16,8 +15,6 @@ import ConvertFromWebSettings from "@app/components/tools/convert/ConvertFromWeb
 import ConvertFromEmailSettings from "@app/components/tools/convert/ConvertFromEmailSettings";
 import ConvertFromCbzSettings from "@app/components/tools/convert/ConvertFromCbzSettings";
 import ConvertToCbzSettings from "@app/components/tools/convert/ConvertToCbzSettings";
-import ConvertToPdfaSettings from "@app/components/tools/convert/ConvertToPdfaSettings";
-import ConvertToPdfxSettings from "@app/components/tools/convert/ConvertToPdfxSettings";
 import ConvertFromCbrSettings from "@app/components/tools/convert/ConvertFromCbrSettings";
 import ConvertToCbrSettings from "@app/components/tools/convert/ConvertToCbrSettings";
 import ConvertFromEbookSettings from "@app/components/tools/convert/ConvertFromEbookSettings";
@@ -54,7 +51,6 @@ const ConvertSettings = ({
   const { setSelectedFiles } = useFileSelection();
   const { state, selectors } = useFileState();
   const activeFiles = state.files.ids;
-  const { preferences } = usePreferences();
 
   const allEndpoints = useMemo(() => {
     const endpoints = getConversionEndpoints(EXTENSION_TO_ENDPOINT);
@@ -71,12 +67,10 @@ const ConvertSettings = ({
     return isAvailable;
   };
 
-  // Enhanced FROM options with endpoint availability
+  // Enhanced FROM options: only show formats that have at least one enabled conversion
   const enhancedFromOptions = useMemo(() => {
     const baseOptions = FROM_FORMAT_OPTIONS.map(option => {
-      // Check if this source format has any available conversions
       const availableConversions = getAvailableToExtensions(option.value) || [];
-      // PDF is always a valid "from" format for Convert (Word/Excel/PPT export, images, etc.)
       const hasAvailableConversions =
         option.value === 'pdf' ||
         availableConversions.some((targetOption) =>
@@ -89,11 +83,8 @@ const ConvertSettings = ({
       };
     });
 
-    // Filter out unavailable source formats if preference is enabled
-    let filteredOptions = baseOptions;
-    if (preferences.hideUnavailableConversions) {
-      filteredOptions = baseOptions.filter(opt => opt.enabled !== false);
-    }
+    // Always filter out unsupported source formats (no backend endpoint)
+    const filteredOptions = baseOptions.filter(opt => opt.enabled !== false);
 
     // Add dynamic format option if current selection is a file-<extension> format
     if (parameters.fromExtension && parameters.fromExtension.startsWith('file-')) {
@@ -105,50 +96,31 @@ const ConvertSettings = ({
         enabled: true
       };
 
-      // Add the dynamic option at the beginning
       return [dynamicOption, ...filteredOptions];
     }
 
     return filteredOptions;
-  }, [parameters.fromExtension, endpointStatus, preferences.hideUnavailableConversions]);
+  }, [parameters.fromExtension, endpointStatus]);
 
-  // Enhanced TO options with endpoint availability
+  // Enhanced TO options: only show target formats that have an enabled endpoint
   const enhancedToOptions = useMemo(() => {
     if (!parameters.fromExtension) return [];
 
-    const pdfOfficeTargets = new Set(['docx', 'xlsx', 'pptx']);
     const availableOptions = getAvailableToExtensions(parameters.fromExtension) || [];
     const enhanced = availableOptions.map((option) => {
-      const endpointOk = isConversionAvailable(
+      const enabled = isConversionAvailable(
         parameters.fromExtension,
         option.value
       );
-      // Always allow choosing PDF → Word / Excel / PowerPoint in the UI
-      const enabled =
-        parameters.fromExtension === 'pdf' && pdfOfficeTargets.has(option.value)
-          ? true
-          : endpointOk;
       return {
         ...option,
         enabled,
       };
     });
 
-    // Filter out unavailable conversions if preference is enabled — except PDF→Office exports.
-    if (preferences.hideUnavailableConversions) {
-      return enhanced.filter((opt) => {
-        if (
-          parameters.fromExtension === 'pdf' &&
-          pdfOfficeTargets.has(opt.value)
-        ) {
-          return true;
-        }
-        return opt.enabled !== false;
-      });
-    }
-
-    return enhanced;
-  }, [parameters.fromExtension, endpointStatus, preferences.hideUnavailableConversions]);
+    // Always filter out unsupported target formats (no backend endpoint)
+    return enhanced.filter((opt) => opt.enabled !== false);
+  }, [parameters.fromExtension, endpointStatus]);
 
   const resetParametersToDefaults = () => {
     onParameterChange('imageOptions', {
@@ -417,32 +389,6 @@ const ConvertSettings = ({
           <ConvertToCbzSettings
             parameters={parameters}
             onParameterChange={onParameterChange}
-            disabled={disabled}
-          />
-        </>
-      )}
-
-      {/* PDF to PDF/A options */}
-      {parameters.fromExtension === 'pdf' && parameters.toExtension === 'pdfa' && (
-        <>
-          <Divider />
-          <ConvertToPdfaSettings
-            parameters={parameters}
-            onParameterChange={onParameterChange}
-            selectedFiles={selectedFiles}
-            disabled={disabled}
-          />
-        </>
-      )}
-
-      {/* PDF to PDF/X options */}
-      {parameters.fromExtension === 'pdf' && parameters.toExtension === 'pdfx' && (
-        <>
-          <Divider />
-          <ConvertToPdfxSettings
-            parameters={parameters}
-            onParameterChange={onParameterChange}
-            selectedFiles={selectedFiles}
             disabled={disabled}
           />
         </>

@@ -74,73 +74,27 @@ export const ENDPOINT_NAMES = {
 
 // Grouped file extensions for dropdowns
 export const FROM_FORMAT_OPTIONS = [
-  { value: 'any', label: 'Any', group: 'Multiple Files' },
-  { value: 'image', label: 'Images', group: 'Multiple Files' },
   { value: 'pdf', label: 'PDF', group: 'Document' },
-  { value: 'cbz', label: 'CBZ', group: 'Archive' },
-  { value: 'cbr', label: 'CBR', group: 'Archive' },
   { value: 'docx', label: 'DOCX', group: 'Document' },
   { value: 'doc', label: 'DOC', group: 'Document' },
-  { value: 'odt', label: 'ODT', group: 'Document' },
   { value: 'xlsx', label: 'XLSX', group: 'Spreadsheet' },
   { value: 'xls', label: 'XLS', group: 'Spreadsheet' },
-  { value: 'ods', label: 'ODS', group: 'Spreadsheet' },
   { value: 'pptx', label: 'PPTX', group: 'Presentation' },
   { value: 'ppt', label: 'PPT', group: 'Presentation' },
-  { value: 'odp', label: 'ODP', group: 'Presentation' },
-  { value: 'jpg', label: 'JPG', group: 'Image' },
-  { value: 'jpeg', label: 'JPEG', group: 'Image' },
-  { value: 'png', label: 'PNG', group: 'Image' },
-  { value: 'gif', label: 'GIF', group: 'Image' },
-  { value: 'bmp', label: 'BMP', group: 'Image' },
-  { value: 'tiff', label: 'TIFF', group: 'Image' },
-  { value: 'webp', label: 'WEBP', group: 'Image' },
-  { value: 'svg', label: 'SVG', group: 'Image' },
-  { value: 'html', label: 'HTML', group: 'Web' },
-  { value: 'zip', label: 'ZIP', group: 'Web' },
-  { value: 'md', label: 'MD', group: 'Text' },
-  { value: 'txt', label: 'TXT', group: 'Text' },
-  { value: 'rtf', label: 'RTF', group: 'Text' },
-  { value: 'eml', label: 'EML', group: 'Email' },
-  { value: 'msg', label: 'MSG (Outlook)', group: 'Email' },
-  { value: 'epub', label: 'EPUB', group: 'eBook' },
-  { value: 'mobi', label: 'MOBI', group: 'eBook' },
-  { value: 'azw3', label: 'AZW3', group: 'eBook' },
-  { value: 'fb2', label: 'FB2', group: 'eBook' },
 ];
 
 export const TO_FORMAT_OPTIONS = [
   { value: 'pdf', label: 'PDF', group: 'Document' },
-  { value: 'pdfa', label: 'PDF/A', group: 'Document' },
-  { value: 'pdfx', label: 'PDF/X', group: 'Document' },
   { value: 'docx', label: 'DOCX', group: 'Document' },
-  { value: 'odt', label: 'ODT', group: 'Document' },
-  { value: 'cbz', label: 'CBZ', group: 'Archive' },
-  { value: 'cbr', label: 'CBR', group: 'Archive' },
-  { value: 'csv', label: 'CSV', group: 'Spreadsheet' },
   { value: 'xlsx', label: 'XLSX', group: 'Spreadsheet' },
   { value: 'pptx', label: 'PPTX', group: 'Presentation' },
-  { value: 'odp', label: 'ODP', group: 'Presentation' },
-  { value: 'txt', label: 'TXT', group: 'Text' },
-  { value: 'rtf', label: 'RTF', group: 'Text' },
-  { value: 'md', label: 'MD', group: 'Text' },
-  { value: 'png', label: 'PNG', group: 'Image' },
-  { value: 'jpg', label: 'JPG', group: 'Image' },
-  { value: 'gif', label: 'GIF', group: 'Image' },
-  { value: 'tiff', label: 'TIFF', group: 'Image' },
-  { value: 'bmp', label: 'BMP', group: 'Image' },
-  { value: 'webp', label: 'WEBP', group: 'Image' },
-  { value: 'html', label: 'HTML', group: 'Web' },
-  { value: 'xml', label: 'XML', group: 'Web' },
-  { value: 'epub', label: 'EPUB', group: 'eBook' },
-  { value: 'azw3', label: 'AZW3', group: 'eBook' },
 ];
 
 // Conversion matrix - what each source format can convert to
 export const CONVERSION_MATRIX: Record<string, string[]> = {
   'any': ['pdf'], // Mixed files always convert to PDF
   'image': ['pdf'], // Multiple images always convert to PDF
-  'pdf': ['png', 'jpg', 'gif', 'tiff', 'bmp', 'webp', 'docx', 'odt', 'pptx', 'odp', 'csv', 'xlsx', 'txt', 'rtf', 'md', 'html', 'xml', 'pdfa', 'pdfx', 'cbz', 'cbr', 'epub', 'azw3'],
+  'pdf': ['png', 'jpg', 'gif', 'tiff', 'bmp', 'webp', 'docx', 'odt', 'pptx', 'odp', 'csv', 'xlsx', 'txt', 'rtf', 'md', 'html', 'xml', 'cbz', 'cbr', 'epub', 'azw3'],
   'cbz': ['pdf'],
   'docx': ['pdf'], 'doc': ['pdf'], 'odt': ['pdf'],
   'xlsx': ['pdf'], 'xls': ['pdf'], 'ods': ['pdf'],
@@ -168,8 +122,6 @@ export const EXTENSION_TO_ENDPOINT: Record<string, Record<string, string>> = {
     'xlsx': 'pdf-to-xlsx',
     'txt': 'pdf-to-text', 'rtf': 'pdf-to-text', 'md': 'pdf-to-markdown',
     'html': 'pdf-to-html', 'xml': 'pdf-to-xml',
-    'pdfa': 'pdf-to-pdfa',
-    'pdfx': 'pdf-to-pdfa',  // PDF/X uses the same endpoint as PDF/A
     'cbr': 'pdf-to-cbr',
     'cbz': 'pdf-to-cbz',
     'epub': 'pdf-to-epub', 'azw3': 'pdf-to-epub'

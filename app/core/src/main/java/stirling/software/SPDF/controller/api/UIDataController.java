@@ -182,32 +182,14 @@ public class UIDataController {
     @GetMapping("/ocr-pdf")
     @Operation(summary = "Get OCR PDF data")
     public ResponseEntity<OcrData> getOcrPdfData() {
-        // When using remote FormatConvert OCR pipeline, language selection is not required.
-        // Still return a minimal list to keep the frontend language picker functional.
+        // Local Tesseract support removed; return a minimal language list for UI compatibility.
         List<String> languages =
-                applicationProperties.getFormatConvert() != null
-                                && applicationProperties.getFormatConvert().isEnabled()
-                        ? List.of("eng", "chi_sim", "chi_tra", "jpn", "kor", "fra", "deu", "spa")
-                        : getAvailableTesseractLanguages();
+                List.of("eng", "chi_sim", "chi_tra", "jpn", "kor", "fra", "deu", "spa");
 
         OcrData data = new OcrData();
         data.setLanguages(languages);
 
         return ResponseEntity.ok(data);
-    }
-
-    private List<String> getAvailableTesseractLanguages() {
-        String tessdataDir = runtimePathConfig.getTessDataPath();
-        java.io.File[] files = new java.io.File(tessdataDir).listFiles();
-        if (files == null) {
-            return Collections.emptyList();
-        }
-        return Arrays.stream(files)
-                .filter(file -> file.getName().endsWith(".traineddata"))
-                .map(file -> file.getName().replace(".traineddata", ""))
-                .filter(lang -> !"osd".equalsIgnoreCase(lang))
-                .sorted()
-                .toList();
     }
 
     private List<FontResource> getFontNames() {

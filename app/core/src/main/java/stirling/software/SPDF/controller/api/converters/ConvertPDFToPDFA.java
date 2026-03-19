@@ -572,7 +572,7 @@ public class ConvertPDFToPDFA {
     @Operation(
             summary = "Convert a PDF to a PDF/A or PDF/X",
             description =
-                    "This endpoint converts a PDF file to a PDF/A or PDF/X file using Ghostscript (preferred) or PDFBox/LibreOffice (fallback). PDF/A is a format designed for long-term archiving, while PDF/X is optimized for print production. Input:PDF Output:PDF Type:SISO")
+                    "This endpoint converts a PDF file to a PDF/A or PDF/X file using Ghostscript (preferred) or PDFBox (fallback). PDF/A is a format designed for long-term archiving, while PDF/X is optimized for print production. Input:PDF Output:PDF Type:SISO")
     public ResponseEntity<byte[]> pdfToPdfA(@ModelAttribute PdfToPdfARequest request)
             throws Exception {
         MultipartFile inputFile = request.getFileInput();
@@ -1590,52 +1590,6 @@ public class ConvertPDFToPDFA {
         }
     }
 
-    private Path runLibreOfficeConversion(Path tempInputFile, int pdfaPart) throws Exception {
-        // Create temp output directory
-        Path tempOutputDir = Files.createTempDirectory("output_");
-
-        // Determine PDF/A filter based on requested format
-        String pdfFilter =
-                pdfaPart == 2
-                        ? "pdf:writer_pdf_Export:{\"SelectPdfVersion\":{\"type\":\"long\",\"value\":\"2\"}}"
-                        : "pdf:writer_pdf_Export:{\"SelectPdfVersion\":{\"type\":\"long\",\"value\":\"1\"}}";
-
-        Path libreOfficeProfile = Files.createTempDirectory("libreoffice_profile_");
-        try {
-            // Prepare LibreOffice command
-            List<String> command =
-                    new ArrayList<>(
-                            Arrays.asList(
-                                    runtimePathConfig.getSOfficePath(),
-                                    "-env:UserInstallation=" + libreOfficeProfile.toUri(),
-                                    "--headless",
-                                    "--nologo",
-                                    "--convert-to",
-                                    pdfFilter,
-                                    "--outdir",
-                                    tempOutputDir.toString(),
-                                    tempInputFile.toString()));
-
-            ProcessExecutorResult returnCode =
-                    ProcessExecutor.getInstance(ProcessExecutor.Processes.LIBRE_OFFICE)
-                            .runCommandWithOutputHandling(command);
-
-            if (returnCode.getRc() != 0) {
-                log.error("PDF/A conversion failed with return code: {}", returnCode.getRc());
-                throw ExceptionUtils.createPdfaConversionFailedException();
-            }
-        } finally {
-            FileUtils.deleteQuietly(libreOfficeProfile.toFile());
-        }
-
-        // Get the output file
-        File[] outputFiles = tempOutputDir.toFile().listFiles();
-        if (outputFiles == null || outputFiles.length != 1) {
-            throw ExceptionUtils.createPdfaConversionFailedException();
-        }
-        return outputFiles[0].toPath();
-    }
-
     private Path normalizePdfWithQpdf(Path inputPdf) {
         try {
             ProcessExecutorResult checkResult =
@@ -1716,7 +1670,7 @@ public class ConvertPDFToPDFA {
     }
 
     private byte[] convertWithPdfBoxMethod(Path inputPath, PdfaProfile profile) throws Exception {
-        log.info("Starting PDFBox/LibreOffice conversion for PDF/A-{}", profile.getPart());
+        log.info("Starting PDFBox conversion for PDF/A-{}", profile.getPart());
         Path tempInputFile = null;
         byte[] fileBytes;
         Path loPdfPath = null;
@@ -1743,9 +1697,6 @@ public class ConvertPDFToPDFA {
             try (PDDocument doc = Loader.loadPDF(preProcessedFile)) {
                 missingFonts = findUnembeddedFontNames(doc);
                 needImgs = (pdfaPart == 1) && hasTransparentImages(doc);
-                if (!missingFonts.isEmpty() || needImgs) {
-                    loPdfPath = runLibreOfficeConversion(preProcessedFile.toPath(), pdfaPart);
-                }
             }
             fileBytes =
                     convertToPdfA(
@@ -1833,19 +1784,17 @@ public class ConvertPDFToPDFA {
                     return WebResponseUtils.bytesToWebResponse(
                             converted, outputFilename, MediaType.APPLICATION_PDF);
                 } catch (IOException | InterruptedException e) {
-                    log.warn(
-                            "Ghostscript conversion failed, falling back to PDFBox/LibreOffice method",
-                            e);
+                    log.warn("Ghostscript conversion failed, falling back to PDFBox method", e);
                 }
             } else {
-                log.info("Ghostscript not available, using PDFBox/LibreOffice fallback method");
+                log.info("Ghostscript not available, using PDFBox fallback method");
             }
 
             converted = convertWithPdfBoxMethod(inputPath, profile);
             String outputFilename = baseFileName + profile.outputSuffix();
 
             // Validate with PDFBox preflight and warn if issues found
-            validateAndWarnPdfA(converted, profile, "PDFBox/LibreOffice");
+            validateAndWarnPdfA(converted, profile, "PDFBox");
 
             if (strict) {
                 verifyStrictCompliance(converted);
@@ -2379,12 +2328,10 @@ public class ConvertPDFToPDFA {
                     validateAndWarnPdfA(converted, profile, "Ghostscript");
                     return converted;
                 } catch (IOException | InterruptedException e) {
-                    log.warn(
-                            "Ghostscript conversion failed, falling back to PDFBox/LibreOffice method",
-                            e);
+                    log.warn("Ghostscript conversion failed, falling back to PDFBox method", e);
                 }
             } else {
-                log.info("Ghostscript not available, using PDFBox/LibreOffice fallback method");
+                log.info("Ghostscript not available, using PDFBox fallback method");
             }
 
             byte[] converted;
@@ -2393,7 +2340,7 @@ public class ConvertPDFToPDFA {
             } catch (Exception e) {
                 throw new IOException("PDF/A conversion failed", e);
             }
-            validateAndWarnPdfA(converted, profile, "PDFBox/LibreOffice");
+            validateAndWarnPdfA(converted, profile, "PDFBox");
             return converted;
 
         } finally {

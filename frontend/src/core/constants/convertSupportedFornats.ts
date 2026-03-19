@@ -3,7 +3,7 @@ export const CONVERT_SUPPORTED_FORMATS = [
   // Microsoft Office
   'doc', 'docx', 'dot', 'dotx', 'csv', 'xls', 'xlsx', 'xlt', 'xltx', 'slk', 'dif', 'ppt', 'pptx',
   // OpenDocument
-  'odt', 'ott', 'ods', 'ots', 'odp', 'otp', 'odg', 'otg',
+  'ott', 'ots', 'otp', 'odg', 'otg',
   // Text formats
   'txt', 'text', 'xml', 'rtf', 'html', 'lwp', 'md', 'json',
   // Images

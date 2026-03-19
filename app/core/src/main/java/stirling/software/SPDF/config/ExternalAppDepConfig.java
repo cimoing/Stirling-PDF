@@ -67,12 +67,8 @@ public class ExternalAppDepConfig {
         Map<String, List<String>> tmp = new HashMap<>();
         tmp.put("gs", List.of("Ghostscript"));
         tmp.put(ocrMyPdfPath, List.of("OCRmyPDF"));
-        tmp.put(sOfficePath, List.of("LibreOffice"));
-        tmp.put(weasyprintPath, List.of("Weasyprint"));
         tmp.put("pdftohtml", List.of("Pdftohtml"));
-        tmp.put(unoconvPath, List.of("Unoconvert"));
         tmp.put("qpdf", List.of("qpdf"));
-        tmp.put("tesseract", List.of("tesseract"));
         tmp.put("rar", List.of("rar")); // Required for real CBR output
         tmp.put(calibrePath, List.of("Calibre"));
         tmp.put("ffmpeg", List.of("FFmpeg"));
@@ -98,9 +94,6 @@ public class ExternalAppDepConfig {
                                             })
                             .collect(Collectors.toList());
             invokeAllWithTimeout(tasks, DEFAULT_TIMEOUT.plusSeconds(3));
-
-            // Python / OpenCV special handling
-            checkPythonAndOpenCV();
 
             dependenciesChecked = true;
         } finally {
@@ -216,47 +209,6 @@ public class ExternalAppDepConfig {
         if ("pdf".equalsIgnoreCase(word)) return "PDF";
         return word.substring(0, 1).toUpperCase(Locale.ROOT)
                 + word.substring(1).toLowerCase(Locale.ROOT);
-    }
-
-    private void checkPythonAndOpenCV() {
-        String python = findFirstAvailable(List.of("python3", "python")).orElse(null);
-        if (python == null) {
-            disablePythonAndOpenCV("Python interpreter not found on PATH");
-            return;
-        }
-
-        // Check OpenCV import
-        int ec = runAndWait(List.of(python, "-c", "import cv2"), DEFAULT_TIMEOUT).exitCode();
-        if (ec != 0) {
-            List<String> openCVFeatures = getAffectedFeatures("OpenCV");
-            endpointConfiguration.disableGroup(
-                    "OpenCV", EndpointConfiguration.DisableReason.DEPENDENCY);
-            log.warn(
-                    "OpenCV not available in Python - Disabling OpenCV features: {}",
-                    String.join(", ", openCVFeatures));
-        }
-    }
-
-    private void disablePythonAndOpenCV(String reason) {
-        List<String> pythonFeatures = getAffectedFeatures("Python");
-        List<String> openCVFeatures = getAffectedFeatures("OpenCV");
-        endpointConfiguration.disableGroup(
-                "Python", EndpointConfiguration.DisableReason.DEPENDENCY);
-        endpointConfiguration.disableGroup(
-                "OpenCV", EndpointConfiguration.DisableReason.DEPENDENCY);
-        log.warn(
-                "Missing dependency: Python (reason: {}) - Disabling Python features: {} and OpenCV"
-                        + " features: {}",
-                reason,
-                String.join(", ", pythonFeatures),
-                String.join(", ", openCVFeatures));
-    }
-
-    private Optional<String> findFirstAvailable(List<String> commands) {
-        for (String c : commands) {
-            if (isCommandAvailable(c)) return Optional.of(c);
-        }
-        return Optional.empty();
     }
 
     private boolean isCommandAvailable(String command) {

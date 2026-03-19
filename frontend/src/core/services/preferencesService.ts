@@ -31,7 +31,7 @@ export const DEFAULT_PREFERENCES: UserPreferences = {
   hasSeenIntroOnboarding: false,
   hasSeenCookieBanner: false,
   hideUnavailableTools: false,
-  hideUnavailableConversions: false,
+  hideUnavailableConversions: true, // default: only show conversions supported by current backend
   logoVariant: null,
 };
 

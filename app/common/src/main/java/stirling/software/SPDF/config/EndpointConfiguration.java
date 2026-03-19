@@ -425,27 +425,6 @@ public class EndpointConfiguration {
         addEndpointToGroup("CLI", "url-to-pdf");
         addEndpointToGroup("CLI", "pdf-to-rtf");
 
-        // python
-        addEndpointToGroup("Python", "extract-image-scans");
-        addEndpointToGroup("Python", "html-to-pdf");
-        addEndpointToGroup("Python", "url-to-pdf");
-        addEndpointToGroup("Python", "file-to-pdf");
-
-        // openCV
-        addEndpointToGroup("OpenCV", "extract-image-scans");
-
-        // LibreOffice
-        addEndpointToGroup("LibreOffice", "file-to-pdf");
-        addEndpointToGroup("LibreOffice", "pdf-to-word");
-        addEndpointToGroup("LibreOffice", "pdf-to-presentation");
-        addEndpointToGroup("LibreOffice", "pdf-to-rtf");
-        addEndpointToGroup("LibreOffice", "pdf-to-html");
-        addEndpointToGroup("LibreOffice", "pdf-to-xml");
-        addEndpointToGroup("LibreOffice", "pdf-to-pdfa");
-
-        // Unoconvert
-        addEndpointToGroup("Unoconvert", "file-to-pdf");
-
         // Java
         addEndpointToGroup("Java", "merge-pdfs");
         addEndpointToGroup("Java", "remove-pages");
@@ -529,12 +508,6 @@ public class EndpointConfiguration {
         /* ImageMagick */
         addEndpointToGroup("ImageMagick", "compress-pdf");
 
-        /* tesseract */
-        addEndpointToGroup("tesseract", "ocr-pdf");
-
-        /* OCRmyPDF */
-        addEndpointToGroup("OCRmyPDF", "ocr-pdf");
-
         /* FormatConvert (remote conversion/OCR service) */
         addEndpointToGroup("FormatConvert", "ocr-pdf");
         addEndpointToGroup("FormatConvert", "file-to-pdf");
@@ -550,36 +523,22 @@ public class EndpointConfiguration {
         addEndpointAlternative("compress-pdf", "Java");
         addEndpointAlternative("crop", "Ghostscript");
         addEndpointAlternative("crop", "Java");
-        addEndpointAlternative("ocr-pdf", "tesseract");
-        addEndpointAlternative("ocr-pdf", "OCRmyPDF");
         addEndpointAlternative("ocr-pdf", "FormatConvert");
 
         // file-to-pdf has multiple implementations
-        addEndpointAlternative("file-to-pdf", "LibreOffice");
-        addEndpointAlternative("file-to-pdf", "Unoconvert");
         addEndpointAlternative("file-to-pdf", "FormatConvert");
 
         // Remote FormatConvert can also serve key PDF->Office exports
-        addEndpointAlternative("pdf-to-word", "LibreOffice");
         addEndpointAlternative("pdf-to-word", "FormatConvert");
-        addEndpointAlternative("pdf-to-presentation", "LibreOffice");
         addEndpointAlternative("pdf-to-presentation", "FormatConvert");
         addEndpointAlternative("pdf-to-xlsx", "FormatConvert");
 
         // pdf-to-html and pdf-to-markdown can use either LibreOffice or Pdftohtml
-        addEndpointAlternative("pdf-to-html", "LibreOffice");
         addEndpointAlternative("pdf-to-html", "Pdftohtml");
         addEndpointAlternative("pdf-to-markdown", "Pdftohtml");
 
-        // markdown-to-pdf can use either Weasyprint or Java
-        addEndpointAlternative("markdown-to-pdf", "Weasyprint");
+        // markdown-to-pdf is provided by Java (Python/WeasyPrint runtime removed)
         addEndpointAlternative("markdown-to-pdf", "Java");
-
-        // Weasyprint dependent endpoints
-        addEndpointToGroup("Weasyprint", "html-to-pdf");
-        addEndpointToGroup("Weasyprint", "url-to-pdf");
-        addEndpointToGroup("Weasyprint", "markdown-to-pdf");
-        addEndpointToGroup("Weasyprint", "eml-to-pdf");
 
         // veraPDF dependent endpoints
         addEndpointToGroup("veraPDF", "verify-pdf");
@@ -642,18 +601,11 @@ public class EndpointConfiguration {
 
     private boolean isToolGroup(String group) {
         return "qpdf".equals(group)
-                || "OCRmyPDF".equals(group)
                 || "Ghostscript".equals(group)
-                || "LibreOffice".equals(group)
-                || "tesseract".equals(group)
                 || "FormatConvert".equals(group)
                 || "CLI".equals(group)
-                || "Python".equals(group)
-                || "OpenCV".equals(group)
-                || "Unoconvert".equals(group)
                 || "Java".equals(group)
                 || "Javascript".equals(group)
-                || "Weasyprint".equals(group)
                 || "Pdftohtml".equals(group)
                 || "ImageMagick".equals(group)
                 || "rar".equals(group)
