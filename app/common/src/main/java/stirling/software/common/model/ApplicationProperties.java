@@ -660,7 +660,10 @@ public class ApplicationProperties {
         /** Whether remote format conversion service is enabled. */
         private boolean enabled = false;
 
-        /** Base URL of the remote format conversion service, e.g. https://format.example.com */
+        /**
+         * Base URL of the remote format conversion service (e.g. from JVM {@code
+         * -DformatConvert.baseUrl}).
+         */
         private String baseUrl = "";
 
         /** Optional API key or token for the remote service. */

@@ -2,7 +2,7 @@ use tauri_plugin_shell::ShellExt;
 use tauri::Manager;
 use std::sync::Mutex;
 use std::path::{Path, PathBuf};
-use crate::utils::{add_log, app_data_dir};
+use crate::utils::{add_log, app_data_dir, format_convert_base_url};
 use crate::state::connection_state::{AppConnectionState, ConnectionMode};
 
 // Store backend process handle and port globally
@@ -200,6 +200,13 @@ fn run_stirling_pdf_jar(app: &tauri::AppHandle, java_path: &PathBuf, jar_path: &
     add_log(format!("📁 Working directory: {}", work_dir.display()));
     add_log(format!("📁 Config directory: {}", config_dir.display()));
 
+    let format_convert_url = format_convert_base_url();
+    let format_convert_jvm = format!("-DformatConvert.baseUrl={}", format_convert_url);
+    add_log(format!(
+        "🌐 FormatConvert baseUrl for JVM: {}",
+        format_convert_url
+    ));
+
     // Define all Java options with Tauri-specific paths
     let log_path_option = format!("-Dlogging.file.path={}", log_dir.display());
 
@@ -207,11 +214,12 @@ fn run_stirling_pdf_jar(app: &tauri::AppHandle, java_path: &PathBuf, jar_path: &
         "-Xmx8g",
         "-DBROWSER_OPEN=false",
         "-DSTIRLING_PDF_TAURI_MODE=true",
-        &log_path_option,
+        log_path_option.as_str(),
         "-Dlogging.file.name=stirling-pdf.log",
         "-Dserver.port=0",  // Let OS assign an available port
         "-Dsecurity.enableLogin=false",  // Disable login for desktop mode
         "-Dsecurity.csrfDisabled=true",  // Disable CSRF for desktop mode
+        format_convert_jvm.as_str(),
         "-jar",
         jar_path.to_str().unwrap(),
     ];

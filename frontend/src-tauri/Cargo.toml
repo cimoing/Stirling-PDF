@@ -17,6 +17,11 @@ warnings = "deny"
 name = "app_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
+# Release + `--features formatconvert-dev` (see `utils/format_convert_url.rs`, `tauri.desktop-dev.conf.json`)
+[features]
+default = []
+formatconvert-dev = []
+
 [build-dependencies]
 tauri-build = { version = "2.5.3", features = [] }
 

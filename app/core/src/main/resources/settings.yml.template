@@ -156,7 +156,7 @@ legal:
 
 formatConvert:
   enabled: true # When true, use external FormatConvert service instead of local LibreOffice for office→PDF
-  baseUrl: "https://plexpdf-test.wenxstudio.ai" # Base URL of FormatConvert service, e.g. https://formatconvert.example.com
+  # baseUrl is usually omitted: Tauri passes -DformatConvert.baseUrl (see frontend/src-tauri/build.rs); server/JAR can set JVM arg, env, or this key.
   apiKey: "" # Optional API key or token for FormatConvert; leave empty if not required
 
 system:
